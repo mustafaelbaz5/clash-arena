@@ -58,7 +58,7 @@ class _SignUpFormState extends State<SignUpForm> {
       age: int.tryParse(_ageController.text.trim()) ?? 0,
       profileImageUrl: null,
     );
-
+    context.hideKeyboard();
     context.read<AuthCubit>().signUp(
       userData: userData,
       password: _passwordController.text.trim(),

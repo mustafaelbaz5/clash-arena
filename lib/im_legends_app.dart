@@ -5,14 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:im_legends/core/config/app_config.dart';
 import 'package:im_legends/core/settings/cubit/app_settings_cubit.dart';
 import 'package:im_legends/core/settings/cubit/app_settings_state.dart';
+import 'package:im_legends/features/auth/ui/user_authenticated_check.dart';
 
 import 'core/di/dependency_injection.dart';
 import 'core/router/app_router.dart';
 import 'core/themes/theme_data/theme_data_dark.dart';
 import 'core/themes/theme_data/theme_data_light.dart';
 import 'features/auth/logic/cubit/auth_cubit.dart';
-import 'features/main_navigation/ui/main_scaffold.dart';
-import 'features/onboarding/ui/on_boarding_screen.dart';
 
 class IMLegendsApp extends StatelessWidget {
   const IMLegendsApp({super.key});
@@ -38,12 +37,11 @@ class IMLegendsApp extends StatelessWidget {
                         key: ValueKey(authState is AuthAuthenticated),
                         localizationsDelegates: context.localizationDelegates,
                         supportedLocales: context.supportedLocales,
-                        locale: settings.locale, // driven by cubit
+                        locale: settings.locale,
                         debugShowCheckedModeBanner: false,
-                        home: _buildHome(authState),
+                        home: const UserAuthenticatedCheck(),
                         onGenerateRoute: AppRouter.generateRoute,
                         title: AppConfig.appName,
-                        // font family injected into both themes
                         theme: getLightTheme().copyWith(
                           textTheme: getLightTheme().textTheme.apply(
                             fontFamily: settings.fontFamily,
@@ -64,16 +62,4 @@ class IMLegendsApp extends StatelessWidget {
       },
     );
   }
-
-  Widget _buildHome(final AuthState state) {
-    if (state is AuthInitial || state is AuthLoading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    } else if (state is AuthAuthenticated) {
-      return const MainScaffold();
-    } else {
-      return const OnBoardingScreen();
-    }
-  }
 }
-
-// test123@gmail.com
