@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:im_legends/core/themes/app_texts_style.dart';
 
 import '../themes/app_colors.dart';
 import '../utils/spacing.dart';
@@ -106,9 +105,9 @@ class CustomTextButton extends StatelessWidget {
 
   double get _iconSize => size == CustomButtonSize.small ? 18 : 20;
 
-  TextStyle get _defaultTextStyle => size == CustomButtonSize.small
-      ? AppTextStyles.font14Bold
-      : AppTextStyles.font16Bold;
+  // TextStyle get _defaultTextStyle => size == CustomButtonSize.small
+  //     ? AppTextStyles.font14Bold
+  //     : AppTextStyles.font16Bold;
 
   // ─── Resolved colors by style ─────────────────────────────────────────
   Color _resolveBackground(final BuildContext context) {
@@ -145,8 +144,15 @@ class CustomTextButton extends StatelessWidget {
     final Color fg = _resolveForeground(context);
     final BorderSide border = _resolveBorder(fg);
     final double radius = borderRadius ?? 12;
-    final TextStyle effectiveTextStyle = (textStyle ?? _defaultTextStyle)
-        .copyWith(color: fg);
+
+    // Inside build(), replace effectiveTextStyle with:
+    final TextStyle effectiveTextStyle =
+        (textStyle ??
+                Theme.of(context).textTheme.labelLarge!.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: size == CustomButtonSize.small ? 14 : 16,
+                ))
+            .copyWith(color: fg);
 
     final Widget child = isLoading
         ? SizedBox(
