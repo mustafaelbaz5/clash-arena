@@ -1,9 +1,28 @@
-class AppConfig {
-  AppConfig._();
+enum Environment { development, production }
 
-  static const String appName = 'Flutter Starter App';
-  static const String appVersion = '1.0.0';
-  static const String buildNumber = '1';
+class AppConfig {
+  const AppConfig._();
+
+  // Environment — driven by --dart-define at compile time
+  static const String _env = String.fromEnvironment(
+    'ENV',
+    defaultValue: 'development',
+  );
+
+  static Environment get environment =>
+      _env == 'production' ? Environment.production : Environment.development;
+
+  static bool get isProduction => environment == Environment.production;
+  static bool get isDevelopment => environment == Environment.development;
+  static bool get enableLogging => !isProduction;
+
+  // App Info
+  static const String appName = String.fromEnvironment(
+    'APP_NAME',
+    defaultValue: 'IMLegend Dev',
+  );
+  static const String appVersion = '1.0.7';
+  static const String buildNumber = '8';
 
   // Developer Info
   static const String developerName = 'Mustafa Elbaz';
@@ -14,11 +33,7 @@ class AppConfig {
       'https://www.linkedin.com/in/mustafa-elbaz-725a6631a';
   static const String developerEmail = 'm9stafa05@gmail.com';
 
-  // Environment
-  static const bool isProduction = false;
-  static const bool enableLogging = true;
-
-  // Supabase Configuration
+  // API
   static const String supabaseUrl = 'https://flutiryhpfdlpizyxqix.supabase.co';
   static const String supabaseAnonKey =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsdXRpcnlocGZkbHBpenl4cWl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYxNTQ3NzIsImV4cCI6MjA3MTczMDc3Mn0.UhojXOtOrnvbwDKvyBVZn3Cl1gdUkr-NYuGBLQXIRi0';
