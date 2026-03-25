@@ -22,7 +22,7 @@ class AppDialogs {
         primaryButtonText: buttonText ?? 'app_dialogs.ok'.tr(),
         onPrimaryPressed: onPressed,
         icon: Icons.info_outline,
-        iconColor: AppColors.yellow100,
+        iconColor: AppColors.amber200,
       ),
     );
   }

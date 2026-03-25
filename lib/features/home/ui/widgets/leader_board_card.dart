@@ -68,12 +68,12 @@ class LeaderBoardCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: rw(6), vertical: rh(2)),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(rr(4)),
-            color: AppColors.yellow100.withValues(alpha: 0.1),
+            color: AppColors.amber100.withValues(alpha: 0.1),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.star, size: rf(12), color: AppColors.yellow100),
+              Icon(Icons.star, size: rf(12), color: AppColors.amber100),
               horizontalSpacing(3),
               Text(
                 '${player.points}',

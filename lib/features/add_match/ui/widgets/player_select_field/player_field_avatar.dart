@@ -12,7 +12,7 @@ class PlayerFieldAvatar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final accentColor = context.customColors.scaffoldBackground;
+    final accentColor = context.customColors.background;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),

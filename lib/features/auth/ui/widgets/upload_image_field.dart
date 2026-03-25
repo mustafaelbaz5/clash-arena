@@ -67,7 +67,7 @@ class _UploadImageFieldState extends State<UploadImageField> {
                       ? Icon(
                           Icons.person,
                           size: rr(60),
-                          color: context.customColors.accentBlue,
+                          color: context.customColors.info,
                         )
                       : null,
                 ),

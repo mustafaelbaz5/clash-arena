@@ -62,7 +62,7 @@ class GoalsOverview extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: rw(12), vertical: rh(8)),
             decoration: BoxDecoration(
-              color: context.customColors.successContainer,
+              color: context.customColors.successBackground,
               borderRadius: BorderRadius.circular(rr(8)),
             ),
             child: Column(

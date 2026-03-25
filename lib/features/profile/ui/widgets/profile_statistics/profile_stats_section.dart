@@ -39,8 +39,8 @@ class ProfileStatsSection extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        context.customColors.accentBlue,
-                        context.customColors.accentBlue.withAlpha(
+                        context.customColors.info,
+                        context.customColors.info.withAlpha(
                           (0.7 * 255).toInt(),
                         ),
                       ],

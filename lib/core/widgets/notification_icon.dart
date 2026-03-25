@@ -40,7 +40,7 @@ class NotificationIcon extends StatelessWidget {
                   child: Text(
                     unreadCount > 9 ? '9+' : unreadCount.toString(),
                     style: AppTextStyles.font12SemiBold.copyWith(
-                      color: AppColors.grey0,
+                      color: AppColors.white,
                     ),
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/functions/get_rank_color.dart';
 
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_texts_style.dart';
@@ -82,14 +83,18 @@ class _PodiumSlot extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final rankColor = _rankColor(rank);
+    final rankColor = getRankColor(rank);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         // ── Crown icon for 1st ──
         if (rank == 1)
-          Icon(Icons.emoji_events_rounded, color: AppColors.gold, size: rf(28))
+          Icon(
+            Icons.emoji_events_rounded,
+            color: AppColors.amber300,
+            size: rf(28),
+          )
         else
           verticalSpacing(6),
 
@@ -154,16 +159,4 @@ class _PodiumSlot extends StatelessWidget {
   }
 
   /// Returns a distinct color per rank using the app's color scheme.
-  Color _rankColor(final int rank) {
-    switch (rank) {
-      case 1:
-        return AppColors.gold;
-      case 2:
-        return AppColors.silver;
-      case 3:
-        return AppColors.bronze;
-      default:
-        return Colors.transparent;
-    }
-  }
 }

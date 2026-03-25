@@ -27,7 +27,7 @@ class HistoryCardPlayerInfo extends StatelessWidget {
           decoration: const BoxDecoration(shape: BoxShape.circle),
           child: CircleAvatar(
             radius: rr(35),
-            backgroundColor: context.customColors.successContainer.withValues(
+            backgroundColor: context.customColors.successBackground.withValues(
               alpha: 0.3,
             ),
             backgroundImage: avatarUrl != null && avatarUrl!.isNotEmpty

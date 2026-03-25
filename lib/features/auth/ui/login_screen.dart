@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               'auth.sign_up'.tr(),
                               style: AppTextStyles.font12SemiBold.copyWith(
-                                color: context.customColors.accentBlue,
+                                color: context.customColors.info,
                                 decorationThickness: 2,
                               ),
                             ),

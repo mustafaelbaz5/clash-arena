@@ -74,13 +74,13 @@ class _MainScaffoldState extends State<MainScaffold> {
       icon: Icon(
         activeIcon,
         size: rr(26),
-        color: isCenterButton ? AppColors.grey0 : AppColors.primary400,
+        color: isCenterButton ? AppColors.white : AppColors.primary400,
       ),
       inactiveIcon: Icon(
         inactiveIcon,
         size: rr(26),
         color: isCenterButton
-            ? AppColors.grey0
+            ? AppColors.white
             : context.customColors.textPrimary,
       ),
       activeColorPrimary: AppColors.primary400,

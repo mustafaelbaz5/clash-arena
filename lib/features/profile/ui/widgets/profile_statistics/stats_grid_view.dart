@@ -26,14 +26,14 @@ class StatsGridView extends StatelessWidget {
           icon: Icons.sports_soccer,
           label: 'profile.stats.matches_played'.tr(),
           value: stats.matchesPlayed.toString(),
-          color: context.customColors.accentBlue,
+          color: context.customColors.info,
         ),
         _buildStatCard(
           context,
           icon: Icons.emoji_events,
           label: 'profile.stats.points'.tr(),
           value: stats.points.toString(),
-          color: AppColors.gold,
+          color: AppColors.amber300,
         ),
         _buildStatCard(
           context,

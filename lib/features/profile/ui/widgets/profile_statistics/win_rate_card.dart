@@ -18,7 +18,7 @@ class WinRateCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(24)),
       decoration: BoxDecoration(
-        color: context.customColors.accentBlue.withAlpha((0.1 * 255).toInt()),
+        color: context.customColors.info.withAlpha((0.1 * 255).toInt()),
         borderRadius: BorderRadius.circular(rr(12)),
       ),
       child: Row(
@@ -40,7 +40,7 @@ class WinRateCard extends StatelessWidget {
                       (0.3 * 255).toInt(),
                     ),
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      context.customColors.accentBlue,
+                      context.customColors.info,
                     ),
                   ),
                 ),
@@ -50,7 +50,7 @@ class WinRateCard extends StatelessWidget {
                     Text(
                       '${winRate.toStringAsFixed(0)}%',
                       style: AppTextStyles.font16Bold.copyWith(
-                        color: context.customColors.accentBlue,
+                        color: context.customColors.info,
                       ),
                     ),
                   ],

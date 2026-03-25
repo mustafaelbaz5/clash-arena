@@ -27,7 +27,7 @@ class ImagePickerHelper {
                 ListTile(
                   leading: Icon(
                     Icons.photo_library,
-                    color: context.customColors.accentBlue,
+                    color: context.customColors.info,
                   ),
                   title: Text(
                     'image_picker.choose_from_gallery'.tr(),
@@ -46,7 +46,7 @@ class ImagePickerHelper {
                 ListTile(
                   leading: Icon(
                     Icons.camera_alt,
-                    color: context.customColors.accentBlue,
+                    color: context.customColors.info,
                   ),
                   title: Text(
                     'image_picker.take_photo'.tr(),

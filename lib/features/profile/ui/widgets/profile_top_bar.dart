@@ -29,7 +29,7 @@ class ProfileTopBar extends StatelessWidget {
           children: [
             Text(
               'profile.profile'.tr(),
-              style: AppTextStyles.font20Bold.copyWith(color: AppColors.grey0),
+              style: AppTextStyles.font20Bold.copyWith(color: AppColors.white),
               textAlign: TextAlign.center,
             ),
             const Spacer(),
@@ -38,7 +38,7 @@ class ProfileTopBar extends StatelessWidget {
               child: SvgPicture.asset(
                 AppAssets.notificationIconSvg,
                 colorFilter: const ColorFilter.mode(
-                  AppColors.grey0,
+                  AppColors.white,
                   BlendMode.srcIn,
                 ),
               ),

@@ -86,7 +86,7 @@ class _ProfileImageAvatarState extends State<ProfileImageAvatar> {
                     placeholder: (final context, final url) => Center(
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
-                        color: context.customColors.accentBlue,
+                        color: context.customColors.info,
                       ),
                     ),
                     errorWidget: (final context, final url, final error) =>
@@ -109,7 +109,7 @@ class _ProfileImageAvatarState extends State<ProfileImageAvatar> {
               padding: EdgeInsets.all(rw(6)),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.customColors.scaffoldBackground,
+                color: context.customColors.background,
               ),
               child: Icon(
                 Icons.edit,

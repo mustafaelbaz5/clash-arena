@@ -28,7 +28,7 @@ class HomeAppBar extends StatelessWidget {
               Text(
                 'home.welcome_description'.tr(),
                 style: AppTextStyles.font12Regular.copyWith(
-                  color: context.customColors.textTertiary,
+                  color: context.customColors.textSecondary,
                 ),
               ),
             ],

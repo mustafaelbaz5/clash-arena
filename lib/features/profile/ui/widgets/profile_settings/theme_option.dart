@@ -27,12 +27,12 @@ class ThemeOption extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(18)),
         decoration: BoxDecoration(
           color: isSelected
-              ? context.customColors.scaffoldBackground
+              ? context.customColors.background
               : Colors.transparent,
           borderRadius: BorderRadius.circular(rr(12)),
           border: Border.all(
             color: isSelected
-                ? context.customColors.accentBlue
+                ? context.customColors.info
                 : context.customColors.border,
             width: isSelected ? 2 : 1,
           ),
@@ -42,7 +42,7 @@ class ThemeOption extends StatelessWidget {
             Icon(
               icon,
               color: isSelected
-                  ? context.customColors.accentBlue
+                  ? context.customColors.info
                   : context.customColors.border,
               size: rf(20),
             ),
@@ -51,7 +51,7 @@ class ThemeOption extends StatelessWidget {
               title,
               style: AppTextStyles.font14Regular.copyWith(
                 color: isSelected
-                    ? context.customColors.accentBlue
+                    ? context.customColors.info
                     : context.customColors.textSecondary,
               ),
             ),
@@ -59,7 +59,7 @@ class ThemeOption extends StatelessWidget {
             if (isSelected)
               Icon(
                 Icons.check_circle,
-                color: context.customColors.accentBlue,
+                color: context.customColors.info,
                 size: rf(20),
               ),
           ],

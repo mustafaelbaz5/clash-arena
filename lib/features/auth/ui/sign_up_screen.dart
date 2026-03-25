@@ -57,7 +57,7 @@ class SignUpScreen extends StatelessWidget {
                             child: Text(
                               'auth.login'.tr(),
                               style: AppTextStyles.font12SemiBold.copyWith(
-                                color: context.customColors.accentBlue,
+                                color: context.customColors.info,
                                 decorationThickness: 2,
                               ),
                             ),

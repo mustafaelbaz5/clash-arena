@@ -75,7 +75,7 @@ class _LeaderboardRow extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Container(
       color: isEven
-          ? context.customColors.scaffoldBackground
+          ? context.customColors.background
           : context.customColors.background,
       padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(10)),
       child: Row(
@@ -95,7 +95,9 @@ class _LeaderboardRow extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: rr(16),
-                  backgroundColor: context.customColors.infoContainerDark,
+                  backgroundColor: context.customColors.divider.withValues(
+                    alpha: 0.5,
+                  ),
                   backgroundImage: player.profileImageUrl != null
                       ? NetworkImage(player.profileImageUrl!)
                       : null,

@@ -25,12 +25,12 @@ class LanguageOption extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(18)),
         decoration: BoxDecoration(
           color: isSelected
-              ? context.customColors.accentBlue.withAlpha((0.1 * 255).toInt())
+              ? context.customColors.info.withAlpha((0.1 * 255).toInt())
               : Colors.transparent,
           borderRadius: BorderRadius.circular(rw(12)),
           border: Border.all(
             color: isSelected
-                ? context.customColors.accentBlue
+                ? context.customColors.info
                 : context.customColors.border,
             width: isSelected ? 2 : 1,
           ),
@@ -41,7 +41,7 @@ class LanguageOption extends StatelessWidget {
               title,
               style: isSelected
                   ? AppTextStyles.font14Bold.copyWith(
-                      color: context.customColors.accentBlue,
+                      color: context.customColors.info,
                     )
                   : AppTextStyles.font14Regular.copyWith(
                       color: context.customColors.textSecondary,
@@ -51,7 +51,7 @@ class LanguageOption extends StatelessWidget {
             if (isSelected)
               Icon(
                 Icons.check_circle,
-                color: context.customColors.accentBlue,
+                color: context.customColors.info,
                 size: rf(20),
               ),
           ],

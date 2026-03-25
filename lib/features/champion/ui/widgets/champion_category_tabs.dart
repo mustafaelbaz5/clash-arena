@@ -48,7 +48,7 @@ class ChampionCategoryTabs extends StatelessWidget {
                     tab.label,
                     style: AppTextStyles.font12Regular.copyWith(
                       color: isSelected
-                          ? AppColors.grey0
+                          ? AppColors.white
                           : context.customColors.textPrimary,
                     ),
                   ),
