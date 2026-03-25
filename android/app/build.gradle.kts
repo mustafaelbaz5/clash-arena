@@ -50,7 +50,7 @@ android {
     productFlavors {
         create("development") {
             dimension = "default"
-            applicationIdSuffix = ".dev"
+            applicationIdSuffix = ".development"
             resValue("string", "app_name", "IMLegend Dev") // app name with Dev
         }
         create("production") {
