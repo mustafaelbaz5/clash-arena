@@ -40,12 +40,12 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 
   List<Widget> _buildScreens() {
-    return const [
-      HomeScreen(),
-      HistoryScreen(),
-      AddMatchScreen(),
-      ChampionScreen(),
-      ProfileScreen(),
+    return [
+      const HomeScreen(),
+      const HistoryScreen(),
+      AddMatchScreen(controller: _controller),
+      const ChampionScreen(),
+      const ProfileScreen(),
     ];
   }
 
@@ -94,7 +94,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       providers: [
         BlocProvider(create: (_) => getIt<HomeCubit>()..loadLeaderboard()),
         BlocProvider(create: (_) => getIt<MatchHistoryCubit>()..fetchMatches()),
-        BlocProvider(create: (_) => getIt<AddMatchCubit>()..getPlayersList()),
+        BlocProvider(create: (_) => getIt<AddMatchCubit>()..resetMatchData()),
         BlocProvider(create: (_) => getIt<ProfileCubit>()..fetchProfile()),
         BlocProvider(create: (_) => getIt<ChampionCubit>()..fetchLeaderboard()),
       ],
