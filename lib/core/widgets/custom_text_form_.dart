@@ -4,6 +4,13 @@ import 'package:im_legends/core/themes/app_texts_style.dart';
 import '../themes/app_colors.dart';
 import '../utils/extensions/context_ext.dart';
 
+/// AppTextField — reusable outlined text field
+/// ─────────────────────────────────────────────
+/// Usage:
+///   AppTextField(hintText: 'Email')
+///   AppTextField(hintText: 'Password', isPassword: true)
+///   AppTextField(hintText: 'Notes', maxLines: 4)
+
 class CustomTextForm extends StatefulWidget {
   const CustomTextForm({
     super.key,
@@ -95,11 +102,12 @@ class _CustomTextFormState extends State<CustomTextForm> {
 
     final TextStyle effectiveHintStyle =
         widget.hintStyle ??
-        AppTextStyles.font14Regular.copyWith(color: colors.textSecondary);
+        AppTextStyles.font16Regular.copyWith(color: colors.textHint);
 
     final Color defaultBorder = widget.borderColor ?? colors.border;
-    final Color focusedBorder = widget.focusedBorderColor ?? AppColors.grey200;
-    final Color fillColor = widget.backgroundColor ?? colors.scaffoldBackground;
+    final Color focusedBorder =
+        widget.focusedBorderColor ?? AppColors.primary50;
+    final Color fillColor = widget.backgroundColor ?? colors.surface;
 
     return TextFormField(
       controller: widget.controller,
@@ -135,7 +143,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
             ? IconButton(
                 icon: Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: colors.textSecondary,
+                  color: colors.iconSecondary,
                   size: 20,
                 ),
                 onPressed: _toggleObscure,
