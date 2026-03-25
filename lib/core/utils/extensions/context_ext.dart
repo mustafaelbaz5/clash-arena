@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../themes/app_font_family.dart';
 import '../../themes/custom_colors.dart';
 
 // ─── Theme ───────────────────────────────────────────────────────────────────
@@ -34,9 +33,6 @@ extension MediaQueryExt on BuildContext {
 extension LocaleExt on BuildContext {
   Locale get currentLocale => EasyLocalization.of(this)!.locale;
   bool get isArabic => currentLocale.languageCode == 'ar';
-  bool get isRTL => isArabic;
-  String get currentFont =>
-      isArabic ? AppFontFamily.tajawal : AppFontFamily.inter;
 }
 
 // ─── SnackBar ─────────────────────────────────────────────────────────────────
@@ -106,22 +102,20 @@ extension NavigationExt on BuildContext {
     final String routeName, {
     final Object? arguments,
     final TO? result,
-  }) =>
-      Navigator.pushReplacementNamed(
-        this,
-        routeName,
-        arguments: arguments,
-        result: result,
-      );
+  }) => Navigator.pushReplacementNamed(
+    this,
+    routeName,
+    arguments: arguments,
+    result: result,
+  );
 
   Future<T?> pushNamedAndRemoveAll<T>(
     final String routeName, {
     final Object? arguments,
-  }) =>
-      Navigator.pushNamedAndRemoveUntil(
-        this,
-        routeName,
-        (final _) => false,
-        arguments: arguments,
-      );
+  }) => Navigator.pushNamedAndRemoveUntil(
+    this,
+    routeName,
+    (final _) => false,
+    arguments: arguments,
+  );
 }
