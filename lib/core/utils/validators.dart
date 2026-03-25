@@ -30,7 +30,7 @@ class Validators {
   }
 
   /// Validates password strength
-  static String? password(final String? value, {final int minLength = 8}) {
+  static String? password(final String? value, {final int minLength = 6}) {
     if (value == null || value.isEmpty) {
       return 'Password is required';
     }
