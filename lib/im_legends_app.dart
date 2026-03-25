@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:im_legends/core/config/app_config.dart';
+import 'package:im_legends/core/settings/cubit/app_settings_cubit.dart';
+import 'package:im_legends/core/settings/cubit/app_settings_state.dart';
 
 import 'core/di/dependency_injection.dart';
 import 'core/router/app_router.dart';
-import 'core/themes/cubit/theme_cubit.dart';
 import 'core/themes/theme_data/theme_data_dark.dart';
 import 'core/themes/theme_data/theme_data_light.dart';
 import 'features/auth/logic/cubit/auth_cubit.dart';
@@ -25,28 +27,38 @@ class IMLegendsApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => getIt<AuthCubit>()..checkAuthStatus()),
-            BlocProvider(create: (_) => ThemeCubit()),
+            BlocProvider(create: (_) => AppSettingsCubit()),
           ],
-          child: BlocBuilder<ThemeCubit, ThemeMode>(
-            builder: (final context, final mode) {
-              return BlocBuilder<AuthCubit, AuthState>(
-                builder: (final context, final authState) {
-                  return MaterialApp(
-                    key: ValueKey(authState is AuthAuthenticated),
-                    localizationsDelegates: context.localizationDelegates,
-                    supportedLocales: context.supportedLocales,
-                    locale: context.locale,
-                    debugShowCheckedModeBanner: false,
-                    title: 'ImLegends',
-                    onGenerateRoute: AppRouter.generateRoute,
-                    home: _buildHome(authState),
-                    theme: getLightTheme(context: context),
-                    darkTheme: getDarkTheme(context: context),
-                    themeMode: mode,
+          child: BlocBuilder<AppSettingsCubit, AppSettingsState>(
+            builder:
+                (final BuildContext context, final AppSettingsState settings) {
+                  return BlocBuilder<AuthCubit, AuthState>(
+                    builder: (final context, final authState) {
+                      return MaterialApp(
+                        key: ValueKey(authState is AuthAuthenticated),
+                        localizationsDelegates: context.localizationDelegates,
+                        supportedLocales: context.supportedLocales,
+                        locale: settings.locale, // driven by cubit
+                        debugShowCheckedModeBanner: false,
+                        home: _buildHome(authState),
+                        onGenerateRoute: AppRouter.generateRoute,
+                        title: AppConfig.appName,
+                        // font family injected into both themes
+                        theme: getLightTheme().copyWith(
+                          textTheme: getLightTheme().textTheme.apply(
+                            fontFamily: settings.fontFamily,
+                          ),
+                        ),
+                        darkTheme: getDarkTheme().copyWith(
+                          textTheme: getDarkTheme().textTheme.apply(
+                            fontFamily: settings.fontFamily,
+                          ),
+                        ),
+                        themeMode: settings.themeMode,
+                      );
+                    },
                   );
                 },
-              );
-            },
           ),
         );
       },
