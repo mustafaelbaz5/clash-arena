@@ -2,26 +2,53 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "IM Legends Development",
+      "name": "ImLegends Dev",
       "type": "dart",
       "request": "launch",
-      "program": "lib/main_development.dart",
-      "args": ["--flavor", "development", "--target", "lib/main_development.dart"]
+      "program": "lib/main_dev.dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--target",
+        "lib/main_dev.dart",
+        "--dart-define",
+        "ENV=development",
+        "--dart-define",
+        "APP_NAME=Flutter Starter Dev"
+      ]
     },
     {
-      "name": "IM Legends",
+      "name": "ImLegends Dev (Profile)",
       "type": "dart",
       "request": "launch",
-      "program": "lib/main_production.dart",
-      "args": ["--flavor", "production", "--target", "lib/main_production.dart"]
+      "program": "lib/main_dev.dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--target",
+        "lib/main_dev.dart",
+        "--dart-define",
+        "ENV=development",
+        "--dart-define",
+        "APP_NAME=Flutter Starter Dev",
+        "--profile"
+      ]
     },
     {
-      "type": "cmake",
+      "name": "ImLegends Prod",
+      "type": "dart",
       "request": "launch",
-      "name": "Debug portfile(s)",
-      "cmakeDebugType": "external",
-      "pipeName": "\\\\.\\pipe\\vcpkg_ext_portfile_dbg",
-      "preLaunchTask": "Debug vcpkg commands"
+      "program": "lib/main_prod.dart",
+      "args": [
+        "--flavor",
+        "production",
+        "--target",
+        "lib/main_prod.dart",
+        "--dart-define",
+        "ENV=production",
+        "--dart-define",
+        "APP_NAME=Flutter Starter"
+      ]
     }
   ]
 }

@@ -33,11 +33,11 @@ clean:
 
 ## Run app in development flavor
 dev:
-	flutter run --flavor development --target lib/main_development.dart
+	flutter run --flavor development --target lib/main_dev.dart
 
 ## Run app in production flavor
 prod:
-	flutter run --flavor production --target lib/main_production.dart
+	flutter run --flavor production --target lib/main_prod.dart
 
 
 # ─── Testing ─────────────────────────────────────────────────────────────────
@@ -86,19 +86,19 @@ format-check:
 
 ## Build debug APK (development)
 build-apk-dev:
-	flutter build apk --debug --flavor development --target lib/main_development.dart
+	flutter build apk --debug --flavor development --target lib/main_dev.dart
 
 ## Build release APK (production)
 build-apk-prod:
-	flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
+	flutter build apk --release --flavor production --target lib/main_prod.dart --no-tree-shake-icons
 
 ## Build release AAB (production) — for Play Store
 build-aab-prod:
-	flutter build appbundle --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
+	flutter build appbundle --release --flavor production --target lib/main_prod.dart --no-tree-shake-icons
 
 ## Build release IPA (iOS production)
 build-ios-prod:
-	flutter build ipa --flavor production --target lib/main_production.dart
+	flutter build ipa --flavor production --target lib/main_prod.dart
 
 
 # ─── Distribution ────────────────────────────────────────────────────────────
