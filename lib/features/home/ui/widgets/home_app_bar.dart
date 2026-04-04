@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:im_legends/core/utils/extensions/context_ext.dart';
+import 'package:im_legends/core/utils/extensions/string_ext.dart';
 
 import '../../../../core/themes/app_texts_style.dart';
 import '../../../../core/utils/spacing.dart';
@@ -20,8 +21,8 @@ class HomeAppBar extends StatelessWidget {
           Column(
             children: [
               Text(
-                title,
-                style: AppTextStyles.font14Bold.copyWith(
+                title.capitalizeWords(),
+                style: AppTextStyles.font16Bold.copyWith(
                   color: context.customColors.textPrimary,
                 ),
               ),
