@@ -247,10 +247,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Mustafa Elbaz**
 
-- GitHub: [@m9stafa05](https://github.com/m9stafa05)
-- LinkedIn: [Mustafa Elbaz](https://linkedin.com/in/mustafa-elbaz-725a6631a)
-- Portfolio: [Mustafa Portfolio](https://mustafa-portfolio-eight.vercel.app/)
-- Email: [m9stafa05@gmail.com](mailto:m9stafa05@gmail.com)
+* GitHub: [@mustafaelbaz5](https://github.com/mustafaelbaz5)
+* LinkedIn: [Mustafa Elbaz](https://linkedin.com/in/mustafa-elbaz-725a6631a)
+* Portfolio: [Mustafa Portfolio](https://mustafa-portfolio-eight.vercel.app/)
+* Email: [m9stafa05@gmail.com](mailto:m9stafa05@gmail.com)
 
 ## 🙏 Acknowledgments
 
