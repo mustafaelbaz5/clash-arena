@@ -14,7 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.2.0
-  get_it: ^8.2.0
+  get_it: ^9.2.1
   flutter_native_splash: ^2.4.6
   flutter_bloc: ^9.1.1
   bloc: ^9.0.0
@@ -23,16 +23,16 @@ dependencies:
   meta: ^1.16.0
   image_picker: ^1.2.0
   firebase_messaging: ^16.0.1
-  flutter_local_notifications: ^19.4.1
+  flutter_local_notifications: ^21.0.0
   shared_preferences: ^2.5.3
   permission_handler: ^12.0.1
-  flutter_secure_storage: ^9.2.4
+  flutter_secure_storage: ^10.0.0
   intl: ^0.20.2
   flutter_dotenv: ^6.0.0
   cached_network_image: ^3.4.1
   shimmer: ^3.0.0
   easy_localization: ^3.0.8
-  hydrated_bloc: ^10.1.1
+  hydrated_bloc: ^11.0.0
   path_provider: ^2.1.5
   persistent_bottom_nav_bar: ^6.2.1
   carousel_slider: ^5.1.2
@@ -42,7 +42,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
   mockito: any
   build_runner: any
