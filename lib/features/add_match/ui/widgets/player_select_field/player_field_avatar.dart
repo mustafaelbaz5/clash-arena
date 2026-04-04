@@ -53,7 +53,7 @@ class PlayerFieldAvatar extends StatelessWidget {
                     child: const CircularProgressIndicator(strokeWidth: 2),
                   ),
                 ),
-                errorWidget: (_, final __, final ___) =>
+                errorWidget: (_, final _, final _) =>
                     Icon(Icons.person, color: context.customColors.textPrimary),
               )
             : Icon(
