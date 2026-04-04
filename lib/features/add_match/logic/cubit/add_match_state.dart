@@ -15,7 +15,7 @@ class AddMatchState {
 
   final bool isLoading;
   final bool isSuccess;
-  final AppError? error;
+  final Failure? error;
 
   const AddMatchState({
     this.players = const [],
@@ -44,7 +44,7 @@ class AddMatchState {
     final String? loserImage,
     final bool? isLoading,
     final bool? isSuccess,
-    final AppError? error,
+    final Failure? error,
   }) {
     return AddMatchState(
       winnerScore: winnerScore ?? this.winnerScore,
@@ -74,6 +74,6 @@ class AddMatchInsertSuccess extends AddMatchState {}
 class AddMatchFailure extends AddMatchState {
   @override
   // ignore: overridden_fields
-  final AppError error;
+  final Failure error;
   const AddMatchFailure({required this.error});
 }

@@ -45,17 +45,18 @@ android {
         }
     }
 
-    flavorDimensions += "default"
+ flavorDimensions += "default"
+
     productFlavors {
         create("development") {
             dimension = "default"
-            resValue("string", "app_name", "IM Legends Development")
             applicationIdSuffix = ".development"
+            resValue("string", "app_name", "IMLegend Dev") // app name with Dev
         }
         create("production") {
             dimension = "default"
-            resValue("string", "app_name", "IM Legends Production")
-            applicationIdSuffix = ".production"
+            // no suffix for production
+            resValue("string", "app_name", "IMLegend") // clean app name
         }
     }
 }

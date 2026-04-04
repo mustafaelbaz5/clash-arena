@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../../../core/themes/app_texts_style.dart';
-import '../../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../../core/utils/spacing.dart';
 
 class ThemeOption extends StatelessWidget {
@@ -21,20 +22,17 @@ class ThemeOption extends StatelessWidget {
   Widget build(final BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(responsiveRadius(12)),
+      borderRadius: BorderRadius.circular(rr(12)),
       child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: responsiveWidth(16),
-          vertical: responsiveHeight(18),
-        ),
+        padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(18)),
         decoration: BoxDecoration(
           color: isSelected
-              ? context.customColors.scaffoldBackground
+              ? context.customColors.background
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(responsiveRadius(12)),
+          borderRadius: BorderRadius.circular(rr(12)),
           border: Border.all(
             color: isSelected
-                ? context.customColors.accentBlue
+                ? context.customColors.info
                 : context.customColors.border,
             width: isSelected ? 2 : 1,
           ),
@@ -44,16 +42,16 @@ class ThemeOption extends StatelessWidget {
             Icon(
               icon,
               color: isSelected
-                  ? context.customColors.accentBlue
+                  ? context.customColors.info
                   : context.customColors.border,
-              size: responsiveFontSize(20),
+              size: rf(20),
             ),
             horizontalSpacing(12),
             Text(
               title,
               style: AppTextStyles.font14Regular.copyWith(
                 color: isSelected
-                    ? context.customColors.accentBlue
+                    ? context.customColors.info
                     : context.customColors.textSecondary,
               ),
             ),
@@ -61,8 +59,8 @@ class ThemeOption extends StatelessWidget {
             if (isSelected)
               Icon(
                 Icons.check_circle,
-                color: context.customColors.accentBlue,
-                size: responsiveFontSize(20),
+                color: context.customColors.info,
+                size: rf(20),
               ),
           ],
         ),

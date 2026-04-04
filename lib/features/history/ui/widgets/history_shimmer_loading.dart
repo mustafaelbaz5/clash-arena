@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
-import '../../../../core/utils/spacing.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../core/utils/spacing.dart';
 
 class HistoryShimmerLoading extends StatelessWidget {
   const HistoryShimmerLoading({super.key});
@@ -14,10 +15,10 @@ class HistoryShimmerLoading extends StatelessWidget {
       itemCount: 5,
       itemBuilder: (final context, final index) {
         return Container(
-          margin: EdgeInsets.only(bottom: responsiveHeight(16)),
+          margin: EdgeInsets.only(bottom: rh(16)),
           padding: EdgeInsets.all(16.w),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(responsiveRadius(16)),
+            borderRadius: BorderRadius.circular(rr(16)),
             color: context.customColors.background.withValues(alpha: 0.1),
             border: Border.all(color: context.customColors.border, width: 1),
           ),
@@ -28,11 +29,11 @@ class HistoryShimmerLoading extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: responsiveWidth(100),
-                  height: responsiveHeight(20),
+                  width: rw(100),
+                  height: rh(20),
                   decoration: BoxDecoration(
                     color: context.customColors.textSecondary,
-                    borderRadius: BorderRadius.circular(responsiveRadius(8)),
+                    borderRadius: BorderRadius.circular(rr(8)),
                   ),
                 ),
                 verticalSpacing(16),
@@ -43,8 +44,8 @@ class HistoryShimmerLoading extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          width: responsiveWidth(50),
-                          height: responsiveHeight(50),
+                          width: rw(50),
+                          height: rh(50),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: context.customColors.textSecondary,
@@ -52,8 +53,8 @@ class HistoryShimmerLoading extends StatelessWidget {
                         ),
                         verticalSpacing(8),
                         Container(
-                          width: responsiveWidth(60),
-                          height: responsiveHeight(10),
+                          width: rw(60),
+                          height: rh(10),
                           color: context.customColors.textSecondary,
                         ),
                       ],
@@ -61,8 +62,8 @@ class HistoryShimmerLoading extends StatelessWidget {
 
                     // Score
                     Container(
-                      width: responsiveWidth(60),
-                      height: responsiveHeight(10),
+                      width: rw(60),
+                      height: rh(10),
                       color: context.customColors.textSecondary,
                     ),
 
@@ -70,8 +71,8 @@ class HistoryShimmerLoading extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          width: responsiveWidth(60),
-                          height: responsiveHeight(50),
+                          width: rw(60),
+                          height: rh(50),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: context.customColors.textSecondary,
@@ -79,8 +80,8 @@ class HistoryShimmerLoading extends StatelessWidget {
                         ),
                         verticalSpacing(8),
                         Container(
-                          width: responsiveWidth(60),
-                          height: responsiveHeight(10),
+                          width: rw(60),
+                          height: rh(10),
                           color: context.customColors.textSecondary,
                         ),
                       ],

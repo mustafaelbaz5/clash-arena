@@ -1,27 +1,65 @@
 import 'package:flutter/material.dart';
+
 import '../../features/auth/ui/login_screen.dart';
 import '../../features/auth/ui/sign_up_screen.dart';
 import '../../features/notification/ui/notifications_screen.dart';
-
 import 'routes.dart';
 
 class AppRouter {
-  Route<dynamic>? generateRoute(final RouteSettings settings) {
-    // ignore: unused_local_variable
-    final args = settings.arguments;
+  AppRouter._();
 
+  static Route<dynamic> generateRoute(final RouteSettings settings) {
     switch (settings.name) {
       case Routes.loginScreen:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return _buildRoute(const LoginScreen(), settings);
       case Routes.signUpScreen:
-        return MaterialPageRoute(builder: (_) => const SignUpScreen());
-
-      // Notifications
+        return _buildRoute(const SignUpScreen(), settings);
       case Routes.notificationsScreen:
-        return MaterialPageRoute(builder: (_) => const NotificationsScreen());
-
+        return _buildRoute(const NotificationsScreen(), settings);
+      // case Routes.onboarding:
+      //   return _buildRoute(const OnboardingScreen(), settings);
+      // case Routes.home:
+      //   return _buildRoute(const HomeScreen(), settings);
       default:
-        return null;
+        return _buildRoute(
+          Scaffold(
+            body: Center(child: Text('No route defined for ${settings.name}')),
+          ),
+          settings,
+        );
     }
+  }
+
+  static PageRouteBuilder _buildRoute(
+    final Widget page,
+    final RouteSettings settings,
+  ) {
+    return PageRouteBuilder(
+      settings: settings,
+      pageBuilder: (final context, final animation, final secondaryAnimation) =>
+          page,
+      transitionsBuilder:
+          (
+            final context,
+            final animation,
+            final secondaryAnimation,
+            final child,
+          ) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+            const curve = Curves.easeInOutCubic;
+
+            final tween = Tween(
+              begin: begin,
+              end: end,
+            ).chain(CurveTween(curve: curve));
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+      transitionDuration: const Duration(milliseconds: 300),
+    );
   }
 }

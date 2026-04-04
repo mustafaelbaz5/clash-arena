@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/themes/app_texts_style.dart';
-import '../../../../../core/utils/extensions/context_extensions.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 
 import '../../../../../../../core/utils/spacing.dart';
+import '../../../../../core/themes/app_texts_style.dart';
 
 class LanguageOption extends StatelessWidget {
   final String title;
@@ -20,20 +20,17 @@ class LanguageOption extends StatelessWidget {
   Widget build(final BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(responsiveWidth(12)),
+      borderRadius: BorderRadius.circular(rw(12)),
       child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: responsiveWidth(16),
-          vertical: responsiveHeight(18),
-        ),
+        padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(18)),
         decoration: BoxDecoration(
           color: isSelected
-              ? context.customColors.accentBlue.withAlpha((0.1 * 255).toInt())
+              ? context.customColors.info.withAlpha((0.1 * 255).toInt())
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(responsiveWidth(12)),
+          borderRadius: BorderRadius.circular(rw(12)),
           border: Border.all(
             color: isSelected
-                ? context.customColors.accentBlue
+                ? context.customColors.info
                 : context.customColors.border,
             width: isSelected ? 2 : 1,
           ),
@@ -44,7 +41,7 @@ class LanguageOption extends StatelessWidget {
               title,
               style: isSelected
                   ? AppTextStyles.font14Bold.copyWith(
-                      color: context.customColors.accentBlue,
+                      color: context.customColors.info,
                     )
                   : AppTextStyles.font14Regular.copyWith(
                       color: context.customColors.textSecondary,
@@ -54,8 +51,8 @@ class LanguageOption extends StatelessWidget {
             if (isSelected)
               Icon(
                 Icons.check_circle,
-                color: context.customColors.accentBlue,
-                size: responsiveFontSize(20),
+                color: context.customColors.info,
+                size: rf(20),
               ),
           ],
         ),

@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../../../core/models/players_states_model.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/app_texts_style.dart';
-import '../../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../../core/utils/spacing.dart';
 
 class GoalsOverview extends StatelessWidget {
@@ -14,12 +15,12 @@ class GoalsOverview extends StatelessWidget {
   Widget build(final BuildContext context) {
     final bool isPositive = stats.goalsScored - stats.goalsReceived >= 0;
     return Container(
-      padding: EdgeInsets.all(responsiveWidth(16)),
+      padding: EdgeInsets.all(rw(16)),
       decoration: BoxDecoration(
         color: (isPositive ? AppColors.green100 : AppColors.red100).withAlpha(
           (0.1 * 255).toInt(),
         ),
-        borderRadius: BorderRadius.circular(responsiveRadius(12)),
+        borderRadius: BorderRadius.circular(rr(12)),
         border: Border.all(
           color: (isPositive ? AppColors.green100 : AppColors.red100).withAlpha(
             (0.3 * 255).toInt(),
@@ -44,7 +45,7 @@ class GoalsOverview extends StatelessWidget {
                 children: [
                   Icon(
                     isPositive ? Icons.trending_up : Icons.trending_down,
-                    size: responsiveWidth(20),
+                    size: rw(20),
                     color: isPositive ? AppColors.green100 : AppColors.red100,
                   ),
                   horizontalSpacing(4),
@@ -59,13 +60,10 @@ class GoalsOverview extends StatelessWidget {
             ],
           ),
           Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: responsiveWidth(12),
-              vertical: responsiveHeight(8),
-            ),
+            padding: EdgeInsets.symmetric(horizontal: rw(12), vertical: rh(8)),
             decoration: BoxDecoration(
-              color: context.customColors.successContainer,
-              borderRadius: BorderRadius.circular(responsiveRadius(8)),
+              color: context.customColors.successBackground,
+              borderRadius: BorderRadius.circular(rr(8)),
             ),
             child: Column(
               children: [

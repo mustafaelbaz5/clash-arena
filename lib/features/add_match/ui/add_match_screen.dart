@@ -1,18 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+
 import '../../../core/themes/app_colors.dart';
-import '../../../core/utils/extensions/context_extensions.dart';
+import '../../../core/utils/spacing.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../logic/cubit/add_match_cubit.dart';
 import 'widgets/add_match_bloc_consumer.dart';
 import 'widgets/player_select_field/player_select_field.dart';
 import 'widgets/score_input_field.dart';
 
-import '../../../core/utils/spacing.dart';
-
 class AddMatchScreen extends StatelessWidget {
-  const AddMatchScreen({super.key});
+  const AddMatchScreen({super.key, required this.controller});
+  final PersistentTabController controller;
 
   Future<void> onRefresh(final BuildContext context) async {
     context.read<AddMatchCubit>().resetMatchData();
@@ -33,7 +35,7 @@ class AddMatchScreen extends StatelessWidget {
               color: context.customColors.textPrimary,
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: responsiveWidth(16)),
+                padding: EdgeInsets.symmetric(horizontal: rw(16)),
                 child: BlocBuilder<AddMatchCubit, AddMatchState>(
                   builder: (final context, final state) {
                     return Column(
@@ -91,7 +93,7 @@ class AddMatchScreen extends StatelessWidget {
                         verticalSpacing(100),
 
                         // Submit button
-                        const AddMatchBlocConsumer(),
+                        AddMatchBlocConsumer(controller: controller),
                       ],
                     );
                   },

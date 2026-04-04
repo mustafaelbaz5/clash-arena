@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 
 import '../../../../../core/themes/app_texts_style.dart';
-import '../../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../../core/utils/spacing.dart';
 import '../../../logic/cubit/add_match_cubit.dart';
 import 'player_tile.dart';
@@ -33,20 +33,18 @@ class PlayerBottomSheet extends StatelessWidget {
             context.customColors.background.withAlpha(200),
           ],
         ),
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(responsiveRadius(24)),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(rr(24))),
       ),
       child: Column(
         children: [
           // Drag handle
           Container(
-            margin: EdgeInsets.only(top: responsiveHeight(12)),
-            width: responsiveWidth(40),
-            height: responsiveHeight(4),
+            margin: EdgeInsets.only(top: rh(12)),
+            width: rw(40),
+            height: rh(4),
             decoration: BoxDecoration(
               color: context.customColors.textPrimary.withAlpha(38),
-              borderRadius: BorderRadius.circular(responsiveRadius(2)),
+              borderRadius: BorderRadius.circular(rr(2)),
             ),
           ),
           _buildHeader(context),
@@ -64,9 +62,7 @@ class PlayerBottomSheet extends StatelessWidget {
                 if (filteredPlayers.isEmpty) return _buildEmpty(context);
 
                 return ListView.builder(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: responsiveWidth(16),
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: rw(16)),
                   itemCount: filteredPlayers.length,
                   itemBuilder: (final context, final index) {
                     final player = filteredPlayers[index];
@@ -99,13 +95,13 @@ class PlayerBottomSheet extends StatelessWidget {
   }
 
   Widget _buildHeader(final BuildContext context) => Padding(
-    padding: EdgeInsets.all(responsiveRadius(20)),
+    padding: EdgeInsets.all(rr(20)),
     child: Row(
       children: [
         Icon(
           Icons.sports_esports_rounded,
           color: context.customColors.textPrimary,
-          size: responsiveFontSize(24),
+          size: rf(24),
         ),
         horizontalSpacing(12),
         Text('add_match.choose_player'.tr(), style: AppTextStyles.font16Bold),
@@ -134,10 +130,10 @@ class PlayerBottomSheet extends StatelessWidget {
         Icon(
           Icons.person_off_outlined,
           color: context.customColors.textPrimary.withAlpha(102),
-          size: responsiveFontSize(48),
+          size: rf(48),
         ),
         verticalSpacing(16),
-        Text('No players available', style: AppTextStyles.font16Bold),
+        const Text('No players available', style: AppTextStyles.font16Bold),
       ],
     ),
   );

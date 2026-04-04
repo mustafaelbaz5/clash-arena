@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
-import '../../../../core/utils/spacing.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../core/utils/spacing.dart';
 
 class ChampionShimmer extends StatelessWidget {
   const ChampionShimmer({super.key});
@@ -35,30 +36,30 @@ class _PodiumShimmer extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: responsiveWidth(16)),
+      padding: EdgeInsets.symmetric(horizontal: rw(16)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           // 2nd place
           Expanded(
             child: _PodiumSlotShimmer(
-              podiumHeight: responsiveHeight(70),
-              avatarRadius: responsiveRadius(30),
+              podiumHeight: rh(70),
+              avatarRadius: rr(30),
             ),
           ),
           // 1st place
           Expanded(
             child: _PodiumSlotShimmer(
-              podiumHeight: responsiveHeight(100),
-              avatarRadius: responsiveRadius(38),
+              podiumHeight: rh(100),
+              avatarRadius: rr(38),
               showCrown: true,
             ),
           ),
           // 3rd place
           Expanded(
             child: _PodiumSlotShimmer(
-              podiumHeight: responsiveHeight(50),
-              avatarRadius: responsiveRadius(26),
+              podiumHeight: rh(50),
+              avatarRadius: rr(26),
             ),
           ),
         ],
@@ -85,8 +86,8 @@ class _PodiumSlotShimmer extends StatelessWidget {
       children: [
         // Crown placeholder
         Container(
-          height: responsiveHeight(28),
-          width: responsiveWidth(28),
+          height: rh(28),
+          width: rw(28),
           decoration: showCrown
               ? const BoxDecoration(color: Colors.white, shape: BoxShape.circle)
               : null,
@@ -101,8 +102,8 @@ class _PodiumSlotShimmer extends StatelessWidget {
 
         // Name
         Container(
-          height: responsiveHeight(10),
-          width: responsiveWidth(60),
+          height: rh(10),
+          width: rw(60),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(4.r),
@@ -113,11 +114,11 @@ class _PodiumSlotShimmer extends StatelessWidget {
 
         // Stat
         Container(
-          height: responsiveHeight(8),
-          width: responsiveWidth(44),
+          height: rh(8),
+          width: rw(44),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(responsiveRadius(4)),
+            borderRadius: BorderRadius.circular(rr(4)),
           ),
         ),
 
@@ -128,9 +129,7 @@ class _PodiumSlotShimmer extends StatelessWidget {
           height: podiumHeight,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(responsiveRadius(8)),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(rr(8))),
           ),
         ),
       ],
@@ -161,40 +160,34 @@ class _LeaderboardRowShimmer extends StatelessWidget {
 
     return Container(
       color: isEven ? colors.surfaceContainerLowest : colors.surface,
-      padding: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(16),
-        vertical: responsiveHeight(10),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(10)),
       child: Row(
         children: [
           // Rank number
           Container(
-            height: responsiveHeight(14),
-            width: responsiveWidth(20),
+            height: rh(14),
+            width: rw(20),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(responsiveRadius(4)),
+              borderRadius: BorderRadius.circular(rr(4)),
             ),
           ),
 
           horizontalSpacing(16),
 
           // Avatar
-          CircleAvatar(
-            radius: responsiveRadius(16),
-            backgroundColor: Colors.white,
-          ),
+          CircleAvatar(radius: rr(16), backgroundColor: Colors.white),
 
           horizontalSpacing(10),
 
           // Name
           Expanded(
             child: Container(
-              height: responsiveHeight(12),
+              height: rh(12),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(responsiveRadius(4)),
+                borderRadius: BorderRadius.circular(rr(4)),
               ),
             ),
           ),
@@ -203,11 +196,11 @@ class _LeaderboardRowShimmer extends StatelessWidget {
 
           // Stat value
           Container(
-            height: responsiveHeight(14),
-            width: responsiveWidth(30),
+            height: rh(14),
+            width: rw(30),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(responsiveRadius(4)),
+              borderRadius: BorderRadius.circular(rr(4)),
             ),
           ),
         ],

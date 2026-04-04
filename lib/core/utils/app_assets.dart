@@ -12,10 +12,4 @@ class AppAssets {
   static const String banner_3png = 'assets/images/banner_3.png';
   static const String banner_4png = 'assets/images/banner_4.png';
   static const String banner_5png = 'assets/images/banner_5.png';
-
-  // Font family names
-  static const String fontBebasNeue = 'BebasNeue';
-  static const String fontBorel = 'Borel';
-  static const String fontTajawal = 'Tajawal';
-  static const String fontRoboto = 'RobotoCondensed';
 }

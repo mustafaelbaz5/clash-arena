@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/extensions/context_extensions.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../../../core/utils/spacing.dart';
 
 class PlayerFieldAvatar extends StatelessWidget {
@@ -11,13 +12,13 @@ class PlayerFieldAvatar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final accentColor = context.customColors.scaffoldBackground;
+    final accentColor = context.customColors.background;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
       curve: Curves.easeOut,
-      width: responsiveWidth(44),
-      height: responsiveHeight(44),
+      width: rw(44),
+      height: rh(44),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: context.customColors.surface,
@@ -47,8 +48,8 @@ class PlayerFieldAvatar extends StatelessWidget {
                 fit: BoxFit.cover,
                 placeholder: (_, _) => Center(
                   child: SizedBox(
-                    width: responsiveWidth(16),
-                    height: responsiveHeight(16),
+                    width: rw(16),
+                    height: rh(16),
                     child: const CircularProgressIndicator(strokeWidth: 2),
                   ),
                 ),

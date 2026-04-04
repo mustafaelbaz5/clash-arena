@@ -1,199 +1,162 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
-import '../themes/app_texts_style.dart';
-import '../utils/extensions/context_extensions.dart';
+import 'package:im_legends/core/themes/app_texts_style.dart';
 
 import '../themes/app_colors.dart';
-import '../utils/regex.dart';
-import '../utils/spacing.dart';
+import '../utils/extensions/context_ext.dart';
 
-enum CustomTextFieldStyle { filled, outlined, soft }
+/// AppTextField — reusable outlined text field
+/// ─────────────────────────────────────────────
+/// Usage:
+///   AppTextField(hintText: 'Email')
+///   AppTextField(hintText: 'Password', isPassword: true)
+///   AppTextField(hintText: 'Notes', maxLines: 4)
 
-class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({
+class CustomTextForm extends StatefulWidget {
+  const CustomTextForm({
     super.key,
     required this.hintText,
     this.controller,
     this.validator,
-    this.keyboardType,
     this.onChanged,
+    this.onTap,
+    this.keyboardType,
+    this.textInputAction,
     this.prefixIcon,
     this.suffixIcon,
     this.isPassword = false,
     this.maxLines = 1,
-    this.style = CustomTextFieldStyle.filled,
+    this.maxLength,
+    this.autofocus = false,
+    this.enabled = true,
+    this.readOnly = false,
     this.inputTextStyle,
     this.hintStyle,
     this.backgroundColor,
     this.borderColor,
     this.focusedBorderColor,
-    this.contentPadding,
     this.borderRadius,
-    this.autofocus = false,
-    this.enabled = true,
-    this.convertArabicNames = false,
+    this.contentPadding,
+    this.isRTL = false,
   });
 
   final String hintText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  final TextInputType? keyboardType;
   final void Function(String)? onChanged;
+  final VoidCallback? onTap;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+
   final bool isPassword;
   final int maxLines;
-  final CustomTextFieldStyle style;
+  final int? maxLength;
+  final bool autofocus;
+  final bool enabled;
+  final bool readOnly;
+  final bool isRTL;
 
   final TextStyle? inputTextStyle;
   final TextStyle? hintStyle;
-
   final Color? backgroundColor;
   final Color? borderColor;
   final Color? focusedBorderColor;
-
-  final EdgeInsetsGeometry? contentPadding;
   final double? borderRadius;
-  final bool autofocus;
-  final bool enabled;
-  final bool
-  convertArabicNames; // Optional: convert Arabic names to English typing
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+  State<CustomTextForm> createState() => _CustomTextFormState();
 }
 
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
+class _CustomTextFormState extends State<CustomTextForm> {
   late bool _obscureText;
-  ui.TextDirection _textDirection = ui.TextDirection.ltr;
 
   @override
   void initState() {
     super.initState();
     _obscureText = widget.isPassword;
-    _updateTextDirection(widget.controller?.text ?? '');
   }
 
   void _toggleObscure() => setState(() => _obscureText = !_obscureText);
 
-  void _updateTextDirection(final String value) {
-    setState(() {
-      _textDirection = AppRegex().isArabic(value)
-          ? ui.TextDirection.rtl
-          : ui.TextDirection.ltr;
-    });
-  }
-
-  OutlineInputBorder _buildBorder(
-    final Color color, {
-    final double width = 1.0,
-  }) {
+  OutlineInputBorder _border(final Color color, {final double width = 1.0}) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: color, width: width),
-      borderRadius: BorderRadius.circular(
-        widget.borderRadius ?? responsiveRadius(16),
-      ),
+      borderRadius: BorderRadius.circular(widget.borderRadius ?? 12),
     );
   }
 
   @override
   Widget build(final BuildContext context) {
     final colors = context.customColors;
-    final isEnabled = widget.enabled;
 
-    // Resolve background
-    final Color resolvedBackground =
-        widget.backgroundColor ??
-        (widget.style == CustomTextFieldStyle.outlined
-            ? Colors.transparent
-            : widget.style == CustomTextFieldStyle.soft
-            ? colors.divider.withValues(alpha: 0.3)
-            : colors.divider.withValues(alpha: 0.35));
+    final textDirection = widget.isRTL ? TextDirection.rtl : TextDirection.ltr;
 
-    // Resolve border colors
-    final Color defaultBorderColor = widget.borderColor ?? colors.border;
-    final Color focusedBorderColor =
-        widget.focusedBorderColor ?? colors.accentBlue;
-
-    // Text styles
-    final TextStyle baseInputStyle =
+    final TextStyle effectiveInputStyle =
         widget.inputTextStyle ??
-        AppTextStyles.font16Regular.copyWith(color: colors.textPrimary);
-
-    final TextStyle effectiveInputStyle = baseInputStyle.color == null
-        ? baseInputStyle.copyWith(
-            color: isEnabled ? colors.textPrimary : colors.textSecondary,
-          )
-        : baseInputStyle;
+        AppTextStyles.font16Regular.copyWith(
+          color: widget.enabled ? colors.textPrimary : colors.textDisabled,
+        );
 
     final TextStyle effectiveHintStyle =
         widget.hintStyle ??
-        AppTextStyles.font16Regular.copyWith(
-          color: colors.textSecondary.withValues(alpha: 0.6),
-        );
+        AppTextStyles.font16Regular.copyWith(color: colors.textHint);
+
+    final Color defaultBorder = widget.borderColor ?? colors.border;
+    final Color focusedBorder =
+        widget.focusedBorderColor ?? AppColors.primary50;
+    final Color fillColor = widget.backgroundColor ?? colors.surface;
 
     return TextFormField(
       controller: widget.controller,
       keyboardType: widget.keyboardType,
+      textInputAction: widget.textInputAction,
       obscureText: _obscureText,
-      maxLines: widget.maxLines,
+      maxLines: widget.isPassword ? 1 : widget.maxLines,
+      maxLength: widget.maxLength,
       autofocus: widget.autofocus,
-      enabled: isEnabled,
-      textDirection: _textDirection,
+      enabled: widget.enabled,
+      readOnly: widget.readOnly,
+      textDirection: textDirection,
+      textAlign: widget.isRTL ? TextAlign.right : TextAlign.left,
       style: effectiveInputStyle,
       validator: widget.validator,
-      onChanged: (final value) {
-        _updateTextDirection(value);
-        widget.onChanged?.call(value);
-      },
+      onChanged: widget.onChanged,
+      onTap: widget.onTap,
       decoration: InputDecoration(
         isDense: true,
-        filled: widget.style != CustomTextFieldStyle.outlined,
-        fillColor: resolvedBackground,
+        filled: true,
+        fillColor: fillColor,
         hintText: widget.hintText,
         hintStyle: effectiveHintStyle,
+        hintTextDirection: textDirection,
+        counterText: '',
         contentPadding:
             widget.contentPadding ??
-            EdgeInsets.symmetric(
-              horizontal: responsiveWidth(20),
-              vertical: responsiveHeight(18),
-            ),
+            const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+
+        // ─── Prefix / Suffix ───────────────────────────────────────
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: _obscureText
-                      ? colors.textSecondary
-                      : colors.textPrimary,
-                  size: responsiveRadius(22),
+                  color: colors.iconSecondary,
+                  size: 20,
                 ),
                 onPressed: _toggleObscure,
               )
             : widget.suffixIcon,
-        enabledBorder: widget.style == CustomTextFieldStyle.outlined
-            ? _buildBorder(defaultBorderColor, width: responsiveRadius(1.2))
-            : _buildBorder(
-                defaultBorderColor.withValues(alpha: 0.6),
-                width: responsiveRadius(0.8),
-              ),
-        focusedBorder: _buildBorder(
-          focusedBorderColor,
-          width: responsiveRadius(1.5),
-        ),
-        disabledBorder: _buildBorder(colors.border.withValues(alpha: 0.3)),
-        errorBorder: _buildBorder(
-          AppColors.red100,
-          width: responsiveRadius(1.4),
-        ),
-        focusedErrorBorder: _buildBorder(
-          AppColors.red100,
-          width: responsiveRadius(1.6),
-        ),
-        border: widget.style == CustomTextFieldStyle.outlined
-            ? _buildBorder(defaultBorderColor)
-            : null,
+
+        // ─── Borders ───────────────────────────────────────────────
+        border: _border(defaultBorder),
+        enabledBorder: _border(defaultBorder),
+        focusedBorder: _border(focusedBorder, width: 1.0),
+        disabledBorder: _border(colors.border.withValues(alpha: 0.4)),
+        errorBorder: _border(AppColors.red200),
+        focusedErrorBorder: _border(AppColors.red300, width: 1.5),
       ),
     );
   }

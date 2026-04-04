@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/themes/app_texts_style.dart';
-import 'leader_board_shimmer_loading.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../core/themes/app_texts_style.dart';
 import '../../logic/cubit/home_cubit.dart';
 import 'leader_board_card.dart';
+import 'leader_board_shimmer_loading.dart';
 
 class LeadBoardListView extends StatelessWidget {
   const LeadBoardListView({super.key});
@@ -16,10 +16,7 @@ class LeadBoardListView extends StatelessWidget {
       builder: (final context, final state) {
         if (state is HomeFailure) {
           return Center(
-            child: Text(
-              state.error.messageKey,
-              style: AppTextStyles.font20Bold,
-            ),
+            child: Text(state.error.message, style: AppTextStyles.font20Bold),
           );
         } else if (state is HomeLoading) {
           return const LeaderBoardShimmerLoading();

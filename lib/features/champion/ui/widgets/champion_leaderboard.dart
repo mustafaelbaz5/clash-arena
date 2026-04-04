@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../../core/themes/app_texts_style.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../core/utils/spacing.dart';
 import '../../data/model/champion_player_model.dart';
 
@@ -25,14 +26,11 @@ class ChampionLeaderboard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: responsiveWidth(16),
-            vertical: responsiveHeight(8),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(8)),
           child: Row(
             children: [
               horizontalSpacing(8),
-              Text('Player', style: AppTextStyles.font14SemiBold),
+              const Text('Player', style: AppTextStyles.font14SemiBold),
               const Spacer(),
               Text(category.statLabel),
             ],
@@ -77,12 +75,9 @@ class _LeaderboardRow extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Container(
       color: isEven
-          ? context.customColors.scaffoldBackground
+          ? context.customColors.background
           : context.customColors.background,
-      padding: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(16),
-        vertical: responsiveHeight(10),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(10)),
       child: Row(
         children: [
           Expanded(
@@ -99,8 +94,10 @@ class _LeaderboardRow extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  radius: responsiveRadius(16),
-                  backgroundColor: context.customColors.infoContainerDark,
+                  radius: rr(16),
+                  backgroundColor: context.customColors.divider.withValues(
+                    alpha: 0.5,
+                  ),
                   backgroundImage: player.profileImageUrl != null
                       ? NetworkImage(player.profileImageUrl!)
                       : null,

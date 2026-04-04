@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../themes/app_texts_style.dart';
-import '../extensions/context_extensions.dart';
 import '../spacing.dart';
 
 class ImagePickerHelper {
@@ -15,24 +15,19 @@ class ImagePickerHelper {
     return showModalBottomSheet<File?>(
       context: context,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(responsiveRadius(24)),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(rr(24))),
       ),
       builder: (_) {
         return SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: responsiveHeight(24),
-              horizontal: responsiveWidth(20),
-            ),
+            padding: EdgeInsets.symmetric(vertical: rh(24), horizontal: rw(20)),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 ListTile(
                   leading: Icon(
                     Icons.photo_library,
-                    color: context.customColors.accentBlue,
+                    color: context.customColors.info,
                   ),
                   title: Text(
                     'image_picker.choose_from_gallery'.tr(),
@@ -51,7 +46,7 @@ class ImagePickerHelper {
                 ListTile(
                   leading: Icon(
                     Icons.camera_alt,
-                    color: context.customColors.accentBlue,
+                    color: context.customColors.info,
                   ),
                   title: Text(
                     'image_picker.take_photo'.tr(),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
-import '../../../../core/utils/spacing.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../core/utils/spacing.dart';
 
 class ProfileShimmerLoading extends StatelessWidget {
   const ProfileShimmerLoading({super.key});
@@ -17,18 +18,18 @@ class ProfileShimmerLoading extends StatelessWidget {
           // Top bar with avatar shimmer
           SliverToBoxAdapter(
             child: SizedBox(
-              height: responsiveHeight(240),
+              height: rh(240),
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
                   // Top bar background
                   Container(
-                    height: responsiveHeight(190),
+                    height: rh(190),
                     decoration: BoxDecoration(
                       color: Colors.grey.shade800,
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(responsiveRadius(24)),
-                        bottomRight: Radius.circular(responsiveRadius(24)),
+                        bottomLeft: Radius.circular(rr(24)),
+                        bottomRight: Radius.circular(rr(24)),
                       ),
                     ),
                   ),
@@ -40,8 +41,8 @@ class ProfileShimmerLoading extends StatelessWidget {
                     right: 0,
                     child: Center(
                       child: Container(
-                        width: responsiveWidth(100),
-                        height: responsiveWidth(100),
+                        width: rw(100),
+                        height: rw(100),
                         decoration: BoxDecoration(
                           color: Colors.grey.shade700,
                           shape: BoxShape.circle,
@@ -66,11 +67,11 @@ class ProfileShimmerLoading extends StatelessWidget {
 
                 // Name shimmer
                 Container(
-                  width: responsiveWidth(150),
-                  height: responsiveHeight(24),
+                  width: rw(150),
+                  height: rh(24),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade700,
-                    borderRadius: BorderRadius.circular(responsiveRadius(8)),
+                    borderRadius: BorderRadius.circular(rr(8)),
                   ),
                 ),
 
@@ -100,33 +101,33 @@ class ProfileShimmerLoading extends StatelessWidget {
 
   Widget _buildStatsShimmer(final BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: responsiveWidth(16)),
+      margin: EdgeInsets.symmetric(horizontal: rw(16)),
       decoration: BoxDecoration(
         color: context.isDarkMode ? Colors.grey.shade800 : Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(responsiveRadius(16)),
+        borderRadius: BorderRadius.circular(rr(16)),
       ),
       child: Column(
         children: [
           // Header
           Padding(
-            padding: EdgeInsets.all(responsiveWidth(20)),
+            padding: EdgeInsets.all(rw(20)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: responsiveWidth(100),
-                  height: responsiveHeight(18),
+                  width: rw(100),
+                  height: rh(18),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade700,
-                    borderRadius: BorderRadius.circular(responsiveRadius(6)),
+                    borderRadius: BorderRadius.circular(rr(6)),
                   ),
                 ),
                 Container(
-                  width: responsiveWidth(80),
-                  height: responsiveHeight(28),
+                  width: rw(80),
+                  height: rh(28),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade700,
-                    borderRadius: BorderRadius.circular(responsiveRadius(20)),
+                    borderRadius: BorderRadius.circular(rr(20)),
                   ),
                 ),
               ],
@@ -135,19 +136,19 @@ class ProfileShimmerLoading extends StatelessWidget {
 
           // Win rate card
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: responsiveWidth(20)),
+            padding: EdgeInsets.symmetric(horizontal: rw(20)),
             child: Container(
-              padding: EdgeInsets.all(responsiveWidth(16)),
+              padding: EdgeInsets.all(rw(16)),
               decoration: BoxDecoration(
                 color: Colors.grey.shade700,
-                borderRadius: BorderRadius.circular(responsiveRadius(12)),
+                borderRadius: BorderRadius.circular(rr(12)),
               ),
               child: Row(
                 children: [
                   // Circle
                   Container(
-                    width: responsiveWidth(70),
-                    height: responsiveWidth(70),
+                    width: rw(70),
+                    height: rw(70),
                     decoration: BoxDecoration(
                       color: Colors.grey.shade600,
                       shape: BoxShape.circle,
@@ -159,37 +160,31 @@ class ProfileShimmerLoading extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: responsiveWidth(80),
-                          height: responsiveHeight(16),
+                          width: rw(80),
+                          height: rh(16),
                           decoration: BoxDecoration(
                             color: Colors.grey.shade600,
-                            borderRadius: BorderRadius.circular(
-                              responsiveRadius(4),
-                            ),
+                            borderRadius: BorderRadius.circular(rr(4)),
                           ),
                         ),
                         verticalSpacing(8),
                         Row(
                           children: [
                             Container(
-                              width: responsiveWidth(40),
-                              height: responsiveHeight(24),
+                              width: rw(40),
+                              height: rh(24),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade600,
-                                borderRadius: BorderRadius.circular(
-                                  responsiveRadius(6),
-                                ),
+                                borderRadius: BorderRadius.circular(rr(6)),
                               ),
                             ),
                             horizontalSpacing(8),
                             Container(
-                              width: responsiveWidth(40),
-                              height: responsiveHeight(24),
+                              width: rw(40),
+                              height: rh(24),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade600,
-                                borderRadius: BorderRadius.circular(
-                                  responsiveRadius(6),
-                                ),
+                                borderRadius: BorderRadius.circular(rr(6)),
                               ),
                             ),
                           ],
@@ -206,20 +201,20 @@ class ProfileShimmerLoading extends StatelessWidget {
 
           // Stats grid
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: responsiveWidth(20)),
+            padding: EdgeInsets.symmetric(horizontal: rw(20)),
             child: GridView.count(
               crossAxisCount: 2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: responsiveHeight(12),
-              crossAxisSpacing: responsiveWidth(12),
+              mainAxisSpacing: rh(12),
+              crossAxisSpacing: rw(12),
               childAspectRatio: 1.5,
               children: List.generate(
                 4,
                 (final index) => Container(
                   decoration: BoxDecoration(
                     color: Colors.grey.shade700,
-                    borderRadius: BorderRadius.circular(responsiveRadius(12)),
+                    borderRadius: BorderRadius.circular(rr(12)),
                   ),
                 ),
               ),
@@ -230,12 +225,12 @@ class ProfileShimmerLoading extends StatelessWidget {
 
           // Goal difference card
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: responsiveWidth(20)),
+            padding: EdgeInsets.symmetric(horizontal: rw(20)),
             child: Container(
-              height: responsiveHeight(80),
+              height: rh(80),
               decoration: BoxDecoration(
                 color: Colors.grey.shade700,
-                borderRadius: BorderRadius.circular(responsiveRadius(12)),
+                borderRadius: BorderRadius.circular(rr(12)),
               ),
             ),
           ),
@@ -248,38 +243,33 @@ class ProfileShimmerLoading extends StatelessWidget {
 
   Widget _buildInfoShimmer(final BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: responsiveWidth(16)),
+      margin: EdgeInsets.symmetric(horizontal: rw(16)),
       decoration: BoxDecoration(
         color: context.isDarkMode ? Colors.grey.shade800 : Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(responsiveRadius(16)),
+        borderRadius: BorderRadius.circular(rr(16)),
       ),
       child: Column(
         children: [
           // Header
           Padding(
-            padding: EdgeInsets.fromLTRB(
-              responsiveWidth(20),
-              responsiveHeight(20),
-              responsiveWidth(20),
-              responsiveHeight(12),
-            ),
+            padding: EdgeInsets.fromLTRB(rw(20), rh(20), rw(20), rh(12)),
             child: Row(
               children: [
                 Container(
-                  width: responsiveWidth(36),
-                  height: responsiveWidth(36),
+                  width: rw(36),
+                  height: rw(36),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade700,
-                    borderRadius: BorderRadius.circular(responsiveRadius(10)),
+                    borderRadius: BorderRadius.circular(rr(10)),
                   ),
                 ),
                 horizontalSpacing(12),
                 Container(
-                  width: responsiveWidth(120),
-                  height: responsiveHeight(18),
+                  width: rw(120),
+                  height: rh(18),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade700,
-                    borderRadius: BorderRadius.circular(responsiveRadius(6)),
+                    borderRadius: BorderRadius.circular(rr(6)),
                   ),
                 ),
               ],
@@ -293,19 +283,17 @@ class ProfileShimmerLoading extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: responsiveWidth(20),
-                    vertical: responsiveHeight(16),
+                    horizontal: rw(20),
+                    vertical: rh(16),
                   ),
                   child: Row(
                     children: [
                       Container(
-                        width: responsiveWidth(40),
-                        height: responsiveWidth(40),
+                        width: rw(40),
+                        height: rw(40),
                         decoration: BoxDecoration(
                           color: Colors.grey.shade700,
-                          borderRadius: BorderRadius.circular(
-                            responsiveRadius(12),
-                          ),
+                          borderRadius: BorderRadius.circular(rr(12)),
                         ),
                       ),
                       horizontalSpacing(16),
@@ -314,37 +302,31 @@ class ProfileShimmerLoading extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: responsiveWidth(80),
-                              height: responsiveHeight(12),
+                              width: rw(80),
+                              height: rh(12),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade700,
-                                borderRadius: BorderRadius.circular(
-                                  responsiveRadius(4),
-                                ),
+                                borderRadius: BorderRadius.circular(rr(4)),
                               ),
                             ),
                             verticalSpacing(6),
                             Container(
-                              width: responsiveWidth(150),
-                              height: responsiveHeight(16),
+                              width: rw(150),
+                              height: rh(16),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade700,
-                                borderRadius: BorderRadius.circular(
-                                  responsiveRadius(4),
-                                ),
+                                borderRadius: BorderRadius.circular(rr(4)),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        width: responsiveWidth(32),
-                        height: responsiveWidth(32),
+                        width: rw(32),
+                        height: rw(32),
                         decoration: BoxDecoration(
                           color: Colors.grey.shade700,
-                          borderRadius: BorderRadius.circular(
-                            responsiveRadius(8),
-                          ),
+                          borderRadius: BorderRadius.circular(rr(8)),
                         ),
                       ),
                     ],
@@ -353,8 +335,8 @@ class ProfileShimmerLoading extends StatelessWidget {
                 if (index < 3)
                   Divider(
                     height: 1,
-                    indent: responsiveWidth(60),
-                    endIndent: responsiveWidth(20),
+                    indent: rw(60),
+                    endIndent: rw(20),
                     color: Colors.grey.shade700,
                   ),
               ],
@@ -369,28 +351,23 @@ class ProfileShimmerLoading extends StatelessWidget {
 
   Widget _buildSettingsShimmer(final BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: responsiveWidth(16)),
+      margin: EdgeInsets.symmetric(horizontal: rw(16)),
       decoration: BoxDecoration(
         color: context.isDarkMode ? Colors.grey.shade800 : Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(responsiveRadius(16)),
+        borderRadius: BorderRadius.circular(rr(16)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header
           Padding(
-            padding: EdgeInsets.fromLTRB(
-              responsiveWidth(20),
-              responsiveHeight(20),
-              responsiveWidth(20),
-              responsiveHeight(12),
-            ),
+            padding: EdgeInsets.fromLTRB(rw(20), rh(20), rw(20), rh(12)),
             child: Container(
-              width: responsiveWidth(100),
-              height: responsiveHeight(18),
+              width: rw(100),
+              height: rh(18),
               decoration: BoxDecoration(
                 color: Colors.grey.shade700,
-                borderRadius: BorderRadius.circular(responsiveRadius(6)),
+                borderRadius: BorderRadius.circular(rr(6)),
               ),
             ),
           ),
@@ -402,19 +379,17 @@ class ProfileShimmerLoading extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: responsiveWidth(20),
-                    vertical: responsiveHeight(16),
+                    horizontal: rw(20),
+                    vertical: rh(16),
                   ),
                   child: Row(
                     children: [
                       Container(
-                        width: responsiveWidth(40),
-                        height: responsiveWidth(40),
+                        width: rw(40),
+                        height: rw(40),
                         decoration: BoxDecoration(
                           color: Colors.grey.shade700,
-                          borderRadius: BorderRadius.circular(
-                            responsiveRadius(12),
-                          ),
+                          borderRadius: BorderRadius.circular(rr(12)),
                         ),
                       ),
                       horizontalSpacing(16),
@@ -423,32 +398,28 @@ class ProfileShimmerLoading extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: responsiveWidth(80),
-                              height: responsiveHeight(14),
+                              width: rw(80),
+                              height: rh(14),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade700,
-                                borderRadius: BorderRadius.circular(
-                                  responsiveRadius(4),
-                                ),
+                                borderRadius: BorderRadius.circular(rr(4)),
                               ),
                             ),
                             verticalSpacing(6),
                             Container(
-                              width: responsiveWidth(60),
-                              height: responsiveHeight(12),
+                              width: rw(60),
+                              height: rh(12),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade700,
-                                borderRadius: BorderRadius.circular(
-                                  responsiveRadius(4),
-                                ),
+                                borderRadius: BorderRadius.circular(rr(4)),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        width: responsiveWidth(16),
-                        height: responsiveWidth(16),
+                        width: rw(16),
+                        height: rw(16),
                         decoration: BoxDecoration(
                           color: Colors.grey.shade700,
                           shape: BoxShape.circle,
@@ -460,8 +431,8 @@ class ProfileShimmerLoading extends StatelessWidget {
                 if (index < 1)
                   Divider(
                     height: 1,
-                    indent: responsiveWidth(60),
-                    endIndent: responsiveWidth(20),
+                    indent: rw(60),
+                    endIndent: rw(20),
                     color: Colors.grey.shade700,
                   ),
               ],

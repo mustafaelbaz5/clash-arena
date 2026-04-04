@@ -5,7 +5,7 @@ platform :android do
   desc 'Distribute production build to Firebase'
   lane :release_to_firebase do
     sh 'flutter clean'
-    sh 'flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons --split-per-abi', error_callback: proc { |result|
+    sh 'flutter build apk --release --flavor production --target lib/main_prod.dart --no-tree-shake-icons --split-per-abi', error_callback: proc { |result|
     }
 
     # List of testers

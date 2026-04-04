@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/themes/app_colors.dart';
-import '../../../../../core/utils/extensions/context_extensions.dart';
-import '../../../../../core/utils/spacing.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 
+import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/app_texts_style.dart';
+import '../../../../../core/utils/spacing.dart';
 
 class PlayerTile extends StatelessWidget {
   final String playerName;
@@ -29,13 +29,10 @@ class PlayerTile extends StatelessWidget {
   Widget build(final BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      margin: EdgeInsets.symmetric(vertical: responsiveHeight(4)),
-      padding: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(12),
-        vertical: responsiveHeight(10),
-      ),
+      margin: EdgeInsets.symmetric(vertical: rh(4)),
+      padding: EdgeInsets.symmetric(horizontal: rw(12), vertical: rh(10)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(responsiveRadius(16)),
+        borderRadius: BorderRadius.circular(rr(16)),
         color: isSelected
             ? context.customColors.background
             : context.customColors.background.withValues(alpha: 0.5),
@@ -44,7 +41,7 @@ class PlayerTile extends StatelessWidget {
             : null,
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(responsiveRadius(16)),
+        borderRadius: BorderRadius.circular(rr(16)),
         onTap: () => onSelect(playerId, playerName, playerImage),
         child: Row(
           children: [
@@ -73,8 +70,8 @@ class PlayerTile extends StatelessWidget {
     final hasImage = playerImage.isNotEmpty;
 
     return Container(
-      width: responsiveWidth(40),
-      height: responsiveHeight(40),
+      width: rw(40),
+      height: rh(40),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(
@@ -94,11 +91,11 @@ class PlayerTile extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: playerImage,
                   fit: BoxFit.cover,
-                  width: responsiveWidth(40),
-                  height: responsiveHeight(40),
+                  width: rw(40),
+                  height: rh(40),
                   placeholder: (final context, final url) => SizedBox(
-                    width: responsiveWidth(20),
-                    height: responsiveHeight(20),
+                    width: rw(20),
+                    height: rh(20),
                     child: Icon(
                       Icons.person,
                       color: context.customColors.textPrimary,

@@ -1,189 +1,233 @@
 import 'package:flutter/material.dart';
-import '../themes/app_colors.dart';
-import '../themes/app_texts_style.dart';
-import '../utils/extensions/context_extensions.dart';
 
+import '../themes/app_colors.dart';
 import '../utils/spacing.dart';
+
+/// AppButton — reusable button widget
+/// ─────────────────────────────────────
+/// Usage:
+///   AppButton(text: 'Submit', onPressed: () {})
+///   AppButton.outlined(text: 'Cancel', onPressed: () {})
+///   AppButton.text(text: 'Skip', onPressed: () {})
+///
+/// Customize:
+///   AppButton(
+///     text: 'Login',
+///     onPressed: () {},
+///     size: AppButtonSize.large,
+///     isFullWidth: false,
+///     prefixIcon: Icon(Icons.login),
+///     isLoading: _loading,
+///   )
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
     required this.text,
-    this.onPressed,
+    required this.onPressed,
     this.style = CustomButtonStyle.filled,
     this.size = CustomButtonSize.medium,
-    this.textStyle,
-    this.foregroundColor,
-    this.backgroundColor,
-    this.borderColor,
-    this.prefixIcon,
-    this.suffixIcon,
+    this.isFullWidth = true,
     this.isLoading = false,
     this.isDisabled = false,
+    this.textStyle,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.borderColor,
     this.borderRadius,
+    this.prefixIcon,
+    this.suffixIcon,
     this.contentPadding,
   });
 
+  /// Outlined style constructor
+  const CustomTextButton.outlined({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.size = CustomButtonSize.medium,
+    this.isFullWidth = true,
+    this.isLoading = false,
+    this.isDisabled = false,
+    this.textStyle,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.borderColor,
+    this.borderRadius,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.contentPadding,
+  }) : style = CustomButtonStyle.outlined;
+
+  /// Text only style constructor
+  const CustomTextButton.text({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.size = CustomButtonSize.medium,
+    this.isFullWidth = false,
+    this.isLoading = false,
+    this.isDisabled = false,
+    this.textStyle,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.borderColor,
+    this.borderRadius,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.contentPadding,
+  }) : style = CustomButtonStyle.textOnly;
+
   final String text;
   final VoidCallback? onPressed;
-
   final CustomButtonStyle style;
   final CustomButtonSize size;
-
-  final TextStyle? textStyle;
-  final Color? foregroundColor;
-  final Color? backgroundColor;
-  final Color? borderColor;
-
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
-
+  final bool isFullWidth;
   final bool isLoading;
   final bool isDisabled;
-
+  final TextStyle? textStyle;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final Color? borderColor;
   final double? borderRadius;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final EdgeInsetsGeometry? contentPadding;
 
-  bool get _enabled => onPressed != null && !isLoading && !isDisabled;
+  bool get _isEnabled => onPressed != null && !isLoading && !isDisabled;
 
-  @override
-  Widget build(final BuildContext context) {
-    final colors = context.customColors;
+  // ─── Resolved sizes ───────────────────────────────────────────────────
+  double get _height => switch (size) {
+    CustomButtonSize.small => 40,
+    CustomButtonSize.medium => 52,
+    CustomButtonSize.large => 56,
+  };
 
-    /// --- Resolve base colors for the button based on style ---
-    final Color baseBackground;
-    final Color baseForeground;
-    final Color baseBorder;
+  double get _iconSize => size == CustomButtonSize.small ? 18 : 20;
 
-    switch (style) {
-      case CustomButtonStyle.filled:
-        baseBackground = backgroundColor ?? AppColors.primary300;
-        baseForeground = foregroundColor ?? AppColors.grey0;
-        baseBorder = Colors.transparent;
-        break;
-      case CustomButtonStyle.outlined:
-        baseBackground = Colors.transparent;
-        baseForeground = foregroundColor ?? AppColors.primary300;
-        baseBorder = borderColor ?? AppColors.primary300;
-        break;
-      case CustomButtonStyle.soft:
-        baseBackground = backgroundColor ?? colors.surfaceVariant;
-        baseForeground = foregroundColor ?? colors.textPrimary;
-        baseBorder = Colors.transparent;
-        break;
-    }
+  // TextStyle get _defaultTextStyle => size == CustomButtonSize.small
+  //     ? AppTextStyles.font14Bold
+  //     : AppTextStyles.font16Bold;
 
-    /// --- Adjust colors if disabled ---
-    final Color resolvedBackground = _enabled
-        ? baseBackground
-        : baseBackground.withValues(alpha: .1);
-    final Color resolvedForeground = _enabled
-        ? baseForeground
-        : baseForeground.withValues(alpha: .6);
-    final Color resolvedBorder = _enabled
-        ? baseBorder
-        : baseBorder.withValues(alpha: .4);
+  // ─── Resolved colors by style ─────────────────────────────────────────
+  Color _resolveBackground(final BuildContext context) {
+    if (!_isEnabled) return AppColors.grey100;
+    return switch (style) {
+      CustomButtonStyle.filled => backgroundColor ?? AppColors.primary200,
+      CustomButtonStyle.outlined => Colors.transparent,
+      CustomButtonStyle.textOnly => Colors.transparent,
+    };
+  }
 
-    /// --- Determine base text style ---
-    final TextStyle baseTextStyle =
-        textStyle ??
-        (size == CustomButtonSize.small
-            ? AppTextStyles.font14Bold
-            : size == CustomButtonSize.medium
-            ? AppTextStyles.font16Bold
-            : AppTextStyles.font18Bold);
+  Color _resolveForeground(final BuildContext context) {
+    if (!_isEnabled) return AppColors.grey400;
+    return switch (style) {
+      CustomButtonStyle.filled => foregroundColor ?? AppColors.white,
+      CustomButtonStyle.outlined => foregroundColor ?? AppColors.primary200,
+      CustomButtonStyle.textOnly => foregroundColor ?? AppColors.primary200,
+    };
+  }
 
-    final TextStyle effectiveTextStyle = baseTextStyle.copyWith(
-      color: resolvedForeground,
-    );
-
-    final double iconSize = size == CustomButtonSize.small
-        ? responsiveRadius(18)
-        : size == CustomButtonSize.medium
-        ? responsiveRadius(20)
-        : responsiveRadius(22);
-
-    return ElevatedButton(
-      onPressed: _enabled ? onPressed : null,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: resolvedBackground,
-        foregroundColor: resolvedForeground,
-        disabledBackgroundColor: resolvedBackground,
-        disabledForegroundColor: resolvedForeground,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
-        padding:
-            contentPadding ??
-            EdgeInsets.symmetric(
-              horizontal: size == CustomButtonSize.small
-                  ? responsiveWidth(24)
-                  : size == CustomButtonSize.medium
-                  ? responsiveWidth(28)
-                  : responsiveWidth(32),
-              vertical: size == CustomButtonSize.small
-                  ? responsiveHeight(12)
-                  : size == CustomButtonSize.medium
-                  ? responsiveHeight(14)
-                  : responsiveHeight(16),
-            ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            borderRadius ?? responsiveRadius(12),
-          ),
-          side: style == CustomButtonStyle.outlined
-              ? BorderSide(color: resolvedBorder, width: responsiveWidth(1.5))
-              : BorderSide.none,
-        ),
-      ),
-      child: _buildChild(effectiveTextStyle, iconSize),
+  BorderSide _resolveBorder(final Color foreground) {
+    if (style != CustomButtonStyle.outlined) return BorderSide.none;
+    return BorderSide(
+      color: _isEnabled
+          ? (borderColor ?? AppColors.primary200)
+          : AppColors.grey200,
+      width: 1.5,
     );
   }
 
-  Widget _buildChild(final TextStyle textStyle, final double iconSize) {
-    if (isLoading) {
-      return SizedBox(
-        width: responsiveHeight(16),
-        height: responsiveHeight(16),
-        child: const CircularProgressIndicator(
-          strokeWidth: 2.5,
-          valueColor: AlwaysStoppedAnimation<Color>(AppColors.grey0),
-        ),
-      );
-    }
+  @override
+  Widget build(final BuildContext context) {
+    final Color bg = _resolveBackground(context);
+    final Color fg = _resolveForeground(context);
+    final BorderSide border = _resolveBorder(fg);
+    final double radius = borderRadius ?? 12;
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        if (prefixIcon != null) ...[
-          IconTheme(
-            data: IconThemeData(size: iconSize, color: textStyle.color),
-            child: prefixIcon!,
-          ),
-          horizontalSpacing(8),
-        ],
-        Flexible(
-          child: Text(
-            text,
-            style: textStyle,
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-        ),
-        if (suffixIcon != null) ...[
-          horizontalSpacing(8),
-          IconTheme(
-            data: IconThemeData(size: iconSize, color: textStyle.color),
-            child: suffixIcon!,
-          ),
-        ],
-      ],
+    // Inside build(), replace effectiveTextStyle with:
+    final TextStyle effectiveTextStyle =
+        (textStyle ??
+                Theme.of(context).textTheme.labelLarge!.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: size == CustomButtonSize.small ? 14 : 16,
+                ))
+            .copyWith(color: fg);
+
+    final Widget child = isLoading
+        ? SizedBox(
+            width: 22,
+            height: 22,
+            child: CircularProgressIndicator(
+              strokeWidth: 2.5,
+              valueColor: AlwaysStoppedAnimation<Color>(fg),
+            ),
+          )
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (prefixIcon != null) ...[
+                IconTheme(
+                  data: IconThemeData(size: _iconSize, color: fg),
+                  child: prefixIcon!,
+                ),
+                horizontalSpacing(8),
+              ],
+              Flexible(
+                child: Text(
+                  text,
+                  style: effectiveTextStyle,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+              ),
+              if (suffixIcon != null) ...[
+                horizontalSpacing(8),
+                IconTheme(
+                  data: IconThemeData(size: _iconSize, color: fg),
+                  child: suffixIcon!,
+                ),
+              ],
+            ],
+          );
+
+    return SizedBox(
+      height: _height,
+      width: isFullWidth ? double.infinity : null,
+      child: ElevatedButton(
+        onPressed: _isEnabled ? onPressed : null,
+        style:
+            ElevatedButton.styleFrom(
+              backgroundColor: bg,
+              foregroundColor: fg,
+              disabledBackgroundColor: AppColors.grey100,
+              disabledForegroundColor: AppColors.grey400,
+              elevation: 0,
+              shadowColor: Colors.transparent,
+              surfaceTintColor: Colors.transparent,
+              padding:
+                  contentPadding ??
+                  EdgeInsets.symmetric(
+                    horizontal: size == CustomButtonSize.small ? 16 : 24,
+                    vertical: 12,
+                  ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius),
+                side: border,
+              ),
+            ).copyWith(
+              overlayColor: WidgetStateProperty.all(fg.withValues(alpha: 0.08)),
+            ),
+        child: child,
+      ),
     );
   }
 }
 
-enum CustomButtonStyle { filled, outlined, soft }
+// ─── Enums ────────────────────────────────────────────────────────────────────
 
 enum CustomButtonSize { small, medium, large }
+
+enum CustomButtonStyle { filled, outlined, textOnly }

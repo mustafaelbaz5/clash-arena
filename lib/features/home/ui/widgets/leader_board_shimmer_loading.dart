@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
-import '../../../../core/utils/spacing.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../core/utils/spacing.dart';
 
 class LeaderBoardShimmerLoading extends StatelessWidget {
   const LeaderBoardShimmerLoading({super.key});
@@ -15,13 +16,10 @@ class LeaderBoardShimmerLoading extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (final context, final index) {
         return Container(
-          margin: EdgeInsets.symmetric(vertical: responsiveHeight(4)),
-          padding: EdgeInsets.symmetric(
-            horizontal: responsiveWidth(12),
-            vertical: responsiveHeight(8),
-          ),
+          margin: EdgeInsets.symmetric(vertical: rh(4)),
+          padding: EdgeInsets.symmetric(horizontal: rw(12), vertical: rh(8)),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(responsiveRadius(12)),
+            borderRadius: BorderRadius.circular(rr(12)),
             color: context.customColors.background,
             border: Border.all(
               color: context.customColors.divider.withValues(alpha: 0.5),
@@ -35,8 +33,8 @@ class LeaderBoardShimmerLoading extends StatelessWidget {
               children: [
                 // Avatar Circle
                 Container(
-                  width: responsiveWidth(50),
-                  height: responsiveHeight(50),
+                  width: rw(50),
+                  height: rh(50),
                   decoration: BoxDecoration(
                     color: context.customColors.divider,
                     shape: BoxShape.circle,
@@ -50,24 +48,20 @@ class LeaderBoardShimmerLoading extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                        width: responsiveWidth(100),
-                        height: responsiveHeight(14),
+                        width: rw(100),
+                        height: rh(14),
                         decoration: BoxDecoration(
                           color: context.customColors.divider,
-                          borderRadius: BorderRadius.circular(
-                            responsiveRadius(4),
-                          ),
+                          borderRadius: BorderRadius.circular(rr(4)),
                         ),
                       ),
                       verticalSpacing(4),
                       Container(
-                        width: responsiveWidth(60),
-                        height: responsiveHeight(20),
+                        width: rw(60),
+                        height: rh(20),
                         decoration: BoxDecoration(
                           color: context.customColors.divider,
-                          borderRadius: BorderRadius.circular(
-                            responsiveRadius(4),
-                          ),
+                          borderRadius: BorderRadius.circular(rr(4)),
                         ),
                       ),
                     ],
@@ -100,8 +94,8 @@ class LeaderBoardShimmerLoading extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: responsiveWidth(16),
-          height: responsiveHeight(16),
+          width: rw(16),
+          height: rh(16),
           decoration: BoxDecoration(
             color: context.customColors.divider,
             shape: BoxShape.circle,
@@ -109,11 +103,11 @@ class LeaderBoardShimmerLoading extends StatelessWidget {
         ),
         verticalSpacing(4),
         Container(
-          width: responsiveWidth(20),
-          height: responsiveHeight(12),
+          width: rw(20),
+          height: rh(12),
           decoration: BoxDecoration(
             color: context.customColors.divider,
-            borderRadius: BorderRadius.circular(responsiveRadius(4)),
+            borderRadius: BorderRadius.circular(rr(4)),
           ),
         ),
       ],

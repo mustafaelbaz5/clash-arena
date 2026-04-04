@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../../core/themes/app_texts_style.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../core/utils/spacing.dart';
 import '../../logic/cubit/add_match_cubit.dart';
 
@@ -30,12 +31,12 @@ class ScoreInputField extends StatelessWidget {
 
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          height: responsiveHeight(56),
-          width: responsiveWidth(320),
-          padding: EdgeInsets.symmetric(horizontal: responsiveWidth(12)),
+          height: rh(56),
+          width: rw(320),
+          padding: EdgeInsets.symmetric(horizontal: rw(12)),
           decoration: BoxDecoration(
             color: context.customColors.background,
-            borderRadius: BorderRadius.circular(responsiveRadius(16)),
+            borderRadius: BorderRadius.circular(rr(16)),
             border: Border.all(color: accentColor.withValues(alpha: 0.3)),
           ),
           child: Row(
@@ -99,8 +100,8 @@ class ScoreInputField extends StatelessWidget {
       onTap: isEnabled ? onTap : null,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        height: responsiveHeight(36),
-        width: responsiveWidth(36),
+        height: rh(36),
+        width: rw(36),
         decoration: BoxDecoration(
           color: isEnabled
               ? accentColor.withValues(alpha: 0.3)
@@ -109,7 +110,7 @@ class ScoreInputField extends StatelessWidget {
         ),
         child: Icon(
           icon,
-          size: responsiveFontSize(20),
+          size: rf(20),
           color: isEnabled
               ? context.customColors.textPrimary
               : context.customColors.textSecondary.withValues(alpha: 0.4),

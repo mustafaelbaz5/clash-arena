@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
-import '../../../../core/error/models/app_error.dart';
-import '../../../../core/error/types/error_type.dart';
+import 'package:im_legends/core/errors/failure.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/models/match_model.dart';
@@ -13,7 +12,6 @@ class AddMatchCubit extends Cubit<AddMatchState> {
 
   AddMatchCubit({required this.addMatchRepo}) : super(const AddMatchInitial());
 
-  // --- Scores ---
   void updateWinnerScore(final int change) {
     final newScore = state.winnerScore + change;
     if (newScore < 0) return;
@@ -34,7 +32,6 @@ class AddMatchCubit extends Cubit<AddMatchState> {
 
   bool canIncrementLoser() => state.loserScore <= state.winnerScore;
 
-  // --- Selected Players ---
   void updateWinner(
     final String playerId,
     final String name,
@@ -59,7 +56,6 @@ class AddMatchCubit extends Cubit<AddMatchState> {
     );
   }
 
-  // --- Submission check ---
   bool canSubmit() {
     return state.winnerId != null &&
         state.loserId != null &&
@@ -69,19 +65,12 @@ class AddMatchCubit extends Cubit<AddMatchState> {
 
   Future<void> addMatch(final MatchModel match) async {
     emit(state.copyWith(isLoading: true, isSuccess: false, error: null));
-
     try {
       await addMatchRepo.insertMatch(match);
-
-      // Keep players list intact
       emit(state.copyWith(isLoading: false, isSuccess: true));
     } catch (e) {
-      emit(
-        state.copyWith(
-          isLoading: false,
-          error: AppError(messageKey: e.toString(), type: ErrorType.unknown),
-        ),
-      );
+      final failure = e is Failure ? e : const UnknownFailure();
+      emit(state.copyWith(isLoading: false, error: failure));
     }
   }
 
@@ -104,14 +93,9 @@ class AddMatchCubit extends Cubit<AddMatchState> {
     try {
       final players = await addMatchRepo.getAllUsers();
       emit(state.copyWith(players: players));
-    } catch (error) {
-      emit(
-        AddMatchFailure(
-          error: error is AppError
-              ? error
-              : AppError(messageKey: error.toString(), type: ErrorType.unknown),
-        ),
-      );
+    } catch (e) {
+      final failure = e is Failure ? e : const UnknownFailure();
+      emit(AddMatchFailure(error: failure));
     }
   }
 }

@@ -1,32 +1,41 @@
 import 'dart:io';
 
+import "../../../../core/errors/error_handler.dart";
+import '../../../../core/errors/exceptions.dart';
+
 import '../../../../core/models/players_states_model.dart';
 import '../../../../core/models/user_data.dart';
+import '../../../../core/networking/network_info.dart';
 import '../model/profile_model.dart';
 import '../remote/profile_remote_ds.dart';
 import 'profile_repo.dart';
 
 class ProfileRepoImpl implements ProfileRepo {
   final ProfileRemoteDs profileRemoteDs;
+  final NetworkInfo networkInfo;
 
-  ProfileRepoImpl({required this.profileRemoteDs});
+  ProfileRepoImpl({required this.profileRemoteDs, required this.networkInfo});
 
   @override
   Future<UserData?> getCurrentUserData() async {
-    return await profileRemoteDs.getCurrentUserData();
+    try {
+      if (!await networkInfo.isConnected) throw NetworkException();
+      return await profileRemoteDs.getCurrentUserData();
+    } catch (e) {
+      throw ErrorHandler.handleFailure(e);
+    }
   }
 
   @override
   Future<UserProfileModel?> getProfileWithStats() async {
     try {
-      // 1. Fetch user data
+      if (!await networkInfo.isConnected) throw NetworkException();
+
       final userData = await profileRemoteDs.getCurrentUserData();
       if (userData == null) return null;
 
-      // 2. Fetch all user matches
       final matches = await profileRemoteDs.getAllUserMatches();
 
-      // 3. Calculate stats from matches
       final stats = calculateStats(
         userId: profileRemoteDs.currentUserId!,
         userName: userData.name,
@@ -34,20 +43,28 @@ class ProfileRepoImpl implements ProfileRepo {
         matches: matches,
       );
 
-      // 6. Return combined profile model
       return UserProfileModel(user: userData, stats: stats);
     } catch (e) {
-      rethrow;
+      throw ErrorHandler.handleFailure(e);
     }
   }
 
   @override
   Future<void> logout() async {
-    await profileRemoteDs.logout();
+    try {
+      await profileRemoteDs.logout();
+    } catch (e) {
+      throw ErrorHandler.handleFailure(e);
+    }
   }
 
   @override
   Future<String?> uploadAndSetProfileImage(final File imageFile) async {
-    return await profileRemoteDs.uploadAndSetProfileImage(imageFile);
+    try {
+      if (!await networkInfo.isConnected) throw NetworkException();
+      return await profileRemoteDs.uploadAndSetProfileImage(imageFile);
+    } catch (e) {
+      throw ErrorHandler.handleFailure(e);
+    }
   }
 }

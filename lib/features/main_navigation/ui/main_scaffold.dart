@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/di/dependency_injection.dart';
-import '../../../core/themes/app_colors.dart';
-import '../../../core/utils/extensions/context_extensions.dart';
-import '../../../core/utils/spacing.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../core/di/dependency_injection.dart';
+import '../../../core/themes/app_colors.dart';
+import '../../../core/utils/spacing.dart';
 import '../../add_match/logic/cubit/add_match_cubit.dart';
 import '../../add_match/ui/add_match_screen.dart';
 import '../../champion/logic/cubit/champion_cubit.dart';
@@ -40,12 +40,12 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 
   List<Widget> _buildScreens() {
-    return const [
-      HomeScreen(),
-      HistoryScreen(),
-      AddMatchScreen(),
-      ChampionScreen(),
-      ProfileScreen(),
+    return [
+      const HomeScreen(),
+      const HistoryScreen(),
+      AddMatchScreen(controller: _controller),
+      const ChampionScreen(),
+      const ProfileScreen(),
     ];
   }
 
@@ -73,14 +73,14 @@ class _MainScaffoldState extends State<MainScaffold> {
     return PersistentBottomNavBarItem(
       icon: Icon(
         activeIcon,
-        size: responsiveRadius(26),
-        color: isCenterButton ? AppColors.grey0 : AppColors.primary400,
+        size: rr(26),
+        color: isCenterButton ? AppColors.white : AppColors.primary400,
       ),
       inactiveIcon: Icon(
         inactiveIcon,
-        size: responsiveRadius(26),
+        size: rr(26),
         color: isCenterButton
-            ? AppColors.grey0
+            ? AppColors.white
             : context.customColors.textPrimary,
       ),
       activeColorPrimary: AppColors.primary400,
@@ -94,7 +94,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       providers: [
         BlocProvider(create: (_) => getIt<HomeCubit>()..loadLeaderboard()),
         BlocProvider(create: (_) => getIt<MatchHistoryCubit>()..fetchMatches()),
-        BlocProvider(create: (_) => getIt<AddMatchCubit>()..getPlayersList()),
+        BlocProvider(create: (_) => getIt<AddMatchCubit>()..resetMatchData()),
         BlocProvider(create: (_) => getIt<ProfileCubit>()..fetchProfile()),
         BlocProvider(create: (_) => getIt<ChampionCubit>()..fetchLeaderboard()),
       ],
@@ -105,11 +105,8 @@ class _MainScaffoldState extends State<MainScaffold> {
         items: _navBarItems(context),
         navBarStyle: NavBarStyle.style15,
         backgroundColor: context.customColors.background,
-        navBarHeight: responsiveHeight(70),
-        padding: EdgeInsets.symmetric(
-          vertical: responsiveHeight(4),
-          horizontal: responsiveWidth(8),
-        ),
+        navBarHeight: rh(70),
+        padding: EdgeInsets.symmetric(vertical: rh(4), horizontal: rw(8)),
         decoration: NavBarDecoration(
           colorBehindNavBar: context.customColors.background,
           border: Border(

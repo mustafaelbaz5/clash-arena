@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+import 'package:im_legends/core/utils/extensions/string_ext.dart';
 
 import '../../../../core/themes/app_texts_style.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../core/utils/spacing.dart';
 import '../../../../core/widgets/notification_icon.dart';
 
@@ -13,32 +14,29 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(24),
-        vertical: responsiveHeight(16),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: rw(24), vertical: rh(16)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
             children: [
               Text(
-                title,
-                style: AppTextStyles.font14Bold.copyWith(
+                title.capitalizeWords(),
+                style: AppTextStyles.font16Bold.copyWith(
                   color: context.customColors.textPrimary,
                 ),
               ),
               Text(
                 'home.welcome_description'.tr(),
                 style: AppTextStyles.font12Regular.copyWith(
-                  color: context.customColors.textTertiary,
+                  color: context.customColors.textSecondary,
                 ),
               ),
             ],
           ),
           const Spacer(),
           CircleAvatar(
-            radius: responsiveRadius(20),
+            radius: rr(20),
             backgroundColor: context.customColors.divider.withValues(
               alpha: 0.5,
             ),

@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../core/router/routes.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_texts_style.dart';
-import '../../../core/utils/extensions/context_extensions.dart';
 import '../../../core/utils/spacing.dart';
 import '../../../core/widgets/custom_text_button.dart';
-
 import 'widgets/on_boarding_hero_image.dart';
 import 'widgets/on_boarding_top_bar.dart';
 
@@ -19,10 +19,7 @@ class OnBoardingScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(
-            horizontal: responsiveWidth(20),
-            vertical: responsiveHeight(16),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: rw(20), vertical: rh(16)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -37,7 +34,7 @@ class OnBoardingScreen extends StatelessWidget {
                   Text(
                     'IM LEGENDS',
                     style: AppTextStyles.fontBold.copyWith(
-                      fontSize: responsiveFontSize(32),
+                      fontSize: rf(32),
                       color: AppColors.primary300,
                     ),
                   ),
@@ -45,9 +42,7 @@ class OnBoardingScreen extends StatelessWidget {
 
                   // Subtitle
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: responsiveWidth(12),
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: rw(12)),
                     child: Text(
                       'onboarding.subtitle'.tr(),
                       style: AppTextStyles.font14Regular.copyWith(
@@ -65,7 +60,7 @@ class OnBoardingScreen extends StatelessWidget {
 
                   // CTA Button
                   SizedBox(
-                    width: responsiveWidth(300),
+                    width: rw(300),
                     child: CustomTextButton(
                       text: 'onboarding.button'.tr(),
                       onPressed: () => context.pushNamed(Routes.loginScreen),

@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_texts_style.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
-import '../../../../core/widgets/custom_icon_bottom.dart';
-
 import '../../../../core/utils/functions/image_picker.dart';
 import '../../../../core/utils/spacing.dart';
+import '../../../../core/widgets/custom_icon_bottom.dart';
 
 class UploadImageField extends StatefulWidget {
   final Function(File? image)? onImageSelected;
@@ -56,7 +56,7 @@ class _UploadImageFieldState extends State<UploadImageField> {
               alignment: Alignment.bottomRight,
               children: [
                 CircleAvatar(
-                  radius: responsiveRadius(60),
+                  radius: rr(60),
                   backgroundColor: context.customColors.border.withValues(
                     alpha: 0.3,
                   ),
@@ -66,8 +66,8 @@ class _UploadImageFieldState extends State<UploadImageField> {
                   child: _profileImage == null
                       ? Icon(
                           Icons.person,
-                          size: responsiveRadius(60),
-                          color: context.customColors.accentBlue,
+                          size: rr(60),
+                          color: context.customColors.info,
                         )
                       : null,
                 ),
@@ -80,11 +80,11 @@ class _UploadImageFieldState extends State<UploadImageField> {
                       width: 2.w,
                     ),
                   ),
-                  padding: EdgeInsets.all(responsiveRadius(6)),
+                  padding: EdgeInsets.all(rr(6)),
                   child: Icon(
                     Icons.edit,
                     color: context.customColors.background,
-                    size: responsiveRadius(16),
+                    size: rr(16),
                   ),
                 ),
               ],

@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/spacing.dart';
 
@@ -31,7 +32,7 @@ class _HomeHeaderContainerState extends State<HomeHeaderContainer> {
           carouselController: _carouselController,
           itemCount: images.length,
           options: CarouselOptions(
-            height: responsiveHeight(180),
+            height: rh(180),
             viewportFraction: 0.9,
             enlargeCenterPage: true,
             enlargeFactor: 0.25,
@@ -50,9 +51,9 @@ class _HomeHeaderContainerState extends State<HomeHeaderContainer> {
           itemBuilder: (final context, final index, final realIndex) {
             return Container(
               width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: responsiveWidth(8)),
+              margin: EdgeInsets.symmetric(horizontal: rw(8)),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(responsiveRadius(20)),
+                borderRadius: BorderRadius.circular(rr(20)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.2),
@@ -62,7 +63,7 @@ class _HomeHeaderContainerState extends State<HomeHeaderContainer> {
                 ],
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(responsiveRadius(20)),
+                borderRadius: BorderRadius.circular(rr(20)),
                 child: Image.asset(images[index], fit: BoxFit.cover),
               ),
             );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_texts_style.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../core/utils/spacing.dart';
 import '../../data/model/champion_player_model.dart';
 
@@ -21,10 +22,7 @@ class ChampionCategoryTabs extends StatelessWidget {
   Widget build(final BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      padding: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(16),
-        vertical: responsiveHeight(8),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(8)),
       child: Row(
         children: _tabs.map((final tab) {
           final isSelected = tab == selected;
@@ -37,8 +35,8 @@ class ChampionCategoryTabs extends StatelessWidget {
                 onTap: () => onSelected(tab),
                 child: Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: responsiveWidth(16),
-                    vertical: responsiveHeight(8),
+                    horizontal: rw(16),
+                    vertical: rh(8),
                   ),
                   decoration: BoxDecoration(
                     color: isSelected
@@ -50,7 +48,7 @@ class ChampionCategoryTabs extends StatelessWidget {
                     tab.label,
                     style: AppTextStyles.font12Regular.copyWith(
                       color: isSelected
-                          ? AppColors.grey0
+                          ? AppColors.white
                           : context.customColors.textPrimary,
                     ),
                   ),

@@ -13,6 +13,6 @@ final class MatchHistorySuccess extends MatchHistoryState {
 }
 
 final class MatchHistoryFailed extends MatchHistoryState {
-  final AppError error;
+  final Failure error;
   MatchHistoryFailed({required this.error});
 }

@@ -1,15 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../core/router/routes.dart';
+import '../../../core/themes/app_texts_style.dart';
 import '../../../core/ui/dialogs/app_dialogs.dart';
 import '../../../core/ui/loaders/overlay_loader.dart';
-import '../../../core/utils/extensions/context_extensions.dart';
+import '../../../core/utils/spacing.dart';
 import '../logic/cubit/auth_cubit.dart';
 import 'widgets/login_form.dart';
-
-import '../../../core/themes/app_texts_style.dart';
-import '../../../core/utils/spacing.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
         child: BlocConsumer<AuthCubit, AuthState>(
           listener: (final context, final state) {
             if (state is AuthError) {
-              AppDialogs.showError(context, message: state.error.messageKey);
+              AppDialogs.showError(context, message: state.error.message);
             }
           },
           builder: (final context, final state) {
@@ -29,8 +29,8 @@ class LoginScreen extends StatelessWidget {
               isLoading: state is AuthLoading,
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: responsiveWidth(16),
-                  vertical: responsiveHeight(8),
+                  horizontal: rw(16),
+                  vertical: rh(8),
                 ),
                 child: SingleChildScrollView(
                   child: Column(
@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               'auth.sign_up'.tr(),
                               style: AppTextStyles.font12SemiBold.copyWith(
-                                color: context.customColors.accentBlue,
+                                color: context.customColors.info,
                                 decorationThickness: 2,
                               ),
                             ),

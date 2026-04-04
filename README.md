@@ -10,27 +10,27 @@ IM Legends is a comprehensive sports/gaming tournament management application th
 
 ### Core Technologies
 
-* **Flutter** - Cross-platform mobile framework
-* **Dart** - Programming language
-* **BLoC/Cubit** - State management pattern
-* **GetIt** - Dependency injection
+- **Flutter** - Cross-platform mobile framework
+- **Dart** - Programming language
+- **BLoC/Cubit** - State management pattern
+- **GetIt** - Dependency injection
 
 ### Backend & Services
 
-* **Supabase** - Backend as a Service (Authentication, Database, Storage)
-* **Firebase** - Cloud messaging and app distribution
-* **Fastlane** - Automated deployment pipeline
+- **Supabase** - Backend as a Service (Authentication, Database, Storage)
+- **Firebase** - Cloud messaging and app distribution
+- **Fastlane** - Automated deployment pipeline
 
 ### Key Packages
 
-* `flutter_bloc` - State management
-* `go_router` - Declarative routing
-* `flutter_secure_storage` - Secure data persistence
-* `shared_preferences` - Local storage
-* `image_picker` - Image selection and upload
-* `flutter_local_notifications` - Push notifications
-* `shimmer` - Loading animations
-* `cached_network_image` - Image caching
+- `flutter_bloc` - State management
+- `go_router` - Declarative routing
+- `flutter_secure_storage` - Secure data persistence
+- `shared_preferences` - Local storage
+- `image_picker` - Image selection and upload
+- `flutter_local_notifications` - Push notifications
+- `shimmer` - Loading animations
+- `cached_network_image` - Image caching
 
 ## 🏗️ Architecture
 
@@ -58,42 +58,42 @@ lib/
     └── profile/               # User profiles
 ```
 
-Each feature follows a  **three-layer architecture** :
+Each feature follows a **three-layer architecture** :
 
-* **Data Layer** : Models, repositories, and services
-* **Logic Layer** : BLoC/Cubit for state management
-* **UI Layer** : Screens and widgets
+- **Data Layer** : Models, repositories, and services
+- **Logic Layer** : BLoC/Cubit for state management
+- **UI Layer** : Screens and widgets
 
 ## ✨ Features
 
 ### 🎮 Core Features
 
-* **User Authentication** : Secure sign-up and login with profile images
-* **Match Recording** : Add and track match results between players
-* **Real-time Leaderboard** : Dynamic ranking system with win/loss statistics
-* **Match History** : Comprehensive history of all recorded matches
-* **Player Profiles** : Detailed statistics and recent match performance
-* **Champions Gallery** : Showcase top-performing players
-* **Push Notifications** : Real-time updates for matches and achievements
+- **User Authentication** : Secure sign-up and login with profile images
+- **Match Recording** : Add and track match results between players
+- **Real-time Leaderboard** : Dynamic ranking system with win/loss statistics
+- **Match History** : Comprehensive history of all recorded matches
+- **Player Profiles** : Detailed statistics and recent match performance
+- **Champions Gallery** : Showcase top-performing players
+- **Push Notifications** : Real-time updates for matches and achievements
 
 ### 🎨 UI/UX Features
 
-* **Custom Fonts** : Multiple font families (Bebas Neue, Borel, Roboto Condensed, Tajawal)
-* **Gradient Backgrounds** : Beautiful gradient designs throughout
-* **Shimmer Loading** : Smooth loading animations
-* **Animated Transitions** : Page and component animations
-* **Bottom Navigation** : Intuitive navigation system
-* **Custom App Bar** : Branded top navigation
-* **Dark Mode Support** : Theme-aware components
+- **Custom Fonts** : Multiple font families (Bebas Neue, Borel, Roboto Condensed, Tajawal)
+- **Gradient Backgrounds** : Beautiful gradient designs throughout
+- **Shimmer Loading** : Smooth loading animations
+- **Animated Transitions** : Page and component animations
+- **Bottom Navigation** : Intuitive navigation system
+- **Custom App Bar** : Branded top navigation
+- **Dark Mode Support** : Theme-aware components
 
 ### 📱 Platform Support
 
-* ✅ Android
-* ✅ iOS
-* ✅ Web
-* ✅ Windows
-* ✅ macOS
-* ✅ Linux
+- ✅ Android
+- ✅ iOS
+- ✅ Web
+- ✅ Windows
+- ✅ macOS
+- ✅ Linux
 
 ## 🧪 Testing
 
@@ -128,8 +128,8 @@ im_legends/
 │   ├── features/              # Feature modules
 │   ├── firebase_options.dart  # Firebase configuration
 │   ├── im_legends_app.dart    # App initialization
-│   ├── main_development.dart  # Development entry point
-│   └── main_production.dart   # Production entry point
+│   ├── main_dev.dart  # Development entry point
+│   └── main_prod.dart   # Production entry point
 ├── test/                      # Test files
 └── pubspec.yaml               # Dependencies
 ```
@@ -138,11 +138,11 @@ im_legends/
 
 ### Prerequisites
 
-* Flutter SDK (3.0.0 or higher)
-* Dart SDK
-* Android Studio / Xcode (for mobile development)
-* Supabase account
-* Firebase account
+- Flutter SDK (3.0.0 or higher)
+- Dart SDK
+- Android Studio / Xcode (for mobile development)
+- Supabase account
+- Firebase account
 
 ### Installation Steps
 
@@ -156,34 +156,35 @@ im_legends/
    flutter pub get
    ```
 3. **Configure Supabase**
-   * Create a project on [Supabase](https://supabase.com/)
-   * Update `lib/core/service/supa_base_service.dart` with your credentials
+   - Create a project on [Supabase](https://supabase.com/)
+   - Update `lib/core/service/supa_base_service.dart` with your credentials
 4. **Configure Firebase**
-   * Create a project on [Firebase Console](https://console.firebase.google.com/)
-   * Download configuration files:
-     * `google-services.json` (Android) → `android/app/`
-     * `GoogleService-Info.plist` (iOS) → `ios/Runner/`
-   * Run: `flutterfire configure`
+   - Create a project on [Firebase Console](https://console.firebase.google.com/)
+   - Download configuration files:
+     - `google-services.json` (Android) → `android/app/`
+     - `GoogleService-Info.plist` (iOS) → `ios/Runner/`
+   - Run: `flutterfire configure`
 5. **Run the app**
+
    ```bash
    # Development mode
-   flutter run --flavor development --target lib/main_development.dart
+   flutter run --flavor development --target lib/main_dev.dart
 
    # Production mode
-   flutter run --flavor production --target lib/main_production.dart
+   flutter run --flavor production --target lib/main_prod.dart
    ```
 
 ## 🎯 Environment Flavors
 
 The app supports two build flavors:
 
-* **Development** : For testing with development backend
-* **Production** : For production release
+- **Development** : For testing with development backend
+- **Production** : For production release
 
 Each flavor has separate Firebase configurations in:
 
-* `android/app/src/development/google-services.json`
-* `android/app/src/production/google-services.json`
+- `android/app/src/development/google-services.json`
+- `android/app/src/production/google-services.json`
 
 ## 🚀 Deployment
 
@@ -209,23 +210,23 @@ The project includes automated CI/CD workflows:
 
 ## 🔮 Future Improvements
 
-* [ ] **Tournament Mode** : Create and manage tournaments
-* [ ] **Team Support** : Add team-based competitions
-* [ ] **Statistics Dashboard** : Advanced analytics and charts
-* [ ] **Social Features** : Follow players and share achievements
-* [ ] **Live Matches** : Real-time match updates
-* [ ] **Chat System** : In-app messaging between players
-* [ ] **Achievement System** : Badges and rewards
-* [ ] **Export Reports** : PDF/Excel export of statistics
-* [ ] **Multi-language Support** : Internationalization (i18n)
-* [ ] **Offline Mode** : Local-first with sync
+- [ ] **Tournament Mode** : Create and manage tournaments
+- [ ] **Team Support** : Add team-based competitions
+- [ ] **Statistics Dashboard** : Advanced analytics and charts
+- [ ] **Social Features** : Follow players and share achievements
+- [ ] **Live Matches** : Real-time match updates
+- [ ] **Chat System** : In-app messaging between players
+- [ ] **Achievement System** : Badges and rewards
+- [ ] **Export Reports** : PDF/Excel export of statistics
+- [ ] **Multi-language Support** : Internationalization (i18n)
+- [ ] **Offline Mode** : Local-first with sync
 
 ## 📸 Screenshots
 
-> *Add your app screenshots here*
+> _Add your app screenshots here_
 
-|                           Home                           |                              Add Match                              |                             Profile                             |                             History                             |
-| :-------------------------------------------------------: | :-----------------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------: |
+|                            Home                             |                               Add Match                               |                              Profile                              |                              History                              |
+| :---------------------------------------------------------: | :-------------------------------------------------------------------: | :---------------------------------------------------------------: | :---------------------------------------------------------------: |
 | ![Home Screen](https://claude.ai/chat/screenshots/home.png) | ![Add Match Screen](https://claude.ai/chat/screenshots/add_match.png) | ![Profile Screen](https://claude.ai/chat/screenshots/profile.png) | ![History Screen](https://claude.ai/chat/screenshots/history.png) |
 
 ## 🤝 Contributing
@@ -246,17 +247,17 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Mustafa Elbaz**
 
-* GitHub: [@m9stafa05](https://github.com/m9stafa05)
-* LinkedIn: [Mustafa Elbaz](https://linkedin.com/in/mustafa-elbaz-725a6631a)
-* Portfolio: [Mustafa Portfolio](https://mustafa-portfolio-eight.vercel.app/)
-* Email: [m9stafa05@gmail.com](mailto:m9stafa05@gmail.com)
+- GitHub: [@m9stafa05](https://github.com/m9stafa05)
+- LinkedIn: [Mustafa Elbaz](https://linkedin.com/in/mustafa-elbaz-725a6631a)
+- Portfolio: [Mustafa Portfolio](https://mustafa-portfolio-eight.vercel.app/)
+- Email: [m9stafa05@gmail.com](mailto:m9stafa05@gmail.com)
 
 ## 🙏 Acknowledgments
 
-* Flutter team for the amazing framework
-* Supabase for the powerful backend
-* Firebase for cloud services
-* The open-source community for inspiration
+- Flutter team for the amazing framework
+- Supabase for the powerful backend
+- Firebase for cloud services
+- The open-source community for inspiration
 
 ---
 

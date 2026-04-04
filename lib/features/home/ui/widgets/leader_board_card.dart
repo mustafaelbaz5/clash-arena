@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
-import 'rank_and_avatar.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 
 import '../../../../core/models/players_states_model.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_texts_style.dart';
 import '../../../../core/utils/spacing.dart';
+import 'rank_and_avatar.dart';
 
 class LeaderBoardCard extends StatelessWidget {
   final PlayerStatsModel player;
@@ -20,13 +20,10 @@ class LeaderBoardCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: responsiveHeight(4)),
-      padding: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(12),
-        vertical: responsiveHeight(8),
-      ),
+      margin: EdgeInsets.symmetric(vertical: rh(4)),
+      padding: EdgeInsets.symmetric(horizontal: rw(12), vertical: rh(8)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(responsiveRadius(12)),
+        borderRadius: BorderRadius.circular(rr(12)),
         color: isCurrentUser
             ? context.customColors.divider
             : context.customColors.background,
@@ -68,22 +65,15 @@ class LeaderBoardCard extends StatelessWidget {
         ),
         verticalSpacing(4),
         Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: responsiveWidth(6),
-            vertical: responsiveHeight(2),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: rw(6), vertical: rh(2)),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(responsiveRadius(4)),
-            color: AppColors.yellow100.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(rr(4)),
+            color: AppColors.amber100.withValues(alpha: 0.1),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.star,
-                size: responsiveFontSize(12),
-                color: AppColors.yellow100,
-              ),
+              Icon(Icons.star, size: rf(12), color: AppColors.amber100),
               horizontalSpacing(3),
               Text(
                 '${player.points}',
@@ -140,7 +130,7 @@ class LeaderBoardCard extends StatelessWidget {
       children: [
         Icon(
           icon,
-          size: responsiveFontSize(16),
+          size: rf(16),
           color: color ?? context.customColors.textSecondary,
         ),
         verticalSpacing(4),

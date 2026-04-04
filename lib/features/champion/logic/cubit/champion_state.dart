@@ -22,6 +22,6 @@ class ChampionEmpty extends ChampionState {
 }
 
 class ChampionFailure extends ChampionState {
-  final AppError error;
+  final Failure error;
   const ChampionFailure({required this.error});
 }

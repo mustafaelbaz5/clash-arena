@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/themes/app_texts_style.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 
+import '../../../../core/themes/app_texts_style.dart';
 import '../../../../core/utils/spacing.dart';
 
 class HistoryCardPlayerInfo extends StatelessWidget {
@@ -26,8 +26,8 @@ class HistoryCardPlayerInfo extends StatelessWidget {
         Container(
           decoration: const BoxDecoration(shape: BoxShape.circle),
           child: CircleAvatar(
-            radius: responsiveRadius(35),
-            backgroundColor: context.customColors.successContainer.withValues(
+            radius: rr(35),
+            backgroundColor: context.customColors.successBackground.withValues(
               alpha: 0.3,
             ),
             backgroundImage: avatarUrl != null && avatarUrl!.isNotEmpty
@@ -40,7 +40,7 @@ class HistoryCardPlayerInfo extends StatelessWidget {
         ),
         verticalSpacing(10),
         SizedBox(
-          width: responsiveWidth(100),
+          width: rw(100),
           child: Text(
             playerName,
             style: AppTextStyles.font12Regular,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+import 'package:im_legends/features/add_match/logic/cubit/add_match_cubit.dart';
 
-import '../../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../../core/utils/spacing.dart';
 import 'player_field_avatar.dart';
 import 'player_field_info.dart';
@@ -46,20 +48,20 @@ class PlayerSelectField extends StatelessWidget {
     final bool isSelected = selectedPlayerId != null;
 
     return GestureDetector(
-      onTap: () => _showPlayerDialog(context),
+      onTap: () {
+        context.read<AddMatchCubit>().getPlayersList();
+        _showPlayerDialog(context);
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        margin: EdgeInsets.symmetric(vertical: responsiveHeight(8)),
-        padding: EdgeInsets.symmetric(
-          horizontal: responsiveWidth(16),
-          vertical: responsiveHeight(10),
-        ),
-        height: responsiveHeight(64),
+        margin: EdgeInsets.symmetric(vertical: rh(8)),
+        padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(10)),
+        height: rh(64),
         decoration: BoxDecoration(
           color: isSelected
               ? context.customColors.background.withAlpha(20)
               : context.customColors.background,
-          borderRadius: BorderRadius.circular(responsiveRadius(16)),
+          borderRadius: BorderRadius.circular(rr(16)),
           border: Border.all(
             color: isSelected
                 ? accentColor ?? context.customColors.textPrimary
@@ -90,7 +92,7 @@ class PlayerSelectField extends StatelessWidget {
                 color: isSelected
                     ? context.customColors.textPrimary
                     : context.customColors.textSecondary,
-                size: responsiveFontSize(24),
+                size: rf(24),
               ),
             ),
           ],

@@ -18,14 +18,14 @@ class ScoreDisplay extends StatelessWidget {
           '${match.winnerScore}',
           style: AppTextStyles.fontBold.copyWith(
             color: AppColors.green100,
-            fontSize: responsiveFontSize(24),
+            fontSize: rf(24),
           ),
         ),
         const Text('    -    ', style: AppTextStyles.fontBold),
         Text(
           '${match.loserScore}',
           style: AppTextStyles.fontRegular.copyWith(
-            fontSize: responsiveFontSize(20),
+            fontSize: rf(20),
           ),
         ),
       ],

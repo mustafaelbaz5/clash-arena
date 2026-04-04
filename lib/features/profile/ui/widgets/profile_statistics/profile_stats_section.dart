@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 
 import '../../../../../core/models/players_states_model.dart';
 import '../../../../../core/themes/app_texts_style.dart';
-import '../../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../../core/utils/spacing.dart';
 import 'goals_overview.dart';
 import 'stats_grid_view.dart';
@@ -20,7 +20,7 @@ class ProfileStatsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.all(responsiveWidth(20)),
+          padding: EdgeInsets.all(rw(20)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -33,24 +33,24 @@ class ProfileStatsSection extends StatelessWidget {
               if (stats.rank != null)
                 Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: responsiveWidth(12),
-                    vertical: responsiveHeight(6),
+                    horizontal: rw(12),
+                    vertical: rh(6),
                   ),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        context.customColors.accentBlue,
-                        context.customColors.accentBlue.withAlpha(
+                        context.customColors.info,
+                        context.customColors.info.withAlpha(
                           (0.7 * 255).toInt(),
                         ),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(responsiveRadius(20)),
+                    borderRadius: BorderRadius.circular(rr(20)),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.emoji_events, size: responsiveFontSize(16)),
+                      Icon(Icons.emoji_events, size: rf(16)),
                       horizontalSpacing(4),
                       Text(
                         '${'profile.stats.rank'.tr()} #${stats.rank}',
@@ -64,20 +64,20 @@ class ProfileStatsSection extends StatelessWidget {
         ),
         // Win Rate Circle
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: responsiveWidth(20)),
+          padding: EdgeInsets.symmetric(horizontal: rw(20)),
           child: WinRateCard(stats: stats),
         ),
         // Stats Grid
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: responsiveWidth(20)),
+          padding: EdgeInsets.symmetric(horizontal: rw(20)),
           child: StatsGridView(stats: stats),
         ),
         // Goals Overview
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: responsiveWidth(20)),
+          padding: EdgeInsets.symmetric(horizontal: rw(20)),
           child: GoalsOverview(stats: stats),
         ),
-    
+
         verticalSpacing(20),
       ],
     );

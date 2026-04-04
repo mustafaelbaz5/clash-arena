@@ -14,7 +14,7 @@ final class ProfileSuccess extends ProfileState {
 }
 
 final class ProfileFailure extends ProfileState {
-  final AppError error;
+  final Failure error;
 
   ProfileFailure({required this.error});
 }

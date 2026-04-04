@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/utils/spacing.dart';
 import '../../logic/cubit/profile_cubit.dart';
-import 'profile_shimmer_loading.dart';
-
 import 'profile_header.dart';
 import 'profile_info_section.dart';
 import 'profile_settings/profile_settings.dart';
+import 'profile_shimmer_loading.dart';
 import 'profile_statistics/profile_stats_section.dart';
 
 class ProfileBody extends StatelessWidget {
@@ -20,7 +20,7 @@ class ProfileBody extends StatelessWidget {
           return const ProfileShimmerLoading();
         }
         if (state is ProfileFailure) {
-          return Center(child: Text(state.error.messageKey));
+          return Center(child: Text(state.error.message));
         }
         if (state is ProfileSuccess) {
           return CustomScrollView(

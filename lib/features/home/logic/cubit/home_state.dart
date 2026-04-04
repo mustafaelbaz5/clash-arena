@@ -13,6 +13,6 @@ final class HomeSuccess extends HomeState {
 }
 
 final class HomeFailure extends HomeState {
-  final AppError error;
+  final Failure error;
   HomeFailure({required this.error});
 }

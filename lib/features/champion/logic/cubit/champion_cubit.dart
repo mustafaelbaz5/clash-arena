@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
-import '../../../../core/error/models/app_error.dart';
+import 'package:im_legends/core/errors/failure.dart';
+
 import '../../data/model/champion_player_model.dart';
 import '../../data/repo/champion_repo.dart';
 
@@ -14,16 +15,14 @@ class ChampionCubit extends Cubit<ChampionState> {
     emit(const ChampionLoading());
     try {
       final players = await championRepo.getLeaderboard();
-
       if (players.isEmpty) {
         emit(const ChampionEmpty());
       } else {
         emit(ChampionSuccess(players));
       }
-    } catch (error) {
-      emit(
-        ChampionFailure(error: error is AppError ? error : AppError.unknown()),
-      );
+    } catch (e) {
+      final failure = e is Failure ? e : const UnknownFailure();
+      emit(ChampionFailure(error: failure));
     }
   }
 }

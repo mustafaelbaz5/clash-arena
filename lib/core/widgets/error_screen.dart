@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../themes/app_colors.dart';
 import '../themes/app_texts_style.dart';
-import '../utils/extensions/context_extensions.dart';
 import '../utils/spacing.dart';
 
 class ErrorScreen extends StatelessWidget {
@@ -29,14 +30,14 @@ class ErrorScreen extends StatelessWidget {
                   children: [
                     // Error Icon
                     Container(
-                      padding: EdgeInsets.all(responsiveWidth(24)),
+                      padding: EdgeInsets.all(rw(24)),
                       decoration: BoxDecoration(
                         color: AppColors.red100.withValues(alpha: 0.1),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
                         Icons.error_outline_rounded,
-                        size: responsiveFontSize(80),
+                        size: rf(80),
                         color: AppColors.red100,
                       ),
                     ),
@@ -65,9 +66,7 @@ class ErrorScreen extends StatelessWidget {
                     if (error != null) ...[
                       verticalSpacing(16),
                       Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: responsiveWidth(16),
-                        ),
+                        padding: EdgeInsets.symmetric(horizontal: rw(16)),
                         child: Text(
                           error!,
                           style: AppTextStyles.font12Regular.copyWith(

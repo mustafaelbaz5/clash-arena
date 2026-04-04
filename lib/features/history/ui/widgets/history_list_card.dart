@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 
 import '../../../../core/utils/spacing.dart';
 import '../../data/models/match_history_card_model.dart';
@@ -16,16 +16,10 @@ class HistoryListCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(16),
-        vertical: responsiveHeight(8),
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(16),
-        vertical: responsiveHeight(8),
-      ),
+      margin: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(8)),
+      padding: EdgeInsets.symmetric(horizontal: rw(16), vertical: rh(8)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(responsiveRadius(16)),
+        borderRadius: BorderRadius.circular(rr(16)),
         color: context.customColors.background.withValues(alpha: 0.1),
         border: Border.all(color: context.customColors.border, width: 1),
       ),

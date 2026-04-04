@@ -36,12 +36,16 @@ dependencies:
   path_provider: ^2.1.5
   persistent_bottom_nav_bar: ^6.2.1
   carousel_slider: ^5.1.2
+  internet_connection_checker: ^3.0.1
+  equatable: ^2.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.14.4
+  mockito: any
+  build_runner: any
 
 flutter_launcher_icons:
   android: true
@@ -58,7 +62,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
-    - assets/translations/
+    - assets/lang/
 
   fonts:
     - family: Inter

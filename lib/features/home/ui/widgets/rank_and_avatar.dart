@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
-import '../../../../core/utils/spacing.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/functions/get_rank_color.dart';
+import '../../../../core/utils/spacing.dart';
 
 class RankAndAvatar extends StatelessWidget {
   const RankAndAvatar({
@@ -21,11 +21,9 @@ class RankAndAvatar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final avatarSize = isCurrentUser
-        ? responsiveWidth(55)
-        : responsiveWidth(50);
+    final avatarSize = isCurrentUser ? rw(55) : rw(50);
     return SizedBox(
-      width: isCurrentUser ? responsiveWidth(70) : responsiveWidth(60),
+      width: isCurrentUser ? rw(70) : rw(60),
       child: Stack(
         clipBehavior: Clip.none,
         children: [

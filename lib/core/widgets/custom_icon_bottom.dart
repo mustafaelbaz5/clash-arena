@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../themes/app_texts_style.dart';
-import '../utils/extensions/context_extensions.dart';
 import '../utils/spacing.dart';
 
 class CustomIconBottom extends StatelessWidget {
@@ -27,7 +28,7 @@ class CustomIconBottom extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final borderRadius = BorderRadius.circular(responsiveRadius(12));
+    final borderRadius = BorderRadius.circular(rr(12));
 
     final Widget button = Material(
       color: backgroundColor ?? Colors.transparent,
@@ -38,9 +39,7 @@ class CustomIconBottom extends StatelessWidget {
         borderRadius: borderRadius,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: label == null
-                ? responsiveWidth(10)
-                : responsiveWidth(12),
+            horizontal: label == null ? rw(10) : rw(12),
             vertical: 8,
           ),
           child: Row(
@@ -48,7 +47,7 @@ class CustomIconBottom extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                size: responsiveFontSize(20),
+                size: rf(20),
                 color: iconColor ?? context.customColors.textSecondary,
               ),
               if (_hasLabel) ...[

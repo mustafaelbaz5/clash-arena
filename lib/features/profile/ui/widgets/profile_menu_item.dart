@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../../../../core/themes/app_texts_style.dart';
-import '../../../../core/utils/extensions/context_extensions.dart';
 import '../../../../core/utils/spacing.dart';
 
 class ProfileMenuItem extends StatelessWidget {
@@ -24,23 +25,20 @@ class ProfileMenuItem extends StatelessWidget {
     return Material(
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(responsiveRadius(12)),
+        borderRadius: BorderRadius.circular(rr(12)),
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: responsiveWidth(8),
-            vertical: responsiveHeight(16),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: rw(8), vertical: rh(16)),
           child: Row(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(responsiveWidth(10)),
+                padding: EdgeInsets.all(rw(10)),
                 decoration: BoxDecoration(
                   color: context.customColors.divider,
-                  borderRadius: BorderRadius.circular(responsiveRadius(12)),
+                  borderRadius: BorderRadius.circular(rr(12)),
                 ),
                 child: Icon(
                   icon,
-                  size: responsiveWidth(22),
+                  size: rw(22),
                   color: context.customColors.textSecondary,
                 ),
               ),
@@ -73,7 +71,7 @@ class ProfileMenuItem extends StatelessWidget {
               else
                 Icon(
                   Icons.arrow_forward_ios,
-                  size: responsiveWidth(16),
+                  size: rw(16),
                   color: context.customColors.textSecondary.withAlpha(100),
                 ),
             ],

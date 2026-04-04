@@ -1,4 +1,5 @@
-import '../error/types/error_handler.dart';
+import 'package:im_legends/core/errors/error_handler.dart';
+
 import '../models/user_data.dart';
 import 'supabase_service.dart';
 
@@ -7,7 +8,6 @@ class UserRemoteDS {
 
   UserRemoteDS({required this.supabaseService});
 
-  /// Insert user profile into 'users' table
   Future<void> insertUserProfile(
     final UserData userData,
     final String uid,
@@ -15,11 +15,10 @@ class UserRemoteDS {
     try {
       await supabaseService.client.from('users').insert(userData.toMap(uid));
     } catch (e) {
-      ErrorHandler.handle(e);
+      ErrorHandler.handleException(e);
     }
   }
 
-  /// Fetch user profile by UID
   Future<UserData?> fetchUserDataById(final String uid) async {
     try {
       final response = await supabaseService.client
@@ -29,11 +28,10 @@ class UserRemoteDS {
           .single();
       return UserData.fromMap(response);
     } catch (e) {
-      ErrorHandler.handle(e);
+      ErrorHandler.handleException(e);
     }
   }
 
-  /// Fetch current user + tokens + notifications
   Future<Map<String, dynamic>?> fetchCurrentUserData() async {
     final user = supabaseService.currentUser;
     if (user == null) return null;
@@ -75,7 +73,7 @@ class UserRemoteDS {
             .toList(),
       };
     } catch (e) {
-      ErrorHandler.handle(e);
+      ErrorHandler.handleException(e);
     }
   }
 }

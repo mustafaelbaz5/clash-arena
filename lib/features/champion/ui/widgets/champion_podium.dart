@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:im_legends/core/utils/functions/get_rank_color.dart';
+
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_texts_style.dart';
 import '../../../../core/utils/spacing.dart';
@@ -25,10 +27,7 @@ class ChampionPodium extends StatelessWidget {
     final third = topThree.length > 2 ? topThree[2] : null;
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: responsiveHeight(24),
-        horizontal: responsiveWidth(8),
-      ),
+      padding: EdgeInsets.symmetric(vertical: rh(24), horizontal: rw(8)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -36,8 +35,8 @@ class ChampionPodium extends StatelessWidget {
             child: _PodiumSlot(
               player: second,
               rank: 2,
-              podiumHeight: responsiveHeight(70),
-              avatarRadius: responsiveRadius(30),
+              podiumHeight: rh(70),
+              avatarRadius: rr(30),
               category: category,
             ),
           ),
@@ -46,8 +45,8 @@ class ChampionPodium extends StatelessWidget {
             child: _PodiumSlot(
               player: first,
               rank: 1,
-              podiumHeight: responsiveHeight(100),
-              avatarRadius: responsiveRadius(38),
+              podiumHeight: rh(100),
+              avatarRadius: rr(38),
               category: category,
             ),
           ),
@@ -56,8 +55,8 @@ class ChampionPodium extends StatelessWidget {
             child: _PodiumSlot(
               player: third,
               rank: 3,
-              podiumHeight: responsiveHeight(50),
-              avatarRadius: responsiveRadius(26),
+              podiumHeight: rh(50),
+              avatarRadius: rr(26),
               category: category,
             ),
           ),
@@ -84,7 +83,7 @@ class _PodiumSlot extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final rankColor = _rankColor(rank);
+    final rankColor = getRankColor(rank);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -93,8 +92,8 @@ class _PodiumSlot extends StatelessWidget {
         if (rank == 1)
           Icon(
             Icons.emoji_events_rounded,
-            color: AppColors.gold,
-            size: responsiveFontSize(28),
+            color: AppColors.amber300,
+            size: rf(28),
           )
         else
           verticalSpacing(6),
@@ -160,16 +159,4 @@ class _PodiumSlot extends StatelessWidget {
   }
 
   /// Returns a distinct color per rank using the app's color scheme.
-  Color _rankColor(final int rank) {
-    switch (rank) {
-      case 1:
-        return AppColors.gold;
-      case 2:
-        return AppColors.silver;
-      case 3:
-        return AppColors.bronze;
-      default:
-        return Colors.transparent;
-    }
-  }
 }

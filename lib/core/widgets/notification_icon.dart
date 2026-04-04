@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:im_legends/core/utils/extensions/context_ext.dart';
+
 import '../router/routes.dart';
 import '../themes/app_colors.dart';
 import '../themes/app_texts_style.dart';
 import '../utils/app_assets.dart';
-import '../utils/extensions/context_extensions.dart';
 
 class NotificationIcon extends StatelessWidget {
   final int unreadCount;
@@ -39,7 +40,7 @@ class NotificationIcon extends StatelessWidget {
                   child: Text(
                     unreadCount > 9 ? '9+' : unreadCount.toString(),
                     style: AppTextStyles.font12SemiBold.copyWith(
-                      color: AppColors.grey0,
+                      color: AppColors.white,
                     ),
                   ),
                 ),
