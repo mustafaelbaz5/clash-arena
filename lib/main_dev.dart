@@ -9,6 +9,7 @@ import 'package:im_legends/core/config/app_config.dart';
 import 'package:im_legends/core/config/firebase_options.dart';
 import 'package:im_legends/core/di/dependency_injection.dart';
 import 'package:im_legends/core/localization/localization_manager.dart';
+import 'package:im_legends/core/service/notification_service.dart';
 import 'package:im_legends/core/widgets/error_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -42,6 +43,7 @@ Future<void> main() async {
   );
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setUpDependencies();
+  await getIt<NotificationService>().initialize();
 
   runApp(
     EasyLocalization(
