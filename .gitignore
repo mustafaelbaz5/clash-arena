@@ -49,4 +49,6 @@ app.*.map.json
 .env.*
 
 terminalcontext.txt
-im-legends-firebase-adminsdk-fbsvc-ba5ac31cce.json
+# Firebase Admin SDK keys
+*-firebase-adminsdk-*.json
+google-services.jso

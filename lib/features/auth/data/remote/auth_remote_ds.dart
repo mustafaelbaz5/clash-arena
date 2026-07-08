@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:im_legends/core/errors/error_handler.dart';
 import 'package:im_legends/core/errors/exceptions.dart';
+import 'package:im_legends/core/service/notification_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/models/user_data.dart';
@@ -16,12 +17,14 @@ class AuthRemoteDS {
   final SecureStorage secureStorage;
   final StorageRemoteDs storageRemoteDS;
   final UserRemoteDS userRemoteDS;
+  final NotificationService notificationService;
 
   AuthRemoteDS({
     required this.supabaseService,
     required this.secureStorage,
     required this.storageRemoteDS,
     required this.userRemoteDS,
+    required this.notificationService,
   });
 
   Future<AuthResponse> signUp({
@@ -55,6 +58,9 @@ class AuthRemoteDS {
       final updatedUserData = userData.copyWith(profileImageUrl: imageUrl);
       await userRemoteDS.insertUserProfile(updatedUserData, uid);
 
+      // ← NEW: save FCM token after successful signup
+      await notificationService.saveToken(userId: uid);
+
       return response;
     } catch (e) {
       ErrorHandler.handleException(e);
@@ -80,6 +86,9 @@ class AuthRemoteDS {
 
       await secureStorage.write(key: AppConstants.userIdKey, value: uid);
 
+      // ← NEW: save FCM token after successful login
+      await notificationService.saveToken(userId: uid);
+
       return response;
     } catch (e) {
       ErrorHandler.handleException(e);
@@ -89,20 +98,14 @@ class AuthRemoteDS {
   Future<void> logout() async {
     try {
       final uid = supabaseService.currentUser?.id;
-      if (uid != null) await removeAllTokens(uid);
+
+      // ← UPDATED: use NotificationService instead of removeAllTokens
+      if (uid != null) {
+        await notificationService.deleteToken(userId: uid);
+      }
 
       await supabaseService.signOut();
       await secureStorage.delete(key: AppConstants.userIdKey);
-    } catch (e) {
-      ErrorHandler.handleException(e);
-    }
-  }
-
-  Future<void> removeAllTokens(final String uid) async {
-    try {
-      await supabaseService.execute(
-        supabaseService.client.from('user_tokens').delete().eq('user_id', uid),
-      );
     } catch (e) {
       ErrorHandler.handleException(e);
     }
