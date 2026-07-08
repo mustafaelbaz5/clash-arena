@@ -49,3 +49,6 @@ app.*.map.json
 .env.*
 
 terminalcontext.txt
+# Firebase Admin SDK keys
+*-firebase-adminsdk-*.json
+google-services.jso
