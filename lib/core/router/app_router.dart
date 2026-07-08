@@ -22,8 +22,11 @@ class AppRouter {
         return _buildRoute(const NotificationsScreen(), settings);
       case Routes.groupsScreen:
         return _buildRoute(
-          BlocProvider(
-            create: (_) => getIt<GroupsCubit>()..loadGroups(),
+          // BlocProvider.value: GroupsCubit is a DI-managed singleton (its
+          // active-group context must survive navigation), so this route
+          // must not take ownership and close it on dispose.
+          BlocProvider.value(
+            value: getIt<GroupsCubit>()..loadGroups(),
             child: const GroupsScreen(),
           ),
           settings,

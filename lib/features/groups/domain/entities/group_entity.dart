@@ -4,7 +4,7 @@ class GroupEntity extends Equatable {
   final String id;
   final String name;
   final String? inviteCode;
-  final String createdBy;
+  final String? createdBy;
   final bool isPublic;
   final int maxMembers;
   final String? description;
@@ -19,10 +19,10 @@ class GroupEntity extends Equatable {
   const GroupEntity({
     required this.id,
     required this.name,
-    required this.createdBy,
     required this.isPublic,
     required this.maxMembers,
     required this.createdAt,
+    this.createdBy,
     this.inviteCode,
     this.description,
     this.avatarUrl,

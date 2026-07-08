@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:clash_arena/core/errors/failure.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 import '../../domain/entities/group_entity.dart';
 import '../../domain/use_cases/create_group_use_case.dart';
@@ -42,6 +42,7 @@ class GroupsCubit extends Cubit<GroupsState> {
 
       emit(GroupsLoaded(groups: groups, activeGroupId: activeId));
     } catch (e) {
+      debugPrint('Error loading groups: $e');
       final failure = e is Failure ? e : const UnknownFailure();
       emit(GroupsFailure(error: failure));
     }

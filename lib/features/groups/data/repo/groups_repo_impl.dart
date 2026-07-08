@@ -36,7 +36,6 @@ class GroupsRepoImpl implements GroupsRepo {
       final draft = GroupModel(
         id: '',
         name: name,
-        createdBy: '',
         isPublic: isPublic,
         maxMembers: maxMembers,
         createdAt: DateTime.now(),
