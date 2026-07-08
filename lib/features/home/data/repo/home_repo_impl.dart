@@ -38,8 +38,12 @@ class HomeRepoImpl implements HomeRepo {
         final winnerScore = match['winner_score'] as int;
         final loserScore = match['loser_score'] as int;
 
-        final winner = stats[winnerId]!;
-        final loser = stats[loserId]!;
+        // A match whose winner/loser isn't a current member of this group
+        // (removed since, or a stale/legacy row) shouldn't crash the whole
+        // leaderboard — just skip it.
+        final winner = stats[winnerId];
+        final loser = stats[loserId];
+        if (winner == null || loser == null) continue;
 
         stats[winnerId] = winner.copyWith(
           matchesPlayed: winner.matchesPlayed + 1,
