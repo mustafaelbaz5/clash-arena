@@ -1,3 +1,4 @@
+import 'package:clash_arena/firebase_options.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:clash_arena/core/config/app_config.dart';
-import 'package:clash_arena/core/config/firebase_options.dart';
 import 'package:clash_arena/core/di/dependency_injection.dart';
 import 'package:clash_arena/core/localization/localization_manager.dart';
 import 'package:clash_arena/core/widgets/error_screen.dart';
