@@ -226,7 +226,7 @@
 [  +10 ms] Found plugin sqflite at C:\Users\Mustafa\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite-2.4.2+1\
 [   +2 ms] Found plugin sqflite_darwin at C:\Users\Mustafa\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_darwin-2.4.2\
 [   +1 ms] Found plugin sqflite_android at C:\Users\Mustafa\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.2+3\
-[  +16 ms] Generating C:\flutter_apps\im_legends\android\app\src\main\java\io\flutter\plugins\GeneratedPluginRegistrant.java
+[  +16 ms] Generating C:\flutter_apps\clash_arena\android\app\src\main\java\io\flutter\plugins\GeneratedPluginRegistrant.java
 [   +1 ms] Skipping generating GeneratedPluginRegistrant.java because it is up-to-date.
 [   +7 ms] Skipping generating generated_plugin_registrant.h because it is up-to-date.
 [   +1 ms] Skipping generating generated_plugin_registrant.cc because it is up-to-date.
@@ -240,7 +240,7 @@
 [  +98 ms] ro.hardware = ranchu
 [ +122 ms] Initializing file store
 [  +17 ms] Skipping target: gen_localizations
-[   +3 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: C:\flutter_apps\im_legends\.dart_tool\package_config.json,C:\flutter_apps\im_legends\.dart_tool\flutter_build\dart_plugin_registrant.dart}
+[   +3 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: C:\flutter_apps\clash_arena\.dart_tool\package_config.json,C:\flutter_apps\clash_arena\.dart_tool\flutter_build\dart_plugin_registrant.dart}
 [ +116 ms] Found plugin url_launcher at C:\Users\Mustafa\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher-6.3.2\
 [   +1 ms] Found plugin url_launcher_windows at C:\Users\Mustafa\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_windows-3.1.5\
 [   +3 ms] Found plugin url_launcher_web at C:\Users\Mustafa\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_web-2.4.3\
@@ -304,9 +304,9 @@
 [   +5 ms] Skipping target: _composite
 [   +3 ms] complete
 [   +6 ms] Launching lib/main_dev.dart on sdk gphone64 x86 64 in debug mode...
-[   +4 ms] C:\src\flutter\bin\cache\dart-sdk\bin\dartaotruntime.exe C:\src\flutter\bin\cache\dart-sdk\bin\snapshots\frontend_server_aot.dart.snapshot --sdk-root C:\src\flutter\bin\cache\artifacts\engine\common\flutter_patched_sdk/ --incremental --target=flutter --experimental-emit-debug-metadata -DFLUTTER_APP_FLAVOR=development -DFLUTTER_VERSION=3.38.9 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=67323de285 -DFLUTTER_ENGINE_REVISION=587c18f873 -DFLUTTER_DART_VERSION=3.10.8 --output-dill C:\Users\Mustafa\AppData\Local\Temp\flutter_tools.61e9599a\flutter_tool.b8eb3d1a\app.dill --packages C:\flutter_apps\im_legends\.dart_tool\package_config.json -Ddart.vm.profile=false -Ddart.vm.product=false --enable-asserts --track-widget-creation --filesystem-scheme org-dartlang-root --initialize-from-dill build\84a567e01f17d39fc5b68bcc09782406.cache.dill.track.dill --source file:///C:/flutter_apps/im_legends/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///C:/flutter_apps/im_legends/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error --enable-experiment=alternative-invalidation-strategy
+[   +4 ms] C:\src\flutter\bin\cache\dart-sdk\bin\dartaotruntime.exe C:\src\flutter\bin\cache\dart-sdk\bin\snapshots\frontend_server_aot.dart.snapshot --sdk-root C:\src\flutter\bin\cache\artifacts\engine\common\flutter_patched_sdk/ --incremental --target=flutter --experimental-emit-debug-metadata -DFLUTTER_APP_FLAVOR=development -DFLUTTER_VERSION=3.38.9 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=67323de285 -DFLUTTER_ENGINE_REVISION=587c18f873 -DFLUTTER_DART_VERSION=3.10.8 --output-dill C:\Users\Mustafa\AppData\Local\Temp\flutter_tools.61e9599a\flutter_tool.b8eb3d1a\app.dill --packages C:\flutter_apps\clash_arena\.dart_tool\package_config.json -Ddart.vm.profile=false -Ddart.vm.product=false --enable-asserts --track-widget-creation --filesystem-scheme org-dartlang-root --initialize-from-dill build\84a567e01f17d39fc5b68bcc09782406.cache.dill.track.dill --source file:///C:/flutter_apps/clash_arena/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///C:/flutter_apps/clash_arena/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error --enable-experiment=alternative-invalidation-strategy
 [  +17 ms] executing: C:\Users\Mustafa\AppData\Local\Android\sdk\platform-tools\adb.exe -s emulator-5554 shell -x logcat -v time -t 1
-[  +16 ms] <- compile package:im_legends/main_dev.dart
+[  +16 ms] <- compile package:clash_arena/main_dev.dart
 [ +174 ms] --------- beginning of main
            06-14 15:15:09.961 I/ndroid.systemui( 1418): Background young concurrent copying GC freed 305063(14MB) AllocSpace objects, 1(20KB) LOS objects, 44% free, 17MB/31MB, paused 16.035ms,1.077ms total 64.785ms
 [  +12 ms] executing: C:\Users\Mustafa\AppData\Local\Android\sdk\platform-tools\adb.exe version
@@ -344,20 +344,20 @@
            OpenJDK 64-Bit Server VM (build 21.0.10+-14961533-b1163.108, mixed mode)
 [   +4 ms] Version of Java is different than impacted version, no migration attempted.
 [  +37 ms] CMake project not found, skipping support Android 15 16k page size migration.
-[  +10 ms] Using gradle from C:\flutter_apps\im_legends\android\gradlew.bat.
-[  +32 ms] LocalFile: 'C:\flutter_apps\im_legends\android\build.gradle.kts' provides AGP version from plugin id: 8.9.1
+[  +10 ms] Using gradle from C:\flutter_apps\clash_arena\android\gradlew.bat.
+[  +32 ms] LocalFile: 'C:\flutter_apps\clash_arena\android\build.gradle.kts' provides AGP version from plugin id: 8.9.1
 [  +38 ms] Running Gradle task 'assembleDevelopmentDebug'...
-[   +1 ms] executing: [C:\flutter_apps\im_legends\android/] C:\flutter_apps\im_legends\android\gradlew.bat --full-stacktrace --info -Pverbose=true -Ptarget-platform=android-x64 -Ptarget=C:\flutter_apps\im_legends\lib/main_dev.dart -Pbase-application-name=android.app.Application -Pdart-defines=RkxVVFRFUl9BUFBfRkxBVk9SPWRldmVsb3BtZW50,RkxVVFRFUl9WRVJTSU9OPTMuMzguOQ==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049NjczMjNkZTI4NQ==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049NTg3YzE4Zjg3Mw==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMC44 -Pdart-obfuscation=false -Ptrack-widget-creation=true -Ptree-shake-icons=false -Pfilesystem-scheme=org-dartlang-root assembleDevelopmentDebug
+[   +1 ms] executing: [C:\flutter_apps\clash_arena\android/] C:\flutter_apps\clash_arena\android\gradlew.bat --full-stacktrace --info -Pverbose=true -Ptarget-platform=android-x64 -Ptarget=C:\flutter_apps\clash_arena\lib/main_dev.dart -Pbase-application-name=android.app.Application -Pdart-defines=RkxVVFRFUl9BUFBfRkxBVk9SPWRldmVsb3BtZW50,RkxVVFRFUl9WRVJTSU9OPTMuMzguOQ==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049NjczMjNkZTI4NQ==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049NTg3YzE4Zjg3Mw==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMC44 -Pdart-obfuscation=false -Ptrack-widget-creation=true -Ptree-shake-icons=false -Pfilesystem-scheme=org-dartlang-root assembleDevelopmentDebug
 [+1733 ms] Initialized native services in: C:\Users\Mustafa\.gradle\native
 [   +1 ms] Initialized jansi services in: C:\Users\Mustafa\.gradle\native
 [ +721 ms] The client will now receive all logging from the daemon (pid: 7476). The daemon log file: C:\Users\Mustafa\.gradle\daemon\8.12\daemon-7476.out.log
 [   +1 ms] Starting 7th build in daemon [uptime: 29 mins 18.935 secs, performance: 99%, GC rate: 0.00/s, heap usage: 0% of 8 GiB, non-heap usage: 5% of 4 GiB]
 [        ] Using 8 worker leases.
-[        ] Now considering [C:\flutter_apps\im_legends\android, C:\src\flutter\packages\flutter_tools\gradle] as hierarchies to watch
+[        ] Now considering [C:\flutter_apps\clash_arena\android, C:\src\flutter\packages\flutter_tools\gradle] as hierarchies to watch
 [        ] Watching the file system is configured to be enabled if available
 [        ] File system watching is active
 [        ] Starting Build
-[        ] Now considering [C:\src\flutter\packages\flutter_tools\gradle, C:\flutter_apps\im_legends\android] as hierarchies to watch
+[        ] Now considering [C:\src\flutter\packages\flutter_tools\gradle, C:\flutter_apps\clash_arena\android] as hierarchies to watch
 [ +498 ms] > Configure project :gradle
 [        ] Evaluating project ':gradle' using build file 'C:\src\flutter\packages\flutter_tools\gradle\build.gradle.kts'.
 [        ] Resolved plugin [id: 'org.gradle.java-gradle-plugin']
@@ -415,11 +415,11 @@
 [        ]   Build cache is disabled
 [        ]   Not worth caching
 [        ] Skipping task ':gradle:jar' as it is up-to-date.
-[ +483 ms] Settings evaluated using settings file 'C:\flutter_apps\im_legends\android\settings.gradle.kts'.
-[  +91 ms] Projects loaded. Root project using build file 'C:\flutter_apps\im_legends\android\build.gradle.kts'.
+[ +483 ms] Settings evaluated using settings file 'C:\flutter_apps\clash_arena\android\settings.gradle.kts'.
+[  +91 ms] Projects loaded. Root project using build file 'C:\flutter_apps\clash_arena\android\build.gradle.kts'.
 [   +1 ms] Included projects: [root project 'android', project ':app', project ':app_links', project ':connectivity_plus', project ':firebase_core', project ':firebase_messaging', project ':flutter_local_notifications', project ':flutter_native_splash', project ':flutter_plugin_android_lifecycle', project ':flutter_secure_storage', project ':image_picker_android', project ':jni', project ':jni_flutter', project ':permission_handler_android', project ':shared_preferences_android', project ':sqflite_android', project ':url_launcher_android']
 [ +910 ms] > Configure project :app
-[        ] Evaluating project ':app' using build file 'C:\flutter_apps\im_legends\android\app\build.gradle.kts'.
+[        ] Evaluating project ':app' using build file 'C:\flutter_apps\clash_arena\android\app\build.gradle.kts'.
 [        ] Resolved plugin [id: 'com.android.application']
 [        ] Resolved plugin [id: 'org.jetbrains.kotlin.android']
 [        ] Resolved plugin [id: 'dev.flutter.flutter-gradle-plugin']
@@ -612,7 +612,7 @@
 [        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
 [        ] C/C++: sdkFolder is C:\Users\Mustafa\AppData\Local\Android\sdk
 [        ] > Configure project :
-[        ] Evaluating root project 'android' using build file 'C:\flutter_apps\im_legends\android\build.gradle.kts'.
+[        ] Evaluating root project 'android' using build file 'C:\flutter_apps\clash_arena\android\build.gradle.kts'.
 [        ] Resolved plugin [id: 'com.android.application', version: '8.9.1', apply: false]
 [        ] Resolved plugin [id: 'org.jetbrains.kotlin.android', version: '2.1.0', apply: false]
 [ +244 ms] > Configure project :app_links
@@ -807,7 +807,7 @@
 [        ]   Caching has not been enabled for the task
 [        ] Task ':app:compileFlutterBuildDevelopmentDebug' is not up-to-date because:
 [        ]   Task has failed previously.
-[        ] Starting process 'command 'C:\src\flutter\bin\flutter.bat''. Working directory: C:\flutter_apps\im_legends Command: C:\src\flutter\bin\flutter.bat --verbose assemble --no-version-check --depfile C:\flutter_apps\im_legends\build\app\intermediates\flutter\developmentDebug/flutter_build.d --output C:\flutter_apps\im_legends\build\app\intermediates\flutter\developmentDebug -dTargetFile=C:\flutter_apps\im_legends\lib/main_dev.dart -dTargetPlatform=android -dBuildMode=debug -dTrackWidgetCreation=true --DartDefines=RkxVVFRFUl9BUFBfRkxBVk9SPWRldmVsb3BtZW50,RkxVVFRFUl9WRVJTSU9OPTMuMzguOQ==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049NjczMjNkZTI4NQ==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049NTg3YzE4Zjg3Mw==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMC44 -dFlavor=development -dAndroidArchs=android-x64 -dMinSdkVersion=24 debug_android_application
+[        ] Starting process 'command 'C:\src\flutter\bin\flutter.bat''. Working directory: C:\flutter_apps\clash_arena Command: C:\src\flutter\bin\flutter.bat --verbose assemble --no-version-check --depfile C:\flutter_apps\clash_arena\build\app\intermediates\flutter\developmentDebug/flutter_build.d --output C:\flutter_apps\clash_arena\build\app\intermediates\flutter\developmentDebug -dTargetFile=C:\flutter_apps\clash_arena\lib/main_dev.dart -dTargetPlatform=android -dBuildMode=debug -dTrackWidgetCreation=true --DartDefines=RkxVVFRFUl9BUFBfRkxBVk9SPWRldmVsb3BtZW50,RkxVVFRFUl9WRVJTSU9OPTMuMzguOQ==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049NjczMjNkZTI4NQ==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049NTg3YzE4Zjg3Mw==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMC44 -dFlavor=development -dAndroidArchs=android-x64 -dMinSdkVersion=24 debug_android_application
 [        ] Successfully started process 'command 'C:\src\flutter\bin\flutter.bat''
 [+2193 ms] [ +375 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
 [        ] [   +2 ms] Artifact Instance of 'GradleWrapper' is not required, skipping update.
@@ -944,7 +944,7 @@
 [        ] [   +6 ms] Shutdown hooks complete
 [ +194 ms] [ +233 ms] exiting with code 1
 [        ] > Task :app:compileFlutterBuildDevelopmentDebug FAILED
-[ +608 ms] [Incubating] Problems report is available at: file:///C:/flutter_apps/im_legends/build/reports/problems/problems-report.html
+[ +608 ms] [Incubating] Problems report is available at: file:///C:/flutter_apps/clash_arena/build/reports/problems/problems-report.html
 [   +3 ms] FAILURE: Build failed with an exception.
 [        ] * What went wrong:
 [        ] Execution failed for task ':app:compileFlutterBuildDevelopmentDebug'.

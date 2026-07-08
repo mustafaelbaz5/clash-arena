@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "312322499437",
-    "project_id": "im-legends",
-    "storage_bucket": "im-legends.firebasestorage.app"
+    "project_number": "277949657458",
+    "project_id": "clash-arena-85e6a",
+    "storage_bucket": "clash-arena-85e6a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:312322499437:android:4142929715cf2e7df43064",
+        "mobilesdk_app_id": "1:277949657458:android:98681402cb2936914eedeb",
         "android_client_info": {
-          "package_name": "com.example.im_legends"
+          "package_name": "com.clash_arena.dev"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyASjHBypJQc_I87Y-90gG_eKj26c_09XSY"
+          "current_key": "AIzaSyB2gOcNl_zAo1laMUzzRarvn2QQgaMZTFE"
         }
       ],
       "services": {
@@ -26,15 +26,15 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:312322499437:android:a8b98bc6a5c14c7cf43064",
+        "mobilesdk_app_id": "1:277949657458:android:d576fd2a413d4d864eedeb",
         "android_client_info": {
-          "package_name": "com.example.im_legends.development"
+          "package_name": "com.clash_arena.prod"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyASjHBypJQc_I87Y-90gG_eKj26c_09XSY"
+          "current_key": "AIzaSyB2gOcNl_zAo1laMUzzRarvn2QQgaMZTFE"
         }
       ],
       "services": {
@@ -45,15 +45,15 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:312322499437:android:01b1e54c76c6ecfdf43064",
+        "mobilesdk_app_id": "1:277949657458:android:fd89a4d879ad73344eedeb",
         "android_client_info": {
-          "package_name": "com.example.im_legends.production"
+          "package_name": "com.example.clash_arena"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyASjHBypJQc_I87Y-90gG_eKj26c_09XSY"
+          "current_key": "AIzaSyB2gOcNl_zAo1laMUzzRarvn2QQgaMZTFE"
         }
       ],
       "services": {

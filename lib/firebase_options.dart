@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyASjHBypJQc_I87Y-90gG_eKj26c_09XSY',
-    appId: '1:312322499437:android:4142929715cf2e7df43064',
-    messagingSenderId: '312322499437',
-    projectId: 'im-legends',
-    storageBucket: 'im-legends.firebasestorage.app',
+    apiKey: 'AIzaSyB2gOcNl_zAo1laMUzzRarvn2QQgaMZTFE',
+    appId: '1:277949657458:android:fd89a4d879ad73344eedeb',
+    messagingSenderId: '277949657458',
+    projectId: 'clash-arena-85e6a',
+    storageBucket: 'clash-arena-85e6a.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDFmLQoenYZNlUforvRkugOR5VAnI3R8Jo',
-    appId: '1:312322499437:ios:bcb9a1960afeafbbf43064',
-    messagingSenderId: '312322499437',
-    projectId: 'im-legends',
-    storageBucket: 'im-legends.firebasestorage.app',
-    iosBundleId: 'com.example.imLegends',
+    apiKey: 'AIzaSyD4MwFBM8nSwPX2VbcGi1X2lWsozY6NJmw',
+    appId: '1:277949657458:ios:2119223c27e239734eedeb',
+    messagingSenderId: '277949657458',
+    projectId: 'clash-arena-85e6a',
+    storageBucket: 'clash-arena-85e6a.firebasestorage.app',
+    iosBundleId: 'com.example.ClashArena',
   );
 }
