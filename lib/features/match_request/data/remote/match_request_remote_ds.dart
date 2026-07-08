@@ -1,5 +1,4 @@
 import 'package:clash_arena/core/errors/error_handler.dart';
-import 'package:clash_arena/core/errors/exceptions.dart';
 
 import '../../../../core/networking/supabase_service.dart';
 import '../model/match_request_model.dart';
@@ -95,20 +94,21 @@ class MatchRequestRemoteDs {
     }
   }
 
-  Future<void> approve(final String requestId) async {
+  /// Calls the `approve_match_request` SQL function (SECURITY DEFINER) —
+  /// the only path allowed to insert into `matches`. Returns the new
+  /// match's id.
+  Future<String> approve(final String requestId) async {
     try {
       final response = await supabaseService.execute(
-        supabaseService.client.functions.invoke(
-          'approve_match',
-          body: {'request_id': requestId},
+        supabaseService.client.rpc(
+          'approve_match_request',
+          params: {'p_request_id': requestId},
         ),
       );
-      if (response.status != 200) {
-        final message = response.data is Map
-            ? (response.data['error'] as String? ?? 'Failed to approve match')
-            : 'Failed to approve match';
-        throw ServerException(message: message, statusCode: response.status);
-      }
+      final row = response is List
+          ? response.first as Map<String, dynamic>
+          : response as Map<String, dynamic>;
+      return row['match_id'] as String;
     } catch (e) {
       ErrorHandler.handleException(e);
     }

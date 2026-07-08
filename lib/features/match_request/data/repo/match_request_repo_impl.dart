@@ -69,10 +69,10 @@ class MatchRequestRepoImpl implements MatchRequestRepo {
   }
 
   @override
-  Future<void> approve(final String requestId) async {
+  Future<String> approve(final String requestId) async {
     try {
       if (!await networkInfo.isConnected) throw NetworkException();
-      await remoteDs.approve(requestId);
+      return await remoteDs.approve(requestId);
     } catch (e) {
       throw ErrorHandler.handleFailure(e);
     }

@@ -5,5 +5,6 @@ class ApproveMatchRequestUseCase {
 
   ApproveMatchRequestUseCase(this.repo);
 
-  Future<void> call(final String requestId) => repo.approve(requestId);
+  /// Returns the new match's id.
+  Future<String> call(final String requestId) => repo.approve(requestId);
 }

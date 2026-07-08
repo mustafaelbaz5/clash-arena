@@ -18,8 +18,9 @@ abstract class MatchRequestRepo {
     final String? note,
   });
 
-  /// Calls the `approve_match` Edge Function — the only path into `matches`.
-  Future<void> approve(final String requestId);
+  /// Calls the `approve_match_request` SQL function — the only path into
+  /// `matches`. Returns the new match's id.
+  Future<String> approve(final String requestId);
 
   Future<void> reject(final String requestId);
 }

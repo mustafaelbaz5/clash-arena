@@ -102,10 +102,10 @@ class MatchRequestCubit extends Cubit<MatchRequestState> {
 
   Future<void> approve(final MatchRequestEntity request) async {
     try {
-      await approveMatchRequest(request.id);
+      final matchId = await approveMatchRequest(request.id);
       eventBus.fire(
         MatchApproved(
-          matchId: request.matchId ?? '',
+          matchId: matchId,
           matchRequestId: request.id,
           groupId: request.groupId,
         ),
