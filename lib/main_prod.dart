@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:im_legends/core/config/app_config.dart';
-import 'package:im_legends/core/config/firebase_options.dart';
-import 'package:im_legends/core/di/dependency_injection.dart';
-import 'package:im_legends/core/localization/localization_manager.dart';
-import 'package:im_legends/core/widgets/error_screen.dart';
+import 'package:clash_arena/core/config/app_config.dart';
+import 'package:clash_arena/core/config/firebase_options.dart';
+import 'package:clash_arena/core/di/dependency_injection.dart';
+import 'package:clash_arena/core/localization/localization_manager.dart';
+import 'package:clash_arena/core/widgets/error_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'im_legends_app.dart';
+import 'clash_arena_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +49,7 @@ Future<void> main() async {
       path: LocalizationManager.translationsPath,
       fallbackLocale: LocalizationManager.fallbackLocale,
       startLocale: LocalizationManager.fallbackLocale,
-      child: const IMLegendsApp(),
+      child: const ClashArenaApp(),
     ),
   );
 }

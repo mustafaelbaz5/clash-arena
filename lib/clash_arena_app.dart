@@ -1,11 +1,11 @@
+import 'package:clash_arena/core/config/app_config.dart';
+import 'package:clash_arena/core/settings/cubit/app_settings_cubit.dart';
+import 'package:clash_arena/core/settings/cubit/app_settings_state.dart';
+import 'package:clash_arena/features/auth/ui/user_authenticated_check.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:im_legends/core/config/app_config.dart';
-import 'package:im_legends/core/settings/cubit/app_settings_cubit.dart';
-import 'package:im_legends/core/settings/cubit/app_settings_state.dart';
-import 'package:im_legends/features/auth/ui/user_authenticated_check.dart';
 
 import 'core/di/dependency_injection.dart';
 import 'core/router/app_router.dart';
@@ -13,8 +13,8 @@ import 'core/themes/theme_data/theme_data_dark.dart';
 import 'core/themes/theme_data/theme_data_light.dart';
 import 'features/auth/logic/cubit/auth_cubit.dart';
 
-class IMLegendsApp extends StatelessWidget {
-  const IMLegendsApp({super.key});
+class ClashArenaApp extends StatelessWidget {
+  const ClashArenaApp({super.key});
 
   @override
   Widget build(final BuildContext context) {

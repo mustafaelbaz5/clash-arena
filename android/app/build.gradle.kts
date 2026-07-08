@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.im_legends"
+    namespace = "com.example.clash_arena"
     compileSdk = 36
     ndkVersion = "28.2.13676358"
 
@@ -21,7 +21,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.im_legends"
+        applicationId = "com.example.clash_arena"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -45,7 +45,7 @@ android {
         }
     }
 
-  flavorDimensions += "default"
+    flavorDimensions += "default"
 
     productFlavors {
         create("development") {
