@@ -5,7 +5,12 @@ import '../../../../core/utils/extensions/context_ext.dart';
 import '../../logic/cubit/match_request_cubit.dart';
 
 class CreateMatchRequestSheet extends StatefulWidget {
-  const CreateMatchRequestSheet({super.key});
+  const CreateMatchRequestSheet({super.key, this.onSuccess});
+
+  /// Called after a request is successfully sent. Defaults to popping the
+  /// route (the bottom-sheet use case); pass this when embedding the form
+  /// directly in a screen instead of presenting it modally.
+  final VoidCallback? onSuccess;
 
   @override
   State<CreateMatchRequestSheet> createState() =>
@@ -54,7 +59,12 @@ class _CreateMatchRequestSheetState extends State<CreateMatchRequestSheet> {
     );
     if (!mounted) return;
     setState(() => _submitting = false);
-    if (success) Navigator.pop(context);
+    if (!success) return;
+    if (widget.onSuccess != null) {
+      widget.onSuccess!();
+    } else {
+      Navigator.pop(context);
+    }
   }
 
   @override

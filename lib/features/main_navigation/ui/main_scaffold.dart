@@ -6,14 +6,14 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../core/di/dependency_injection.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/utils/spacing.dart';
-import '../../add_match/logic/cubit/add_match_cubit.dart';
-import '../../add_match/ui/add_match_screen.dart';
 import '../../champion/logic/cubit/champion_cubit.dart';
 import '../../champion/ui/champion_screen.dart';
 import '../../history/logic/cubit/match_history_cubit.dart';
 import '../../history/ui/history_screen.dart';
 import '../../home/logic/cubit/home_cubit.dart';
 import '../../home/ui/home_screen.dart';
+import '../../match_request/logic/cubit/match_request_cubit.dart';
+import '../../match_request/ui/create_match_request_screen.dart';
 import '../../profile/logic/cubit/profile_cubit.dart';
 import '../../profile/ui/profile_screen.dart';
 
@@ -43,7 +43,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     return [
       const HomeScreen(),
       const HistoryScreen(),
-      AddMatchScreen(controller: _controller),
+      CreateMatchRequestScreen(controller: _controller),
       const ChampionScreen(),
       const ProfileScreen(),
     ];
@@ -94,7 +94,10 @@ class _MainScaffoldState extends State<MainScaffold> {
       providers: [
         BlocProvider(create: (_) => getIt<HomeCubit>()..loadLeaderboard()),
         BlocProvider(create: (_) => getIt<MatchHistoryCubit>()..fetchMatches()),
-        BlocProvider(create: (_) => getIt<AddMatchCubit>()..resetMatchData()),
+        // .value: MatchRequestCubit is a DI-managed singleton (its EventBus
+        // subscription must survive navigation), so this provider must not
+        // take ownership and close it on dispose.
+        BlocProvider.value(value: getIt<MatchRequestCubit>()),
         BlocProvider(create: (_) => getIt<ProfileCubit>()..fetchProfile()),
         BlocProvider(create: (_) => getIt<ChampionCubit>()..fetchLeaderboard()),
       ],

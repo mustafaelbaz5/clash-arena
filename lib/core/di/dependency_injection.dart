@@ -6,10 +6,6 @@ import 'package:clash_arena/core/service/notification_service.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../events/event_bus.dart';
-import '../../features/add_match/data/remote/add_match_remote_ds.dart';
-import '../../features/add_match/data/repo/add_match_repo.dart';
-import '../../features/add_match/data/repo/add_match_repo_impl.dart';
-import '../../features/add_match/logic/cubit/add_match_cubit.dart';
 import '../../features/auth/data/remote/auth_remote_ds.dart';
 import '../../features/auth/data/repo/auth_repo.dart';
 import '../../features/auth/data/repo/auth_repo_impl.dart';
@@ -134,23 +130,6 @@ Future<void> setUpDependencies() async {
     ),
   );
 
-  // ##### Add Match Dependencies##################
-  getIt.registerLazySingleton<AddMatchRemoteDs>(
-    () => AddMatchRemoteDs(supabaseService: getIt<SupabaseService>()),
-  );
-  getIt.registerLazySingleton<AddMatchRepo>(
-    () => AddMatchRepoImpl(
-      addMatchService: getIt<AddMatchRemoteDs>(),
-      networkInfo: getIt<NetworkInfo>(),
-    ),
-  );
-  getIt.registerFactory<AddMatchCubit>(
-    () => AddMatchCubit(
-      addMatchRepo: getIt<AddMatchRepo>(),
-      getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
-      eventBus: getIt<EventBus>(),
-    ),
-  );
   // ##### Add History Dependencies##################
   getIt.registerLazySingleton<HistoryRemoteDs>(
     () => HistoryRemoteDs(supabaseService: getIt<SupabaseService>()),
