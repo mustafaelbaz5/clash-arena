@@ -21,7 +21,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.clash_arena"
+        applicationId = "com.clash_arena"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -50,13 +50,12 @@ android {
     productFlavors {
         create("development") {
             dimension = "default"
-            applicationIdSuffix = ".development"
-            resValue("string", "app_name", "IMLegend Dev") // app name with Dev
+            applicationIdSuffix = ".dev"
+            resValue("string", "app_name", "Clash Arena Dev") // app name with Dev
         }
         create("production") {
             dimension = "default"
-            // no suffix for production
-            resValue("string", "app_name", "IMLegend") // clean app name
+            resValue("string", "app_name", "Clash Arena") // clean app name
         }
     }
 }

@@ -19,7 +19,7 @@ platform :android do
     # Convert array to comma-separated string
     testers_string = testers_list.join(', ')
     firebase_app_distribution(
-      app: '1:312322499437:android:01b1e54c76c6ecfdf43064',
+      app: '1:277949657458:android:d576fd2a413d4d864eedeb',
       firebase_cli_token: ENV['FIREBASE_CLI_TOKEN'],
       android_artifact_type: 'APK',
       android_artifact_path: '../build/app/outputs/flutter-apk/app-arm64-v8a-production-release.apk',
