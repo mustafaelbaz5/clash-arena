@@ -13,12 +13,15 @@ class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl({required this.remoteDs, required this.networkInfo});
 
   @override
-  Future<List<PlayerStatsModel>> calculateLeaderboard() async {
+  Future<List<PlayerStatsModel>> calculateLeaderboard(
+    final String? groupId,
+  ) async {
     try {
+      if (groupId == null) return [];
       if (!await networkInfo.isConnected) throw NetworkException();
 
-      final matches = await remoteDs.fetchMatches();
-      final users = await remoteDs.fetchUsers();
+      final matches = await remoteDs.fetchMatches(groupId);
+      final users = await remoteDs.fetchGroupMembers(groupId);
 
       final Map<String, PlayerStatsModel> stats = {
         for (var u in users)

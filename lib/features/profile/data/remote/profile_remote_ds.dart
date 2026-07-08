@@ -38,13 +38,14 @@ class ProfileRemoteDs {
     }
   }
 
-  Future<List<MatchModel>> getAllUserMatches() async {
+  Future<List<MatchModel>> getAllUserMatches(final String groupId) async {
     try {
       if (currentUserId == null) return [];
       final response = await supabaseService.execute(
         supabaseService.client
             .from('matches')
             .select()
+            .eq('group_id', groupId)
             .or('winner_id.eq.$currentUserId,loser_id.eq.$currentUserId'),
       );
       return (response as List)

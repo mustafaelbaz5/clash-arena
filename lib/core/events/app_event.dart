@@ -65,3 +65,12 @@ final class LeaderboardUpdated extends AppEvent {
 
   const LeaderboardUpdated({required this.groupId});
 }
+
+/// Fired when the user's active group context changes. Group-scoped
+/// features (leaderboard, history, champions, profile stats) subscribe
+/// to this and refetch rather than being called directly.
+final class ActiveGroupChanged extends AppEvent {
+  final String groupId;
+
+  const ActiveGroupChanged({required this.groupId});
+}

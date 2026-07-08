@@ -116,7 +116,13 @@ Future<void> setUpDependencies() async {
       networkInfo: getIt<NetworkInfo>(),
     ),
   );
-  getIt.registerFactory<HomeCubit>(() => HomeCubit(repo: getIt<HomeRepo>()));
+  getIt.registerFactory<HomeCubit>(
+    () => HomeCubit(
+      repo: getIt<HomeRepo>(),
+      getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
+      eventBus: getIt<EventBus>(),
+    ),
+  );
 
   // ##### Add Match Dependencies##################
   getIt.registerLazySingleton<AddMatchRemoteDs>(
@@ -129,7 +135,11 @@ Future<void> setUpDependencies() async {
     ),
   );
   getIt.registerFactory<AddMatchCubit>(
-    () => AddMatchCubit(addMatchRepo: getIt<AddMatchRepo>()),
+    () => AddMatchCubit(
+      addMatchRepo: getIt<AddMatchRepo>(),
+      getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
+      eventBus: getIt<EventBus>(),
+    ),
   );
   // ##### Add History Dependencies##################
   getIt.registerLazySingleton<HistoryRemoteDs>(
@@ -142,7 +152,11 @@ Future<void> setUpDependencies() async {
     ),
   );
   getIt.registerFactory<MatchHistoryCubit>(
-    () => MatchHistoryCubit(historyRepo: getIt<HistoryRepo>()),
+    () => MatchHistoryCubit(
+      historyRepo: getIt<HistoryRepo>(),
+      getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
+      eventBus: getIt<EventBus>(),
+    ),
   );
 
   //  Champion Dependencies
@@ -157,7 +171,11 @@ Future<void> setUpDependencies() async {
     ),
   );
   getIt.registerFactory<ChampionCubit>(
-    () => ChampionCubit(championRepo: getIt<ChampionRepo>()),
+    () => ChampionCubit(
+      championRepo: getIt<ChampionRepo>(),
+      getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
+      eventBus: getIt<EventBus>(),
+    ),
   );
 
   //  Profile Dependencies
@@ -175,7 +193,11 @@ Future<void> setUpDependencies() async {
     ),
   );
   getIt.registerFactory<ProfileCubit>(
-    () => ProfileCubit(profileRepo: getIt<ProfileRepo>()),
+    () => ProfileCubit(
+      profileRepo: getIt<ProfileRepo>(),
+      getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
+      eventBus: getIt<EventBus>(),
+    ),
   );
 
   // // Notification Dependencies
@@ -218,6 +240,7 @@ Future<void> setUpDependencies() async {
       joinGroup: getIt<JoinGroupUseCase>(),
       getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
       setActiveGroup: getIt<SetActiveGroupUseCase>(),
+      eventBus: getIt<EventBus>(),
     ),
   );
 }

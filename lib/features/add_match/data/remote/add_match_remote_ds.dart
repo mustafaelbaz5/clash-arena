@@ -8,33 +8,32 @@ class AddMatchRemoteDs {
 
   AddMatchRemoteDs({required this.supabaseService});
 
-  Future<List<Map<String, dynamic>>> fetchAllUsers() async {
+  /// Members of [groupId] only — you can only log a match against someone
+  /// in your active group.
+  Future<List<Map<String, dynamic>>> fetchGroupMembers(
+    final String groupId,
+  ) async {
     try {
       final response = await supabaseService.execute(
         supabaseService.client
-            .from('users')
-            .select('id, name, profile_image')
-            .order('name', ascending: true),
+            .from('group_members')
+            .select('users(id, name, profile_image)')
+            .eq('group_id', groupId),
       );
 
-      return response
-          .map(
-            (final user) => {
-              'id': user['id'] as String,
-              'name': user['name'] as String,
-              'profile_image': user['profile_image'] as String?,
-            },
-          )
+      return (response as List)
+          .map((final row) => Map<String, dynamic>.from(row['users'] as Map))
           .toList();
     } catch (e) {
       ErrorHandler.handleException(e);
     }
   }
 
-  Future<bool> insertMatch(final MatchModel match) async {
+  Future<bool> insertMatch(final MatchModel match, final String groupId) async {
     try {
+      final json = match.toJson()..['group_id'] = groupId;
       await supabaseService.execute(
-        supabaseService.client.from('matches').insert(match.toJson()).select(),
+        supabaseService.client.from('matches').insert(json).select(),
       );
       return true;
     } catch (e) {

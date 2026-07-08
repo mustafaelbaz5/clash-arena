@@ -1,16 +1,32 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:clash_arena/core/errors/failure.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/events/app_event.dart';
+import '../../../../core/events/event_bus.dart';
 import '../../../../core/models/match_model.dart';
+import '../../../groups/domain/use_cases/get_active_group_id_use_case.dart';
 import '../../data/repo/add_match_repo.dart';
 
 part 'add_match_state.dart';
 
 class AddMatchCubit extends Cubit<AddMatchState> {
   final AddMatchRepo addMatchRepo;
+  final GetActiveGroupIdUseCase getActiveGroupId;
+  final EventBus eventBus;
+  late final StreamSubscription<ActiveGroupChanged> _groupSub;
 
-  AddMatchCubit({required this.addMatchRepo}) : super(const AddMatchInitial());
+  AddMatchCubit({
+    required this.addMatchRepo,
+    required this.getActiveGroupId,
+    required this.eventBus,
+  }) : super(const AddMatchInitial()) {
+    _groupSub = eventBus.on<ActiveGroupChanged>().listen(
+      (final _) => getPlayersList(),
+    );
+  }
 
   void updateWinnerScore(final int change) {
     final newScore = state.winnerScore + change;
@@ -66,7 +82,19 @@ class AddMatchCubit extends Cubit<AddMatchState> {
   Future<void> addMatch(final MatchModel match) async {
     emit(state.copyWith(isLoading: true, isSuccess: false, error: null));
     try {
-      await addMatchRepo.insertMatch(match);
+      final groupId = await getActiveGroupId();
+      if (groupId == null) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            error: const NotFoundFailure(
+              message: 'Join or create a group before adding a match.',
+            ),
+          ),
+        );
+        return;
+      }
+      await addMatchRepo.insertMatch(match, groupId);
       emit(state.copyWith(isLoading: false, isSuccess: true));
     } catch (e) {
       final failure = e is Failure ? e : const UnknownFailure();
@@ -91,11 +119,22 @@ class AddMatchCubit extends Cubit<AddMatchState> {
 
   Future<void> getPlayersList() async {
     try {
-      final players = await addMatchRepo.getAllUsers();
+      final groupId = await getActiveGroupId();
+      if (groupId == null) {
+        emit(state.copyWith(players: const []));
+        return;
+      }
+      final players = await addMatchRepo.getGroupMembers(groupId);
       emit(state.copyWith(players: players));
     } catch (e) {
       final failure = e is Failure ? e : const UnknownFailure();
       emit(AddMatchFailure(error: failure));
     }
+  }
+
+  @override
+  Future<void> close() {
+    _groupSub.cancel();
+    return super.close();
   }
 }

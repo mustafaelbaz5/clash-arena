@@ -3,6 +3,7 @@ import 'dart:io';
 import "../../../../core/errors/error_handler.dart";
 import '../../../../core/errors/exceptions.dart';
 
+import '../../../../core/models/match_model.dart';
 import '../../../../core/models/players_states_model.dart';
 import '../../../../core/models/user_data.dart';
 import '../../../../core/networking/network_info.dart';
@@ -27,14 +28,16 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<UserProfileModel?> getProfileWithStats() async {
+  Future<UserProfileModel?> getProfileWithStats(final String? groupId) async {
     try {
       if (!await networkInfo.isConnected) throw NetworkException();
 
       final userData = await profileRemoteDs.getCurrentUserData();
       if (userData == null) return null;
 
-      final matches = await profileRemoteDs.getAllUserMatches();
+      final matches = groupId == null
+          ? <MatchModel>[]
+          : await profileRemoteDs.getAllUserMatches(groupId);
 
       final stats = calculateStats(
         userId: profileRemoteDs.currentUserId!,

@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:clash_arena/core/errors/failure.dart';
-import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
+import '../../../../core/events/app_event.dart';
+import '../../../../core/events/event_bus.dart';
 import '../../domain/entities/group_entity.dart';
 import '../../domain/use_cases/create_group_use_case.dart';
 import '../../domain/use_cases/get_active_group_id_use_case.dart';
@@ -17,6 +19,7 @@ class GroupsCubit extends Cubit<GroupsState> {
   final JoinGroupUseCase joinGroup;
   final GetActiveGroupIdUseCase getActiveGroupId;
   final SetActiveGroupUseCase setActiveGroup;
+  final EventBus eventBus;
 
   GroupsCubit({
     required this.getMyGroups,
@@ -24,25 +27,24 @@ class GroupsCubit extends Cubit<GroupsState> {
     required this.joinGroup,
     required this.getActiveGroupId,
     required this.setActiveGroup,
+    required this.eventBus,
   }) : super(GroupsInitial());
 
   Future<void> loadGroups() async {
     emit(GroupsLoading());
     try {
       final groups = await getMyGroups();
+      // getActiveGroupId() already self-heals to the earliest membership
+      // when nothing is stored; re-validate in case the stored group was
+      // left/archived since.
       var activeId = await getActiveGroupId();
-
-      // Fall back to the first available group so callers always have a
-      // scoping context once membership exists.
-      if ((activeId == null || groups.every((final g) => g.id != activeId)) &&
-          groups.isNotEmpty) {
-        activeId = groups.first.id;
-        await setActiveGroup(activeId);
+      if (activeId != null && groups.every((final g) => g.id != activeId)) {
+        activeId = groups.isEmpty ? null : groups.first.id;
+        if (activeId != null) await setActiveGroup(activeId);
       }
 
       emit(GroupsLoaded(groups: groups, activeGroupId: activeId));
     } catch (e) {
-      debugPrint('Error loading groups: $e');
       final failure = e is Failure ? e : const UnknownFailure();
       emit(GroupsFailure(error: failure));
     }
@@ -83,5 +85,6 @@ class GroupsCubit extends Cubit<GroupsState> {
     if (current is! GroupsLoaded) return;
     await setActiveGroup(groupId);
     emit(current.copyWith(activeGroupId: groupId));
+    eventBus.fire(ActiveGroupChanged(groupId: groupId));
   }
 }

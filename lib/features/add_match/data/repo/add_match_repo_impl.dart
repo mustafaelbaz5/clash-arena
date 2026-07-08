@@ -13,20 +13,22 @@ class AddMatchRepoImpl implements AddMatchRepo {
   AddMatchRepoImpl({required this.addMatchService, required this.networkInfo});
 
   @override
-  Future<List<Map<String, dynamic>>> getAllUsers() async {
+  Future<List<Map<String, dynamic>>> getGroupMembers(
+    final String groupId,
+  ) async {
     try {
       if (!await networkInfo.isConnected) throw NetworkException();
-      return await addMatchService.fetchAllUsers();
+      return await addMatchService.fetchGroupMembers(groupId);
     } catch (e) {
       throw ErrorHandler.handleFailure(e);
     }
   }
 
   @override
-  Future<bool> insertMatch(final MatchModel match) async {
+  Future<bool> insertMatch(final MatchModel match, final String groupId) async {
     try {
       if (!await networkInfo.isConnected) throw NetworkException();
-      return await addMatchService.insertMatch(match);
+      return await addMatchService.insertMatch(match, groupId);
     } catch (e) {
       throw ErrorHandler.handleFailure(e);
     }

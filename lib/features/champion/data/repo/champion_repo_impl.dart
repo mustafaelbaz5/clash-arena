@@ -19,11 +19,14 @@ class ChampionRepoImpl implements ChampionRepo {
   });
 
   @override
-  Future<List<ChampionPlayerModel>> getLeaderboard() async {
+  Future<List<ChampionPlayerModel>> getLeaderboard(
+    final String? groupId,
+  ) async {
     try {
+      if (groupId == null) return [];
       if (!await networkInfo.isConnected) throw NetworkException();
-      final users = await championRemoteDs.getUsers();
-      final matches = await championRemoteDs.getMatches();
+      final users = await championRemoteDs.getUsers(groupId);
+      final matches = await championRemoteDs.getMatches(groupId);
       return calculator.compute(users: users, matches: matches);
     } catch (e) {
       throw ErrorHandler.handleFailure(e);

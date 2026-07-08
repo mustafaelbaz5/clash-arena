@@ -6,10 +6,13 @@ class HomeRemoteDs {
 
   HomeRemoteDs({required this.supabaseService});
 
-  Future<List<Map<String, dynamic>>> fetchMatches() async {
+  Future<List<Map<String, dynamic>>> fetchMatches(final String groupId) async {
     try {
       final response = await supabaseService.execute(
-        supabaseService.client.from('matches').select('*'),
+        supabaseService.client
+            .from('matches')
+            .select('*')
+            .eq('group_id', groupId),
       );
       return response;
     } catch (e) {
@@ -17,12 +20,21 @@ class HomeRemoteDs {
     }
   }
 
-  Future<List<Map<String, dynamic>>> fetchUsers() async {
+  /// Members of [groupId] only — the leaderboard must not show players
+  /// outside the active group.
+  Future<List<Map<String, dynamic>>> fetchGroupMembers(
+    final String groupId,
+  ) async {
     try {
       final response = await supabaseService.execute(
-        supabaseService.client.from('users').select('id, name, profile_image'),
+        supabaseService.client
+            .from('group_members')
+            .select('users(id, name, profile_image)')
+            .eq('group_id', groupId),
       );
-      return response;
+      return (response as List)
+          .map((final row) => Map<String, dynamic>.from(row['users'] as Map))
+          .toList();
     } catch (e) {
       ErrorHandler.handleException(e);
     }

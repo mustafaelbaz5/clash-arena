@@ -8,7 +8,9 @@ class HistoryRemoteDs {
 
   HistoryRemoteDs({required this.supabaseService});
 
-  Future<List<MatchHistoryCardModel>> fetchAllMatches() async {
+  Future<List<MatchHistoryCardModel>> fetchAllMatches(
+    final String groupId,
+  ) async {
     try {
       final response = await supabaseService.execute(
         supabaseService.client
@@ -29,6 +31,7 @@ class HistoryRemoteDs {
             profile_image
           )
         ''')
+            .eq('group_id', groupId)
             .order('created_at', ascending: false),
       );
 

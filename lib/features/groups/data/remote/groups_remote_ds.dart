@@ -16,8 +16,9 @@ class GroupsRemoteDs {
       final response = await supabaseService.execute(
         supabaseService.client
             .from('group_members')
-            .select('role, groups(*)')
-            .eq('user_id', userId),
+            .select('role, joined_at, groups(*)')
+            .eq('user_id', userId)
+            .order('joined_at'),
       );
       return (response as List)
           .map(

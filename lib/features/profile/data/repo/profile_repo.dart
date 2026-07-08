@@ -7,8 +7,9 @@ abstract class ProfileRepo {
   /// Fetch current user data
   Future<UserData?> getCurrentUserData();
 
-  /// Fetch user profile with calculated stats
-  Future<UserProfileModel?> getProfileWithStats();
+  /// Fetch user profile with calculated stats, scoped to [groupId].
+  /// Stats are empty when [groupId] is null (no active group).
+  Future<UserProfileModel?> getProfileWithStats(final String? groupId);
 
   /// Uploads a profile image and updates the user's record in one step
   Future<String?> uploadAndSetProfileImage(final File imageFile);

@@ -7,12 +7,13 @@ class ChampionRemoteDs {
 
   ChampionRemoteDs({required this.subbaseService});
 
-  Future<List<Map<String, dynamic>>> getMatches() async {
+  Future<List<Map<String, dynamic>>> getMatches(final String groupId) async {
     try {
       final response = await subbaseService.execute(
         subbaseService.client
             .from('matches')
-            .select('winner_id, loser_id, winner_score, loser_score'),
+            .select('winner_id, loser_id, winner_score, loser_score')
+            .eq('group_id', groupId),
       );
       return List<Map<String, dynamic>>.from(response);
     } catch (e) {
@@ -20,12 +21,18 @@ class ChampionRemoteDs {
     }
   }
 
-  Future<List<Map<String, dynamic>>> getUsers() async {
+  /// Members of [groupId] only — champions are scoped to the active group.
+  Future<List<Map<String, dynamic>>> getUsers(final String groupId) async {
     try {
       final response = await subbaseService.execute(
-        subbaseService.client.from('users').select('id, name, profile_image'),
+        subbaseService.client
+            .from('group_members')
+            .select('users(id, name, profile_image)')
+            .eq('group_id', groupId),
       );
-      return List<Map<String, dynamic>>.from(response);
+      return (response as List)
+          .map((final row) => Map<String, dynamic>.from(row['users'] as Map))
+          .toList();
     } catch (e) {
       ErrorHandler.handleException(e);
     }
