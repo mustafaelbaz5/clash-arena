@@ -5,6 +5,8 @@ import '../../features/auth/ui/login_screen.dart';
 import '../../features/auth/ui/sign_up_screen.dart';
 import '../../features/groups/logic/cubit/groups_cubit.dart';
 import '../../features/groups/ui/groups_screen.dart';
+import '../../features/match_request/logic/cubit/match_request_cubit.dart';
+import '../../features/match_request/ui/match_request_screen.dart';
 import '../../features/notification/ui/notifications_screen.dart';
 import '../di/dependency_injection.dart';
 import 'routes.dart';
@@ -28,6 +30,14 @@ class AppRouter {
           BlocProvider.value(
             value: getIt<GroupsCubit>()..loadGroups(),
             child: const GroupsScreen(),
+          ),
+          settings,
+        );
+      case Routes.matchRequestScreen:
+        return _buildRoute(
+          BlocProvider.value(
+            value: getIt<MatchRequestCubit>()..loadRequests(),
+            child: const MatchRequestScreen(),
           ),
           settings,
         );

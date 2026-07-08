@@ -37,6 +37,17 @@ class HomeAppBar extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
+            tooltip: 'Match Requests',
+            icon: Icon(
+              Icons.swap_horiz_outlined,
+              color: context.customColors.textPrimary,
+            ),
+            onPressed: () => Navigator.of(
+              context,
+              rootNavigator: true,
+            ).pushNamed(Routes.matchRequestScreen),
+          ),
+          IconButton(
             tooltip: 'groups.title'.tr(),
             icon: Icon(
               Icons.groups_outlined,

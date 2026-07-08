@@ -15,16 +15,15 @@ class ChampionCubit extends Cubit<ChampionState> {
   final ChampionRepo championRepo;
   final GetActiveGroupIdUseCase getActiveGroupId;
   final EventBus eventBus;
-  late final StreamSubscription<ActiveGroupChanged> _groupSub;
+  final List<StreamSubscription<AppEvent>> _subs = [];
 
   ChampionCubit({
     required this.championRepo,
     required this.getActiveGroupId,
     required this.eventBus,
   }) : super(const ChampionInitial()) {
-    _groupSub = eventBus.on<ActiveGroupChanged>().listen(
-      (final _) => fetchLeaderboard(),
-    );
+    _subs.add(eventBus.on<ActiveGroupChanged>().listen((final _) => fetchLeaderboard()));
+    _subs.add(eventBus.on<MatchApproved>().listen((final _) => fetchLeaderboard()));
   }
 
   Future<void> fetchLeaderboard() async {
@@ -45,7 +44,9 @@ class ChampionCubit extends Cubit<ChampionState> {
 
   @override
   Future<void> close() {
-    _groupSub.cancel();
+    for (final sub in _subs) {
+      sub.cancel();
+    }
     return super.close();
   }
 }

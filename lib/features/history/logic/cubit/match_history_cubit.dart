@@ -16,16 +16,15 @@ class MatchHistoryCubit extends Cubit<MatchHistoryState> {
   final HistoryRepo historyRepo;
   final GetActiveGroupIdUseCase getActiveGroupId;
   final EventBus eventBus;
-  late final StreamSubscription<ActiveGroupChanged> _groupSub;
+  final List<StreamSubscription<AppEvent>> _subs = [];
 
   MatchHistoryCubit({
     required this.historyRepo,
     required this.getActiveGroupId,
     required this.eventBus,
   }) : super(MatchHistoryInitial()) {
-    _groupSub = eventBus.on<ActiveGroupChanged>().listen(
-      (final _) => fetchMatches(),
-    );
+    _subs.add(eventBus.on<ActiveGroupChanged>().listen((final _) => fetchMatches()));
+    _subs.add(eventBus.on<MatchApproved>().listen((final _) => fetchMatches()));
   }
 
   Future<void> fetchMatches() async {
@@ -42,7 +41,9 @@ class MatchHistoryCubit extends Cubit<MatchHistoryState> {
 
   @override
   Future<void> close() {
-    _groupSub.cancel();
+    for (final sub in _subs) {
+      sub.cancel();
+    }
     return super.close();
   }
 }

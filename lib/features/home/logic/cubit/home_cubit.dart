@@ -16,16 +16,15 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo repo;
   final GetActiveGroupIdUseCase getActiveGroupId;
   final EventBus eventBus;
-  late final StreamSubscription<ActiveGroupChanged> _groupSub;
+  final List<StreamSubscription<AppEvent>> _subs = [];
 
   HomeCubit({
     required this.repo,
     required this.getActiveGroupId,
     required this.eventBus,
   }) : super(HomeInitial()) {
-    _groupSub = eventBus.on<ActiveGroupChanged>().listen(
-      (final _) => loadLeaderboard(),
-    );
+    _subs.add(eventBus.on<ActiveGroupChanged>().listen((final _) => loadLeaderboard()));
+    _subs.add(eventBus.on<MatchApproved>().listen((final _) => loadLeaderboard()));
   }
 
   Future<void> loadLeaderboard() async {
@@ -42,7 +41,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   @override
   Future<void> close() {
-    _groupSub.cancel();
+    for (final sub in _subs) {
+      sub.cancel();
+    }
     return super.close();
   }
 }

@@ -40,6 +40,16 @@ import '../../features/groups/domain/use_cases/get_my_groups_use_case.dart';
 import '../../features/groups/domain/use_cases/join_group_use_case.dart';
 import '../../features/groups/domain/use_cases/set_active_group_use_case.dart';
 import '../../features/groups/logic/cubit/groups_cubit.dart';
+import '../../features/match_request/data/remote/match_request_remote_ds.dart';
+import '../../features/match_request/data/repo/match_request_repo_impl.dart';
+import '../../features/match_request/domain/repo/match_request_repo.dart';
+import '../../features/match_request/domain/use_cases/approve_match_request_use_case.dart';
+import '../../features/match_request/domain/use_cases/create_match_request_use_case.dart';
+import '../../features/match_request/domain/use_cases/get_opponent_options_use_case.dart';
+import '../../features/match_request/domain/use_cases/get_pending_requests_use_case.dart';
+import '../../features/match_request/domain/use_cases/get_sent_requests_use_case.dart';
+import '../../features/match_request/domain/use_cases/reject_match_request_use_case.dart';
+import '../../features/match_request/logic/cubit/match_request_cubit.dart';
 import '../networking/storage_remote_ds.dart';
 import '../networking/supabase_service.dart';
 import '../networking/user_remote_ds.dart';
@@ -240,6 +250,49 @@ Future<void> setUpDependencies() async {
       joinGroup: getIt<JoinGroupUseCase>(),
       getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
       setActiveGroup: getIt<SetActiveGroupUseCase>(),
+      eventBus: getIt<EventBus>(),
+    ),
+  );
+
+  // ##### Match Request Dependencies##################
+  getIt.registerLazySingleton<MatchRequestRemoteDs>(
+    () => MatchRequestRemoteDs(supabaseService: getIt<SupabaseService>()),
+  );
+  getIt.registerLazySingleton<MatchRequestRepo>(
+    () => MatchRequestRepoImpl(
+      remoteDs: getIt<MatchRequestRemoteDs>(),
+      networkInfo: getIt<NetworkInfo>(),
+    ),
+  );
+  getIt.registerLazySingleton<GetPendingRequestsUseCase>(
+    () => GetPendingRequestsUseCase(getIt<MatchRequestRepo>()),
+  );
+  getIt.registerLazySingleton<GetSentRequestsUseCase>(
+    () => GetSentRequestsUseCase(getIt<MatchRequestRepo>()),
+  );
+  getIt.registerLazySingleton<GetOpponentOptionsUseCase>(
+    () => GetOpponentOptionsUseCase(getIt<MatchRequestRepo>()),
+  );
+  getIt.registerLazySingleton<CreateMatchRequestUseCase>(
+    () => CreateMatchRequestUseCase(getIt<MatchRequestRepo>()),
+  );
+  getIt.registerLazySingleton<ApproveMatchRequestUseCase>(
+    () => ApproveMatchRequestUseCase(getIt<MatchRequestRepo>()),
+  );
+  getIt.registerLazySingleton<RejectMatchRequestUseCase>(
+    () => RejectMatchRequestUseCase(getIt<MatchRequestRepo>()),
+  );
+  // Lazy singleton: keeps its EventBus subscription alive for the whole
+  // session, same rationale as GroupsCubit.
+  getIt.registerLazySingleton<MatchRequestCubit>(
+    () => MatchRequestCubit(
+      getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
+      getPendingRequests: getIt<GetPendingRequestsUseCase>(),
+      getSentRequests: getIt<GetSentRequestsUseCase>(),
+      getOpponentOptions: getIt<GetOpponentOptionsUseCase>(),
+      createMatchRequest: getIt<CreateMatchRequestUseCase>(),
+      approveMatchRequest: getIt<ApproveMatchRequestUseCase>(),
+      rejectMatchRequest: getIt<RejectMatchRequestUseCase>(),
       eventBus: getIt<EventBus>(),
     ),
   );

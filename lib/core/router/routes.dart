@@ -14,4 +14,5 @@ abstract class Routes {
   static const String notificationsScreen = '/notificationsScreen';
   static const String notificationDetailsScreen = '/notificationDetailsScreen';
   static const String groupsScreen = '/groupsScreen';
+  static const String matchRequestScreen = '/matchRequestScreen';
 }
