@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:im_legends/core/errors/failure.dart';
+import 'package:clash_arena/core/errors/failure.dart';
 import 'package:meta/meta.dart';
 
 import '../../data/model/profile_model.dart';

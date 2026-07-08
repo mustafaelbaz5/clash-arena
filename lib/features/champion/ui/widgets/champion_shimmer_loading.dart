@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:im_legends/core/utils/extensions/context_ext.dart';
+import 'package:clash_arena/core/utils/extensions/context_ext.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/utils/spacing.dart';

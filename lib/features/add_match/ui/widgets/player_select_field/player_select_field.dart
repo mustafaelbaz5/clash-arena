@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:im_legends/core/utils/extensions/context_ext.dart';
-import 'package:im_legends/features/add_match/logic/cubit/add_match_cubit.dart';
+import 'package:clash_arena/core/utils/extensions/context_ext.dart';
+import 'package:clash_arena/features/add_match/logic/cubit/add_match_cubit.dart';
 
 import '../../../../../core/utils/spacing.dart';
 import 'player_field_avatar.dart';

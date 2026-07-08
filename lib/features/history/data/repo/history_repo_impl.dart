@@ -1,5 +1,5 @@
-import 'package:im_legends/core/errors/error_handler.dart';
-import 'package:im_legends/core/errors/exceptions.dart';
+import 'package:clash_arena/core/errors/error_handler.dart';
+import 'package:clash_arena/core/errors/exceptions.dart';
 
 import '../../../../core/networking/network_info.dart';
 import '../models/match_history_card_model.dart';

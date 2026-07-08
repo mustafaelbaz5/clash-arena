@@ -1,4 +1,4 @@
-import 'package:im_legends/core/errors/failure.dart';
+import 'package:clash_arena/core/errors/failure.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'exceptions.dart';

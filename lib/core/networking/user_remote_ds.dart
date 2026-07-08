@@ -1,4 +1,4 @@
-import 'package:im_legends/core/errors/error_handler.dart';
+import 'package:clash_arena/core/errors/error_handler.dart';
 
 import '../models/user_data.dart';
 import 'supabase_service.dart';

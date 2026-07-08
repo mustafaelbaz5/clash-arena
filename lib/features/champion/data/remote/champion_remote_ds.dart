@@ -1,4 +1,4 @@
-import 'package:im_legends/core/errors/error_handler.dart';
+import 'package:clash_arena/core/errors/error_handler.dart';
 
 import '../../../../core/networking/supabase_service.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
-import 'package:im_legends/core/networking/network_info.dart';
-import 'package:im_legends/core/networking/notification_remote_ds.dart';
-import 'package:im_legends/core/service/notification_service.dart';
+import 'package:clash_arena/core/networking/network_info.dart';
+import 'package:clash_arena/core/networking/notification_remote_ds.dart';
+import 'package:clash_arena/core/service/notification_service.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../../features/add_match/data/remote/add_match_remote_ds.dart';

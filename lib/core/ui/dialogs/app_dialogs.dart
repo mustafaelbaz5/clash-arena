@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:im_legends/core/themes/app_colors.dart';
+import 'package:clash_arena/core/themes/app_colors.dart';
 
 import 'custom_app_dialog.dart';
 

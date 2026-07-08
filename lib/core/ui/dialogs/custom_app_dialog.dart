@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:im_legends/core/themes/app_colors.dart';
-import 'package:im_legends/core/utils/extensions/context_ext.dart';
-import 'package:im_legends/core/utils/spacing.dart';
+import 'package:clash_arena/core/themes/app_colors.dart';
+import 'package:clash_arena/core/utils/extensions/context_ext.dart';
+import 'package:clash_arena/core/utils/spacing.dart';
 
 import '../../themes/app_texts_style.dart';
 import '../../widgets/custom_text_button.dart';

@@ -1,4 +1,4 @@
-import 'package:im_legends/core/config/app_config.dart';
+import 'package:clash_arena/core/config/app_config.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 /// Network Information Interface

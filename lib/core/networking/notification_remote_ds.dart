@@ -1,5 +1,5 @@
-import 'package:im_legends/core/errors/error_handler.dart';
-import 'package:im_legends/core/networking/supabase_service.dart';
+import 'package:clash_arena/core/errors/error_handler.dart';
+import 'package:clash_arena/core/networking/supabase_service.dart';
 
 class NotificationRemoteDs {
   final SupabaseService supabaseService;

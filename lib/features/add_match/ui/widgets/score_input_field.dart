@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:im_legends/core/utils/extensions/context_ext.dart';
+import 'package:clash_arena/core/utils/extensions/context_ext.dart';
 
 import '../../../../core/themes/app_texts_style.dart';
 import '../../../../core/utils/spacing.dart';

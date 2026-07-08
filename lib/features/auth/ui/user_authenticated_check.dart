@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:im_legends/core/ui/loaders/overlay_loader.dart';
-import 'package:im_legends/features/auth/logic/cubit/auth_cubit.dart';
-import 'package:im_legends/features/main_navigation/ui/main_scaffold.dart';
-import 'package:im_legends/features/onboarding/ui/on_boarding_screen.dart';
+import 'package:clash_arena/core/ui/loaders/overlay_loader.dart';
+import 'package:clash_arena/features/auth/logic/cubit/auth_cubit.dart';
+import 'package:clash_arena/features/main_navigation/ui/main_scaffold.dart';
+import 'package:clash_arena/features/onboarding/ui/on_boarding_screen.dart';
 
 class UserAuthenticatedCheck extends StatelessWidget {
   const UserAuthenticatedCheck({super.key});

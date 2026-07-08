@@ -1,6 +1,6 @@
 {
-    "name": "im_legends",
-    "short_name": "im_legends",
+    "name": "clash_arena",
+    "short_name": "clash_arena",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",

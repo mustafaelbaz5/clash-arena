@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:im_legends/core/errors/failure.dart';
+import 'package:clash_arena/core/errors/failure.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/models/players_states_model.dart';

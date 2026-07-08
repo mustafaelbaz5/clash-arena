@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:im_legends/core/errors/error_handler.dart';
+import 'package:clash_arena/core/errors/error_handler.dart';
 
 import 'supabase_service.dart';
 
