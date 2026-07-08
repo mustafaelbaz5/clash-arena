@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.im_legends"
     compileSdk = 36
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "28.2.13676358"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -45,7 +45,7 @@ android {
         }
     }
 
- flavorDimensions += "default"
+  flavorDimensions += "default"
 
     productFlavors {
         create("development") {
