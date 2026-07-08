@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/auth/ui/login_screen.dart';
 import '../../features/auth/ui/sign_up_screen.dart';
+import '../../features/groups/logic/cubit/groups_cubit.dart';
+import '../../features/groups/ui/groups_screen.dart';
 import '../../features/notification/ui/notifications_screen.dart';
+import '../di/dependency_injection.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -16,6 +20,14 @@ class AppRouter {
         return _buildRoute(const SignUpScreen(), settings);
       case Routes.notificationsScreen:
         return _buildRoute(const NotificationsScreen(), settings);
+      case Routes.groupsScreen:
+        return _buildRoute(
+          BlocProvider(
+            create: (_) => getIt<GroupsCubit>()..loadGroups(),
+            child: const GroupsScreen(),
+          ),
+          settings,
+        );
       // case Routes.onboarding:
       //   return _buildRoute(const OnboardingScreen(), settings);
       // case Routes.home:

@@ -93,6 +93,9 @@
   "history": {
     "history": "التاريخ"
   },
+  "groups": {
+    "title": "المجموعات"
+  },
   "add_match": {
     "add_match": "إضافة مباراة",
     "add_match_desc": "أضف مباراة جديدة إلى قائمة المتصدرين",

@@ -13,4 +13,5 @@ abstract class Routes {
   // Protected standalone routes
   static const String notificationsScreen = '/notificationsScreen';
   static const String notificationDetailsScreen = '/notificationDetailsScreen';
+  static const String groupsScreen = '/groupsScreen';
 }

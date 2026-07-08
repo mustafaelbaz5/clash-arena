@@ -14,6 +14,7 @@ class AppConstants {
 
   static const String userIdKey = 'user_id';
   static const String tokenKey = 'token';
+  static const String activeGroupIdKey = 'active_group_id';
 
   // Pagination
   static const int defaultPageSize = 20;

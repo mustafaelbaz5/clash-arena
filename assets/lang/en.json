@@ -93,6 +93,9 @@
   "history": {
     "history": "History"
   },
+  "groups": {
+    "title": "Groups"
+  },
   "add_match": {
     "add_match": "Add Match",
     "add_match_desc": "Add a new match to the leaderboard",

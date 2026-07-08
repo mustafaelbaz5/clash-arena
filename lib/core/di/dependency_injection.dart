@@ -5,6 +5,7 @@ import 'package:clash_arena/core/networking/notification_remote_ds.dart';
 import 'package:clash_arena/core/service/notification_service.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
+import '../events/event_bus.dart';
 import '../../features/add_match/data/remote/add_match_remote_ds.dart';
 import '../../features/add_match/data/repo/add_match_repo.dart';
 import '../../features/add_match/data/repo/add_match_repo_impl.dart';
@@ -30,6 +31,15 @@ import '../../features/profile/data/remote/profile_remote_ds.dart';
 import '../../features/profile/data/repo/profile_repo.dart';
 import '../../features/profile/data/repo/profile_repo_impl.dart';
 import '../../features/profile/logic/cubit/profile_cubit.dart';
+import '../../features/groups/data/remote/groups_remote_ds.dart';
+import '../../features/groups/data/repo/groups_repo_impl.dart';
+import '../../features/groups/domain/repo/groups_repo.dart';
+import '../../features/groups/domain/use_cases/create_group_use_case.dart';
+import '../../features/groups/domain/use_cases/get_active_group_id_use_case.dart';
+import '../../features/groups/domain/use_cases/get_my_groups_use_case.dart';
+import '../../features/groups/domain/use_cases/join_group_use_case.dart';
+import '../../features/groups/domain/use_cases/set_active_group_use_case.dart';
+import '../../features/groups/logic/cubit/groups_cubit.dart';
 import '../networking/storage_remote_ds.dart';
 import '../networking/supabase_service.dart';
 import '../networking/user_remote_ds.dart';
@@ -56,6 +66,7 @@ Future<void> setUpDependencies() async {
   );
   getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(getIt()));
   getIt.registerLazySingleton<SupabaseService>(() => SupabaseService());
+  getIt.registerLazySingleton<EventBus>(() => EventBus());
 
   // Remote Data Sources
   getIt.registerLazySingleton<StorageRemoteDs>(
@@ -172,4 +183,41 @@ Future<void> setUpDependencies() async {
   // getIt.registerFactory<NotificationsCubit>(
   //   () => NotificationsCubit(notificationRepo: getIt<NotificationRepo>()),
   // );
+
+  // ##### Groups Dependencies##################
+  getIt.registerLazySingleton<GroupsRemoteDs>(
+    () => GroupsRemoteDs(supabaseService: getIt<SupabaseService>()),
+  );
+  getIt.registerLazySingleton<GroupsRepo>(
+    () => GroupsRepoImpl(
+      remoteDs: getIt<GroupsRemoteDs>(),
+      networkInfo: getIt<NetworkInfo>(),
+    ),
+  );
+  getIt.registerLazySingleton<GetMyGroupsUseCase>(
+    () => GetMyGroupsUseCase(getIt<GroupsRepo>()),
+  );
+  getIt.registerLazySingleton<CreateGroupUseCase>(
+    () => CreateGroupUseCase(getIt<GroupsRepo>()),
+  );
+  getIt.registerLazySingleton<JoinGroupUseCase>(
+    () => JoinGroupUseCase(getIt<GroupsRepo>()),
+  );
+  getIt.registerLazySingleton<GetActiveGroupIdUseCase>(
+    () => GetActiveGroupIdUseCase(getIt<GroupsRepo>()),
+  );
+  getIt.registerLazySingleton<SetActiveGroupUseCase>(
+    () => SetActiveGroupUseCase(getIt<GroupsRepo>()),
+  );
+  // Lazy singleton (not a factory): active-group context must stay in sync
+  // across every screen that reads it, not reset per navigation.
+  getIt.registerLazySingleton<GroupsCubit>(
+    () => GroupsCubit(
+      getMyGroups: getIt<GetMyGroupsUseCase>(),
+      createGroup: getIt<CreateGroupUseCase>(),
+      joinGroup: getIt<JoinGroupUseCase>(),
+      getActiveGroupId: getIt<GetActiveGroupIdUseCase>(),
+      setActiveGroup: getIt<SetActiveGroupUseCase>(),
+    ),
+  );
 }
