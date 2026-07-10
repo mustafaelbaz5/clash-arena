@@ -67,8 +67,8 @@ class MatchRequestTile extends StatelessWidget {
     switch (request.status) {
       case MatchRequestStatus.pending:
         return 'Waiting for response';
-      case MatchRequestStatus.approved:
-        return 'Approved';
+      case MatchRequestStatus.accepted:
+        return 'Accepted';
       case MatchRequestStatus.rejected:
         return 'Rejected';
       case MatchRequestStatus.expired:

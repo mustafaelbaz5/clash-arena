@@ -37,7 +37,7 @@ begin
     returning id into v_match_id;
 
   update match_requests
-    set status = 'approved', match_id = v_match_id, responded_at = now(), responded_by = auth.uid()
+    set status = 'accepted', match_id = v_match_id, responded_at = now(), responded_by = auth.uid()
     where id = v_request.id;
 
   return query select v_match_id, v_request.group_id;

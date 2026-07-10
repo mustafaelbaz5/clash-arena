@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-enum MatchRequestStatus { pending, approved, rejected, expired, cancelled }
+enum MatchRequestStatus { pending, accepted, rejected, expired, cancelled }
 
 MatchRequestStatus matchRequestStatusFromString(final String value) {
   return MatchRequestStatus.values.firstWhere(
