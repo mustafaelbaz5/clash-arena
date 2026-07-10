@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:clash_arena/core/utils/extensions/context_ext.dart';
+import '../../../../../core/utils/extensions/context_ext.dart';
 
 import '../../../../../core/models/players_states_model.dart';
 import '../../../../../core/themes/app_texts_style.dart';

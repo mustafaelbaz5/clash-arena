@@ -49,6 +49,7 @@ class RequestTimeoutException extends AppException {
     super.message = 'Request timeout. Please try again.',
   });
 }
+
 class ValidationException extends AppException {
   final Map<String, dynamic>? errors;
   ValidationException({

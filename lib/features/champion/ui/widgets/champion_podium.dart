@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:clash_arena/core/utils/functions/get_rank_color.dart';
+import '../../../../core/utils/functions/get_rank_color.dart';
 
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_texts_style.dart';

@@ -37,7 +37,10 @@ class _MatchRequestScreenState extends State<MatchRequestScreen>
         title: const Text('Match Requests'),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [Tab(text: 'Pending'), Tab(text: 'Sent')],
+          tabs: const [
+            Tab(text: 'Pending'),
+            Tab(text: 'Sent'),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:clash_arena/core/errors/failure.dart';
+import '../../../../core/errors/failure.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/events/app_event.dart';
@@ -23,7 +23,9 @@ class MatchHistoryCubit extends Cubit<MatchHistoryState> {
     required this.getActiveGroupId,
     required this.eventBus,
   }) : super(MatchHistoryInitial()) {
-    _subs.add(eventBus.on<ActiveGroupChanged>().listen((final _) => fetchMatches()));
+    _subs.add(
+      eventBus.on<ActiveGroupChanged>().listen((final _) => fetchMatches()),
+    );
     _subs.add(eventBus.on<MatchApproved>().listen((final _) => fetchMatches()));
   }
 

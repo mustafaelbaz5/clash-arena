@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:clash_arena/core/errors/failure.dart';
+import '../../../../core/errors/failure.dart';
 
 import '../../../../core/events/app_event.dart';
 import '../../../../core/events/event_bus.dart';
@@ -22,8 +22,12 @@ class ChampionCubit extends Cubit<ChampionState> {
     required this.getActiveGroupId,
     required this.eventBus,
   }) : super(const ChampionInitial()) {
-    _subs.add(eventBus.on<ActiveGroupChanged>().listen((final _) => fetchLeaderboard()));
-    _subs.add(eventBus.on<MatchApproved>().listen((final _) => fetchLeaderboard()));
+    _subs.add(
+      eventBus.on<ActiveGroupChanged>().listen((final _) => fetchLeaderboard()),
+    );
+    _subs.add(
+      eventBus.on<MatchApproved>().listen((final _) => fetchLeaderboard()),
+    );
   }
 
   Future<void> fetchLeaderboard() async {

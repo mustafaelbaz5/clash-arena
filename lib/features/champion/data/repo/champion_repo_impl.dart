@@ -1,6 +1,5 @@
-import 'package:clash_arena/core/errors/error_handler.dart';
-import 'package:clash_arena/core/errors/exceptions.dart';
-
+import '../../../../core/errors/error_handler.dart';
+import '../../../../core/errors/exceptions.dart';
 import '../../../../core/networking/network_info.dart';
 import '../model/champion_player_model.dart';
 import '../model/champion_stat_calculator.dart';

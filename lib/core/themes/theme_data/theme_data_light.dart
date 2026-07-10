@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:clash_arena/core/themes/app_texts_style.dart';
+import '../app_texts_style.dart';
 
 import '../app_colors.dart';
 

@@ -35,7 +35,8 @@ class CreateMatchRequestScreen extends StatelessWidget {
                   onSuccess: () {
                     AppDialogs.showSuccess(
                       context,
-                      message: 'Match request sent — waiting for your opponent to accept.',
+                      message:
+                          'Match request sent — waiting for your opponent to accept.',
                       onPressed: () => controller.jumpToTab(0),
                     );
                   },

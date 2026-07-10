@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:clash_arena/core/utils/extensions/context_ext.dart';
-import 'package:clash_arena/core/widgets/custom_text_form_.dart';
+import '../../../../core/utils/extensions/context_ext.dart';
+import '../../../../core/widgets/custom_text_form_.dart';
 
 import '../../../../core/models/user_data.dart';
 import '../../../../core/themes/app_texts_style.dart';

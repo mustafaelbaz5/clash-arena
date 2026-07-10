@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:clash_arena/core/utils/extensions/context_ext.dart';
+import '../../../core/utils/extensions/context_ext.dart';
 
 import '../../../core/router/routes.dart';
 import '../../../core/themes/app_texts_style.dart';

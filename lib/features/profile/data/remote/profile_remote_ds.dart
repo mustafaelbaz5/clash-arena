@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:clash_arena/core/errors/error_handler.dart';
-
+import '../../../../core/errors/error_handler.dart';
 import '../../../../core/models/match_model.dart';
 import '../../../../core/models/user_data.dart';
 import '../../../../core/networking/storage_remote_ds.dart';

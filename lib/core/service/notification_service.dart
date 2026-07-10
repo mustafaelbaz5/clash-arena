@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:clash_arena/core/config/app_config.dart';
-import 'package:clash_arena/core/networking/notification_remote_ds.dart';
+import '../config/app_config.dart';
+import '../networking/notification_remote_ds.dart';
 
 class NotificationService {
   NotificationService({required this.notificationRemoteDs});

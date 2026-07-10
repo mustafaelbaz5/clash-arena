@@ -50,8 +50,7 @@ class GroupsScreen extends StatelessWidget {
             child: ListView.separated(
               padding: const EdgeInsets.all(16),
               itemCount: loaded.groups.length,
-              separatorBuilder: (final _, final _) =>
-                  const SizedBox(height: 8),
+              separatorBuilder: (final _, final _) => const SizedBox(height: 8),
               itemBuilder: (final context, final index) {
                 final group = loaded.groups[index];
                 final isActive = group.id == loaded.activeGroupId;

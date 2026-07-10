@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:clash_arena/core/utils/extensions/context_ext.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../core/utils/extensions/context_ext.dart';
 import '../../../../core/utils/spacing.dart';
 
 class LeaderBoardShimmerLoading extends StatelessWidget {

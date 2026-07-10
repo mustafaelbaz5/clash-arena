@@ -25,7 +25,8 @@ class SupabaseHandler {
         msg.contains('token') ||
         msg.contains('expired')) {
       return UnauthorizedException(
-          message: 'Session expired. Please login again.');
+        message: 'Session expired. Please login again.',
+      );
     }
     if (msg.contains('too many') || msg.contains('rate limit')) {
       return TooManyRequestsException();

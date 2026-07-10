@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:clash_arena/core/utils/extensions/context_ext.dart';
 
 import '../../../../core/themes/app_texts_style.dart';
+import '../../../../core/utils/extensions/context_ext.dart';
 import '../../../../core/utils/spacing.dart';
 
 class HistoryCardPlayerInfo extends StatelessWidget {

@@ -37,7 +37,9 @@ class GroupsRemoteDs {
     try {
       final userId = _currentUserId;
       if (userId == null) {
-        throw StateError('Cannot create a group without an authenticated user.');
+        throw StateError(
+          'Cannot create a group without an authenticated user.',
+        );
       }
 
       final response = await supabaseService.execute(

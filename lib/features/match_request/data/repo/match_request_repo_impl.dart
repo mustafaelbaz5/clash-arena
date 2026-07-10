@@ -1,5 +1,5 @@
-import 'package:clash_arena/core/errors/error_handler.dart';
-import 'package:clash_arena/core/errors/exceptions.dart';
+import '../../../../core/errors/error_handler.dart';
+import '../../../../core/errors/exceptions.dart';
 
 import '../../../../core/networking/network_info.dart';
 import '../../domain/entities/match_request_entity.dart';
@@ -13,9 +13,7 @@ class MatchRequestRepoImpl implements MatchRequestRepo {
   MatchRequestRepoImpl({required this.remoteDs, required this.networkInfo});
 
   @override
-  Future<List<MatchRequestEntity>> getPendingForMe(
-    final String groupId,
-  ) async {
+  Future<List<MatchRequestEntity>> getPendingForMe(final String groupId) async {
     try {
       if (!await networkInfo.isConnected) throw NetworkException();
       return await remoteDs.fetchPendingForMe(groupId);

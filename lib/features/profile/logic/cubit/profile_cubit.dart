@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:clash_arena/core/errors/failure.dart';
+import '../../../../core/errors/failure.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/events/app_event.dart';
@@ -24,7 +24,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     required this.getActiveGroupId,
     required this.eventBus,
   }) : super(ProfileInitial()) {
-    _subs.add(eventBus.on<ActiveGroupChanged>().listen((final _) => fetchProfile()));
+    _subs.add(
+      eventBus.on<ActiveGroupChanged>().listen((final _) => fetchProfile()),
+    );
     _subs.add(eventBus.on<MatchApproved>().listen((final _) => fetchProfile()));
   }
 

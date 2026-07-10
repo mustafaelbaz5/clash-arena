@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:clash_arena/core/errors/failure.dart';
+import '../../../../core/errors/failure.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/events/app_event.dart';

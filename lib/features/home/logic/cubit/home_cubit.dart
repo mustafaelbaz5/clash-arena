@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:clash_arena/core/errors/failure.dart';
+import '../../../../core/errors/failure.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/events/app_event.dart';
@@ -23,8 +23,12 @@ class HomeCubit extends Cubit<HomeState> {
     required this.getActiveGroupId,
     required this.eventBus,
   }) : super(HomeInitial()) {
-    _subs.add(eventBus.on<ActiveGroupChanged>().listen((final _) => loadLeaderboard()));
-    _subs.add(eventBus.on<MatchApproved>().listen((final _) => loadLeaderboard()));
+    _subs.add(
+      eventBus.on<ActiveGroupChanged>().listen((final _) => loadLeaderboard()),
+    );
+    _subs.add(
+      eventBus.on<MatchApproved>().listen((final _) => loadLeaderboard()),
+    );
   }
 
   Future<void> loadLeaderboard() async {

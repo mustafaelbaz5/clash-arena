@@ -1,4 +1,4 @@
-import 'package:clash_arena/core/errors/error_handler.dart';
+import '../../../../core/errors/error_handler.dart';
 
 import '../../../../core/networking/supabase_service.dart';
 import '../model/match_request_model.dart';
@@ -79,7 +79,9 @@ class MatchRequestRemoteDs {
   }) async {
     final userId = _currentUserId;
     if (userId == null) {
-      throw StateError('Cannot create a match request without an authenticated user.');
+      throw StateError(
+        'Cannot create a match request without an authenticated user.',
+      );
     }
     try {
       await supabaseService.execute(
@@ -146,7 +148,8 @@ class MatchRequestRemoteDs {
           .inFilter('id', userIds.toList()),
     );
     final users = <String, Map<String, dynamic>>{
-      for (final u in userRows as List) u['id'] as String: u as Map<String, dynamic>,
+      for (final u in userRows as List)
+        u['id'] as String: u as Map<String, dynamic>,
     };
     return rows
         .map(

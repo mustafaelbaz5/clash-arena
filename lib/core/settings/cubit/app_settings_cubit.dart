@@ -15,8 +15,9 @@ class AppSettingsCubit extends HydratedCubit<AppSettingsState> {
   }
 
   void toggleTheme() {
-    final next =
-        state.themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    final next = state.themeMode == ThemeMode.dark
+        ? ThemeMode.light
+        : ThemeMode.dark;
     emit(state.copyWith(themeMode: next));
   }
 

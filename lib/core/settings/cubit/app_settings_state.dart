@@ -7,18 +7,13 @@ class AppSettingsState extends Equatable {
   final ThemeMode themeMode;
   final Locale locale;
 
-  const AppSettingsState({
-    required this.themeMode,
-    required this.locale,
-  });
+  const AppSettingsState({required this.themeMode, required this.locale});
   bool get isArabic => locale.languageCode == 'ar';
   bool get isEnglish => locale.languageCode == 'en';
 
   /// Default state
-  factory AppSettingsState.initial() => const AppSettingsState(
-        themeMode: ThemeMode.system,
-        locale: Locale('en'),
-      );
+  factory AppSettingsState.initial() =>
+      const AppSettingsState(themeMode: ThemeMode.system, locale: Locale('en'));
 
   /// Font family derived from locale — no manual switching needed
   String get fontFamily =>

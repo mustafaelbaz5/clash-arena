@@ -1,12 +1,12 @@
-import 'package:clash_arena/core/errors/error_handler.dart';
-import 'package:clash_arena/core/networking/supabase_service.dart';
+import '../errors/error_handler.dart';
+import 'supabase_service.dart';
 
 class NotificationRemoteDs {
   final SupabaseService supabaseService;
 
   NotificationRemoteDs({required this.supabaseService});
 
-Future<void> saveToken({
+  Future<void> saveToken({
     required final String userId,
     required final String token,
     required final String deviceType, // rename: 'android' or 'ios'

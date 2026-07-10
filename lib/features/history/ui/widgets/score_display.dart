@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/spacing.dart';
 
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_texts_style.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../data/models/match_history_card_model.dart';
 
 class ScoreDisplay extends StatelessWidget {
@@ -24,9 +24,7 @@ class ScoreDisplay extends StatelessWidget {
         const Text('    -    ', style: AppTextStyles.fontBold),
         Text(
           '${match.loserScore}',
-          style: AppTextStyles.fontRegular.copyWith(
-            fontSize: rf(20),
-          ),
+          style: AppTextStyles.fontRegular.copyWith(fontSize: rf(20)),
         ),
       ],
     );

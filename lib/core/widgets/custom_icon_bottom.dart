@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:clash_arena/core/utils/extensions/context_ext.dart';
+import '../utils/extensions/context_ext.dart';
 
 import '../themes/app_texts_style.dart';
 import '../utils/spacing.dart';
