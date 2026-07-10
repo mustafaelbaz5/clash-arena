@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/router/routes.dart';
 import '../../../../core/themes/app_texts_style.dart';
@@ -7,6 +8,7 @@ import '../../../../core/utils/extensions/context_ext.dart';
 import '../../../../core/utils/extensions/string_ext.dart';
 import '../../../../core/utils/spacing.dart';
 import '../../../../core/widgets/notification_icon.dart';
+import '../../../notification/logic/cubit/notification_cubit.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key, required this.title});
@@ -63,7 +65,14 @@ class HomeAppBar extends StatelessWidget {
             backgroundColor: context.customColors.divider.withValues(
               alpha: 0.5,
             ),
-            child: const NotificationIcon(unreadCount: 3),
+            child: BlocBuilder<NotificationCubit, NotificationState>(
+              builder: (final context, final state) {
+                final unreadCount = state is NotificationLoaded
+                    ? state.unreadCount
+                    : 0;
+                return NotificationIcon(unreadCount: unreadCount);
+              },
+            ),
           ),
         ],
       ),

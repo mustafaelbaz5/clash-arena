@@ -7,6 +7,7 @@ import '../../features/groups/logic/cubit/groups_cubit.dart';
 import '../../features/groups/ui/groups_screen.dart';
 import '../../features/match_request/logic/cubit/match_request_cubit.dart';
 import '../../features/match_request/ui/match_request_screen.dart';
+import '../../features/notification/logic/cubit/notification_cubit.dart';
 import '../../features/notification/ui/notifications_screen.dart';
 import '../di/dependency_injection.dart';
 import 'routes.dart';
@@ -21,7 +22,13 @@ class AppRouter {
       case Routes.signUpScreen:
         return _buildRoute(const SignUpScreen(), settings);
       case Routes.notificationsScreen:
-        return _buildRoute(const NotificationsScreen(), settings);
+        return _buildRoute(
+          BlocProvider.value(
+            value: getIt<NotificationCubit>()..loadNotifications(),
+            child: const NotificationsScreen(),
+          ),
+          settings,
+        );
       case Routes.groupsScreen:
         return _buildRoute(
           // BlocProvider.value: GroupsCubit is a DI-managed singleton (its

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../utils/extensions/context_ext.dart';
 
 import '../router/routes.dart';
 import '../themes/app_colors.dart';
@@ -14,7 +13,10 @@ class NotificationIcon extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushNamed(Routes.notificationsScreen),
+      onTap: () => Navigator.of(
+        context,
+        rootNavigator: true,
+      ).pushNamed(Routes.notificationsScreen),
       child: Stack(
         clipBehavior: Clip.none,
         children: [

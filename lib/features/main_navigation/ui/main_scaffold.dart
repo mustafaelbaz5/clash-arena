@@ -14,6 +14,7 @@ import '../../home/logic/cubit/home_cubit.dart';
 import '../../home/ui/home_screen.dart';
 import '../../match_request/logic/cubit/match_request_cubit.dart';
 import '../../match_request/ui/create_match_request_screen.dart';
+import '../../notification/logic/cubit/notification_cubit.dart';
 import '../../profile/logic/cubit/profile_cubit.dart';
 import '../../profile/ui/profile_screen.dart';
 
@@ -98,6 +99,9 @@ class _MainScaffoldState extends State<MainScaffold> {
         // subscription must survive navigation), so this provider must not
         // take ownership and close it on dispose.
         BlocProvider.value(value: getIt<MatchRequestCubit>()),
+        BlocProvider.value(
+          value: getIt<NotificationCubit>()..loadNotifications(),
+        ),
         BlocProvider(create: (_) => getIt<ProfileCubit>()..fetchProfile()),
         BlocProvider(create: (_) => getIt<ChampionCubit>()..fetchLeaderboard()),
       ],

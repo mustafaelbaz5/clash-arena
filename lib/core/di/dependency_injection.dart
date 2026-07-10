@@ -46,6 +46,13 @@ import '../../features/match_request/domain/use_cases/get_pending_requests_use_c
 import '../../features/match_request/domain/use_cases/get_sent_requests_use_case.dart';
 import '../../features/match_request/domain/use_cases/reject_match_request_use_case.dart';
 import '../../features/match_request/logic/cubit/match_request_cubit.dart';
+import '../../features/notification/data/remote/app_notification_remote_ds.dart';
+import '../../features/notification/data/repo/notification_repo_impl.dart';
+import '../../features/notification/domain/repo/notification_repo.dart';
+import '../../features/notification/domain/use_cases/get_my_notifications_use_case.dart';
+import '../../features/notification/domain/use_cases/mark_all_notifications_read_use_case.dart';
+import '../../features/notification/domain/use_cases/mark_notification_read_use_case.dart';
+import '../../features/notification/logic/cubit/notification_cubit.dart';
 import '../networking/storage_remote_ds.dart';
 import '../networking/supabase_service.dart';
 import '../networking/user_remote_ds.dart';
@@ -189,11 +196,34 @@ Future<void> setUpDependencies() async {
     ),
   );
 
-  // // Notification Dependencies
-  // getIt.registerLazySingleton<NotificationRepo>(() => NotificationRepo());
-  // getIt.registerFactory<NotificationsCubit>(
-  //   () => NotificationsCubit(notificationRepo: getIt<NotificationRepo>()),
-  // );
+  // ##### Notification Center Dependencies##################
+  getIt.registerLazySingleton<AppNotificationRemoteDs>(
+    () => AppNotificationRemoteDs(supabaseService: getIt<SupabaseService>()),
+  );
+  getIt.registerLazySingleton<NotificationRepo>(
+    () => NotificationRepoImpl(
+      remoteDs: getIt<AppNotificationRemoteDs>(),
+      networkInfo: getIt<NetworkInfo>(),
+    ),
+  );
+  getIt.registerLazySingleton<GetMyNotificationsUseCase>(
+    () => GetMyNotificationsUseCase(getIt<NotificationRepo>()),
+  );
+  getIt.registerLazySingleton<MarkNotificationReadUseCase>(
+    () => MarkNotificationReadUseCase(getIt<NotificationRepo>()),
+  );
+  getIt.registerLazySingleton<MarkAllNotificationsReadUseCase>(
+    () => MarkAllNotificationsReadUseCase(getIt<NotificationRepo>()),
+  );
+  // Lazy singleton: the same instance backs both the HomeAppBar unread
+  // badge and the pushed NotificationsScreen route.
+  getIt.registerLazySingleton<NotificationCubit>(
+    () => NotificationCubit(
+      getMyNotifications: getIt<GetMyNotificationsUseCase>(),
+      markNotificationRead: getIt<MarkNotificationReadUseCase>(),
+      markAllNotificationsRead: getIt<MarkAllNotificationsReadUseCase>(),
+    ),
+  );
 
   // ##### Groups Dependencies##################
   getIt.registerLazySingleton<GroupsRemoteDs>(
