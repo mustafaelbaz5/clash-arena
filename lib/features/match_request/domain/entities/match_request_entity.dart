@@ -18,14 +18,21 @@ class MatchRequestEntity extends Equatable {
   final String opponentId;
   final String opponentName;
   final String? opponentImage;
-  final int requesterScore;
-  final int opponentScore;
+
+  /// The stored result — `match_requests` records winner/loser directly
+  /// (same shape as `matches`), not per-side scores.
+  final String winnerId;
+  final String loserId;
+  final int winnerScore;
+  final int loserScore;
+
   final MatchRequestStatus status;
   final String? note;
   final String? matchId;
   final DateTime? expiresAt;
   final DateTime createdAt;
   final DateTime? respondedAt;
+  final String? respondedBy;
 
   const MatchRequestEntity({
     required this.id,
@@ -34,8 +41,10 @@ class MatchRequestEntity extends Equatable {
     required this.requesterName,
     required this.opponentId,
     required this.opponentName,
-    required this.requesterScore,
-    required this.opponentScore,
+    required this.winnerId,
+    required this.loserId,
+    required this.winnerScore,
+    required this.loserScore,
     required this.status,
     required this.createdAt,
     this.requesterImage,
@@ -44,11 +53,19 @@ class MatchRequestEntity extends Equatable {
     this.matchId,
     this.expiresAt,
     this.respondedAt,
+    this.respondedBy,
   });
 
   bool isOpponent(final String userId) => opponentId == userId;
 
   bool get isPending => status == MatchRequestStatus.pending;
+
+  bool get requesterWon => requesterId == winnerId;
+
+  /// Scores from the requester's perspective — matches what the "New
+  /// match request" form collects ("your score" / "opponent score").
+  int get requesterScore => requesterWon ? winnerScore : loserScore;
+  int get opponentScore => requesterWon ? loserScore : winnerScore;
 
   @override
   List<Object?> get props => [
@@ -60,13 +77,16 @@ class MatchRequestEntity extends Equatable {
     opponentId,
     opponentName,
     opponentImage,
-    requesterScore,
-    opponentScore,
+    winnerId,
+    loserId,
+    winnerScore,
+    loserScore,
     status,
     note,
     matchId,
     expiresAt,
     createdAt,
     respondedAt,
+    respondedBy,
   ];
 }

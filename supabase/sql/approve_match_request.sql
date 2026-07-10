@@ -1,7 +1,8 @@
 -- The only path allowed to INSERT into `matches`. SECURITY DEFINER so it
 -- bypasses RLS for its internal writes, but every write is gated on the
 -- checks below — the caller never gets to decide who won or which group
--- a match belongs to.
+-- a match belongs to (that was already fixed at request-creation time;
+-- this only copies the claimed result over once the opponent confirms it).
 create or replace function approve_match_request(p_request_id uuid)
 returns table (match_id uuid, group_id uuid)
 language plpgsql
@@ -10,10 +11,6 @@ set search_path = public
 as $$
 declare
   v_request match_requests;
-  v_winner_id uuid;
-  v_loser_id uuid;
-  v_winner_score int;
-  v_loser_score int;
   v_match_id uuid;
 begin
   select * into v_request from match_requests where id = p_request_id;
@@ -35,25 +32,12 @@ begin
     raise exception 'Request has expired' using errcode = 'P0001';
   end if;
 
-  -- Ties resolve to the requester, matching existing add_match behavior.
-  if v_request.requester_score >= v_request.opponent_score then
-    v_winner_id := v_request.requester_id;
-    v_loser_id := v_request.opponent_id;
-    v_winner_score := v_request.requester_score;
-    v_loser_score := v_request.opponent_score;
-  else
-    v_winner_id := v_request.opponent_id;
-    v_loser_id := v_request.requester_id;
-    v_winner_score := v_request.opponent_score;
-    v_loser_score := v_request.requester_score;
-  end if;
-
   insert into matches (group_id, winner_id, loser_id, winner_score, loser_score, match_request_id, status)
-    values (v_request.group_id, v_winner_id, v_loser_id, v_winner_score, v_loser_score, v_request.id, 'completed')
+    values (v_request.group_id, v_request.winner_id, v_request.loser_id, v_request.winner_score, v_request.loser_score, v_request.id, 'completed')
     returning id into v_match_id;
 
   update match_requests
-    set status = 'approved', match_id = v_match_id, responded_at = now()
+    set status = 'approved', match_id = v_match_id, responded_at = now(), responded_by = auth.uid()
     where id = v_request.id;
 
   return query select v_match_id, v_request.group_id;

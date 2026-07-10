@@ -19,32 +19,40 @@ class CreateMatchRequestScreen extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          CustomAppBar(title: 'add_match.add_match'.tr()),
-          Expanded(
-            child: BlocListener<MatchRequestCubit, MatchRequestState>(
-              listener: (final context, final state) {
-                if (state is MatchRequestActionFailure) {
-                  context.showErrorSnackBar(state.error.message);
-                }
-              },
-              child: SingleChildScrollView(
-                child: CreateMatchRequestSheet(
-                  onSuccess: () {
-                    AppDialogs.showSuccess(
-                      context,
-                      message:
-                          'Match request sent — waiting for your opponent to accept.',
-                      onPressed: () => controller.jumpToTab(0),
+    // Needs its own Scaffold: this screen is embedded directly as a bottom
+    // nav tab (no ancestor Scaffold), but showErrorSnackBar requires a
+    // ScaffoldMessenger with a registered Scaffold to present into.
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            CustomAppBar(title: 'add_match.add_match'.tr()),
+            Expanded(
+              child: BlocListener<MatchRequestCubit, MatchRequestState>(
+                listener: (final context, final state) {
+                  if (state is MatchRequestActionFailure) {
+                    debugPrint(
+                      'MatchRequestActionFailure: ${state.error.message}',
                     );
-                  },
+                    context.showErrorSnackBar(state.error.message);
+                  }
+                },
+                child: SingleChildScrollView(
+                  child: CreateMatchRequestSheet(
+                    onSuccess: () {
+                      AppDialogs.showSuccess(
+                        context,
+                        message:
+                            'Match request sent — waiting for your opponent to accept.',
+                        onPressed: () => controller.jumpToTab(0),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -8,8 +8,10 @@ class MatchRequestModel extends MatchRequestEntity {
     required super.requesterName,
     required super.opponentId,
     required super.opponentName,
-    required super.requesterScore,
-    required super.opponentScore,
+    required super.winnerId,
+    required super.loserId,
+    required super.winnerScore,
+    required super.loserScore,
     required super.status,
     required super.createdAt,
     super.requesterImage,
@@ -18,6 +20,7 @@ class MatchRequestModel extends MatchRequestEntity {
     super.matchId,
     super.expiresAt,
     super.respondedAt,
+    super.respondedBy,
   });
 
   /// [users] maps user id -> {name, profile_image}, fetched separately
@@ -40,8 +43,10 @@ class MatchRequestModel extends MatchRequestEntity {
       opponentId: json['opponent_id'] as String,
       opponentName: opponent['name'] as String? ?? 'Unknown',
       opponentImage: opponent['profile_image'] as String?,
-      requesterScore: json['requester_score'] as int,
-      opponentScore: json['opponent_score'] as int,
+      winnerId: json['winner_id'] as String,
+      loserId: json['loser_id'] as String,
+      winnerScore: json['winner_score'] as int,
+      loserScore: json['loser_score'] as int,
       status: matchRequestStatusFromString(json['status'] as String),
       note: json['note'] as String?,
       matchId: json['match_id'] as String?,
@@ -52,6 +57,7 @@ class MatchRequestModel extends MatchRequestEntity {
       respondedAt: json['responded_at'] == null
           ? null
           : DateTime.parse(json['responded_at'] as String),
+      respondedBy: json['responded_by'] as String?,
     );
   }
 }

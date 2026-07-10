@@ -70,6 +70,10 @@ class MatchRequestRemoteDs {
     }
   }
 
+  /// `match_requests` stores the claimed result as winner/loser (same shape
+  /// as `matches`), not per-side scores — so the requester/opponent scores
+  /// collected by the form are resolved into winner/loser here. Ties
+  /// resolve to the requester, matching legacy add_match behavior.
   Future<void> createRequest({
     required final String groupId,
     required final String opponentId,
@@ -84,13 +88,16 @@ class MatchRequestRemoteDs {
       );
     }
     try {
+      final requesterWon = requesterScore >= opponentScore;
       await supabaseService.execute(
         supabaseService.client.from('match_requests').insert({
           'group_id': groupId,
           'requester_id': userId,
           'opponent_id': opponentId,
-          'requester_score': requesterScore,
-          'opponent_score': opponentScore,
+          'winner_id': requesterWon ? userId : opponentId,
+          'loser_id': requesterWon ? opponentId : userId,
+          'winner_score': requesterWon ? requesterScore : opponentScore,
+          'loser_score': requesterWon ? opponentScore : requesterScore,
           'note': note,
         }),
       );
@@ -127,6 +134,7 @@ class MatchRequestRemoteDs {
             .update({
               'status': 'rejected',
               'responded_at': DateTime.now().toIso8601String(),
+              'responded_by': _currentUserId,
             })
             .eq('id', requestId),
       );
