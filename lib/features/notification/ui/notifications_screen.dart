@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/router/routes.dart';
 import '../../../core/utils/extensions/context_ext.dart';
 import '../../../core/utils/extensions/datetime_ext.dart';
 import '../domain/entities/app_notification_entity.dart';
 import '../logic/cubit/notification_cubit.dart';
+import 'notification_details_screen.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
@@ -19,8 +19,7 @@ class NotificationsScreen extends StatelessWidget {
           IconButton(
             tooltip: 'Mark all as read',
             icon: const Icon(Icons.done_all),
-            onPressed: () =>
-                context.read<NotificationCubit>().markAllAsRead(),
+            onPressed: () => context.read<NotificationCubit>().markAllAsRead(),
           ),
         ],
       ),
@@ -42,7 +41,8 @@ class NotificationsScreen extends StatelessWidget {
             return const Center(child: Text('No notifications yet.'));
           }
           return RefreshIndicator(
-            onRefresh: () => context.read<NotificationCubit>().loadNotifications(),
+            onRefresh: () =>
+                context.read<NotificationCubit>().loadNotifications(),
             child: ListView.separated(
               padding: const EdgeInsets.all(16),
               itemCount: loaded.notifications.length,
@@ -74,7 +74,9 @@ class _NotificationTile extends StatelessWidget {
         title: Text(
           notification.title,
           style: TextStyle(
-            fontWeight: notification.isRead ? FontWeight.normal : FontWeight.bold,
+            fontWeight: notification.isRead
+                ? FontWeight.normal
+                : FontWeight.bold,
           ),
         ),
         subtitle: Text(notification.message),
@@ -84,9 +86,7 @@ class _NotificationTile extends StatelessWidget {
         ),
         onTap: () {
           context.read<NotificationCubit>().markAsRead(notification);
-          if (notification.matchRequestId != null) {
-            Navigator.of(context).pushNamed(Routes.matchRequestScreen);
-          }
+          context.push(NotificationDetailsScreen(notification: notification));
         },
       ),
     );

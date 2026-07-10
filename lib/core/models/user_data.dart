@@ -1,4 +1,5 @@
 class UserData {
+  final String? id;
   final String name;
   final String email;
   final String phoneNumber;
@@ -6,6 +7,7 @@ class UserData {
   final String? profileImageUrl;
 
   UserData({
+    this.id,
     required this.name,
     required this.email,
     required this.phoneNumber,
@@ -16,6 +18,7 @@ class UserData {
   /// Factory for creating a UserData object from a Supabase map
   factory UserData.fromMap(final Map<String, dynamic> map) {
     return UserData(
+      id: map['id'] as String?,
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       phoneNumber: map['phone_number'] ?? '',
@@ -39,6 +42,7 @@ class UserData {
 
   UserData copyWith({final String? profileImageUrl}) {
     return UserData(
+      id: id,
       name: name,
       email: email,
       phoneNumber: phoneNumber,
