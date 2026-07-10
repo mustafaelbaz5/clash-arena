@@ -49,6 +49,8 @@ class MatchRequestRemoteDs {
     }
   }
 
+  /// Members of [groupId] excluding the current user — you can't request a
+  /// match against yourself.
   Future<List<Map<String, dynamic>>> fetchGroupMembers(
     final String groupId,
   ) async {
@@ -61,6 +63,7 @@ class MatchRequestRemoteDs {
       );
       return (response as List)
           .map((final row) => Map<String, dynamic>.from(row['users'] as Map))
+          .where((final u) => u['id'] != _currentUserId)
           .toList();
     } catch (e) {
       ErrorHandler.handleException(e);

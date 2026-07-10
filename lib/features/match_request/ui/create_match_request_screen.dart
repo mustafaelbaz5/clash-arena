@@ -24,15 +24,22 @@ class CreateMatchRequestScreen extends StatelessWidget {
         children: [
           CustomAppBar(title: 'add_match.add_match'.tr()),
           Expanded(
-            child: SingleChildScrollView(
-              child: CreateMatchRequestSheet(
-                onSuccess: () {
-                  AppDialogs.showSuccess(
-                    context,
-                    message: 'Match request sent — waiting for your opponent to accept.',
-                    onPressed: () => controller.jumpToTab(0),
-                  );
-                },
+            child: BlocListener<MatchRequestCubit, MatchRequestState>(
+              listener: (final context, final state) {
+                if (state is MatchRequestActionFailure) {
+                  context.showErrorSnackBar(state.error.message);
+                }
+              },
+              child: SingleChildScrollView(
+                child: CreateMatchRequestSheet(
+                  onSuccess: () {
+                    AppDialogs.showSuccess(
+                      context,
+                      message: 'Match request sent — waiting for your opponent to accept.',
+                      onPressed: () => controller.jumpToTab(0),
+                    );
+                  },
+                ),
               ),
             ),
           ),
