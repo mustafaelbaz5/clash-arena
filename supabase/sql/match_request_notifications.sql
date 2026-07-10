@@ -93,6 +93,21 @@ begin
         NEW.group_id,
         NEW.id
       );
+    elsif NEW.status = 'expired' then
+      -- 'expired' isn't one of the allowed notification types, so this
+      -- reuses 'system' — it's a timeout, not a decision by the opponent.
+      insert into user_notifications (user_id, notification_id, title, message, type, data, group_id, match_request_id)
+      values (
+        NEW.requester_id,
+        gen_random_uuid()::text,
+        'Match request expired',
+        coalesce(v_opponent_name, 'Your opponent') || ' never responded to your match request (' ||
+          coalesce(v_winner_name, '?') || ' ' || NEW.winner_score || ' - ' || NEW.loser_score || ' ' || coalesce(v_loser_name, '?') || '). It has expired.',
+        'system',
+        v_data,
+        NEW.group_id,
+        NEW.id
+      );
     end if;
   end if;
 

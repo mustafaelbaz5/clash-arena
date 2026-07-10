@@ -33,33 +33,30 @@ class GroupsRemoteDs {
     }
   }
 
+  /// Creates the group and adds the caller as owner via the `create_group`
+  /// SQL function (SECURITY DEFINER). A plain client insert+select doesn't
+  /// work here: for a private group, `.select()` requires the new row to
+  /// pass the `groups` SELECT policy (is_public OR is_group_member(id)),
+  /// but the owner's group_members row doesn't exist until the second
+  /// insert — so returning the freshly-inserted row fails RLS even though
+  /// the insert itself was otherwise valid.
   Future<GroupModel> createGroup(final GroupModel draft) async {
     try {
-      final userId = _currentUserId;
-      if (userId == null) {
-        throw StateError(
-          'Cannot create a group without an authenticated user.',
-        );
-      }
-
       final response = await supabaseService.execute(
-        supabaseService.client
-            .from('groups')
-            .insert({...draft.toInsertJson(), 'created_by': userId})
-            .select()
-            .single(),
+        supabaseService.client.rpc(
+          'create_group',
+          params: {
+            'p_name': draft.name,
+            'p_description': draft.description,
+            'p_is_public': draft.isPublic,
+            'p_max_members': draft.maxMembers,
+          },
+        ),
       );
-      final group = GroupModel.fromJson(response, myRole: 'owner');
-
-      await supabaseService.execute(
-        supabaseService.client.from('group_members').insert({
-          'group_id': group.id,
-          'user_id': userId,
-          'role': 'owner',
-        }),
-      );
-
-      return group;
+      final row = response is List
+          ? response.first as Map<String, dynamic>
+          : response as Map<String, dynamic>;
+      return GroupModel.fromJson(row, myRole: 'owner');
     } catch (e) {
       ErrorHandler.handleException(e);
     }
